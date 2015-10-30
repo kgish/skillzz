@@ -1,6 +1,10 @@
 # Skillz-alot
 
-Advanced website platform for matching skilled workers to customers searching for the best and most appropriate person for a given task.
+This is an advanced website platform for matching skilled workers to customers searching for the best and most appropriate person for the given task at hand.
+
+Selection criteria includes skills, skill categories, hourly rates, availability for filtering through the results.
+
+Hits are ordered using a ranking scheme which is weighting according to the preferences of the customer.
 
 ## Coding Challenge
 
