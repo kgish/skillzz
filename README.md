@@ -1,4 +1,4 @@
-# Skillz-alot
+# Skillzz
 
 This is an advanced website platform for matching skilled workers to customers searching for the best and most appropriate person for the given task at hand.
 
