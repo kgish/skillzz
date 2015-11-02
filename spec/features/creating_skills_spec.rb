@@ -1,9 +1,14 @@
 require 'rails_helper'
 
 RSpec.feature 'Users can create new skills' do
-  scenario 'with valid attributes' do
+
+  before do
     visit '/'
     click_link 'New Skill'
+  end
+
+
+  scenario 'with valid attributes' do
     fill_in 'Name', with: 'Cooking'
     click_button 'Create Skill'
     expect(page).to have_content 'Cooking'
@@ -13,4 +18,12 @@ RSpec.feature 'Users can create new skills' do
     title = 'Cooking - Skills - SkillZZ'
     expect(page).to have_title title
   end
+
+
+  scenario 'when providing invalid attributes' do
+    click_button 'Create Skill'
+    expect(page).to have_content 'Skill has not been created.'
+    expect(page).to have_content 'Name can\'t be blank'
+  end
+
 end

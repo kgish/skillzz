@@ -8,12 +8,14 @@ class SkillsController < ApplicationController
 
   def create
     @skill = Skill.new(skill_params)
-    if @skill.save
-      redirect_to @skill, notice: 'Skill has been created.'
-    else
-      # nothing, yet
-    end
 
+    if @skill.save
+      flash[:notice] = "Skill has been created."
+      redirect_to @skill
+    else
+      flash.now[:alert] = "Skill has not been created."
+      render "new"
+    end
   end
 
   def show
