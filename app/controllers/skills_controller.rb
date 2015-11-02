@@ -1,4 +1,6 @@
 class SkillsController < ApplicationController
+  before_action :set_skill, only: [:show, :edit, :update, :destroy]
+
   def index
     @skills = Skill.all
   end
@@ -20,15 +22,12 @@ class SkillsController < ApplicationController
   end
 
   def show
-    @skill = Skill.find(params[:id])
   end
 
   def edit
-    @skill = Skill.find(params[:id])
   end
 
   def update
-    @skill = Skill.find(params[:id])
     @skill.update(skill_params)
 
     if @skill.update(skill_params)
@@ -41,7 +40,6 @@ class SkillsController < ApplicationController
   end
 
   def destroy
-    @skill = Skill.find(params[:id])
     @skill.destroy
 
     flash[:notice] = "Skill has been deleted."
@@ -52,6 +50,13 @@ class SkillsController < ApplicationController
 
   def skill_params
     params.require(:skill).permit(:name)
+  end
+
+  def set_skill
+    @skill = Skill.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "The skill you were looking for could not be found."
+    redirect_to skills_path
   end
 
 end
