@@ -1,1 +1,9 @@
-<%= link_to 'New Skill', new_skill_path %>
+<h1>Skills</h1>
+
+<%= link_to "New Skill", new_skill_path %>
+
+<div id="skills">
+  <% @skills.each do |skill| %>
+    <h2><%= link_to skill.name, skill %></h2>
+  <% end %>
+</div>

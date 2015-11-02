@@ -1,5 +1,6 @@
 class SkillsController < ApplicationController
   def index
+    @skills = Skill.all
   end
 
   def new
@@ -20,6 +21,31 @@ class SkillsController < ApplicationController
 
   def show
     @skill = Skill.find(params[:id])
+  end
+
+  def edit
+    @skill = Skill.find(params[:id])
+  end
+
+  def update
+    @skill = Skill.find(params[:id])
+    @skill.update(skill_params)
+
+    if @skill.update(skill_params)
+      flash[:notice] = "Skill has been updated."
+      redirect_to @skill
+    else
+      flash.now[:alert] = "Skill has not been updated."
+      render "edit"
+    end
+  end
+
+  def destroy
+    @skill = Skill.find(params[:id])
+    @skill.destroy
+
+    flash[:notice] = "Skill has been deleted."
+    redirect_to skills_path
   end
 
   private

@@ -21,6 +21,7 @@ RSpec.feature "Users can edit existing categories" do
     fill_in "Name", with: ""
     click_button "Update Category"
     expect(page).to have_content "Category has not been updated."
+    expect(page).to have_content "Name can't be blank"
 end
 
 end
