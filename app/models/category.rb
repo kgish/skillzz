@@ -2,5 +2,6 @@ class Category < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
 
-  has_many :skills
+  # Cull all the associated skills when a given category is destroyed
+  has_many :skills, dependent: :delete_all
 end
