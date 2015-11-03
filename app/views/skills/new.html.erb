@@ -1,5 +1,8 @@
 <header>
-  <h1>New Skill</h1>
+  <h1>
+    New Skill
+    <small><%= @category.name %></small>
+  </h1>
 </header>
 
-<%= render "form", skill: @skill %>
+<%= render "form", category: @category, skill: @skill %>

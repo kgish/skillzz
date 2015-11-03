@@ -1,14 +1,27 @@
-<% title(@skill.name, 'Skills') %>
+<div id="ticket">
+  <header>
+    <h1><%= @category.name %></h1>
+  </header>
+
+  <header>
+    <h2><%= @skill.name %></h2>
+  </header>
+  <%= simple_format(@skill.description) %>
+</div>
+
+<!-- TODO
+<%# title(@skill.name, 'Skills') %>
 
 <header>
-  <h1><%= @skill.name %></h1>
+  <h1><%#= @skill.name %></h1>
 
   <ul class="actions">
-    <li><%= link_to "Edit Skill", edit_skill_path(@skill), class: "edit" %></li>
-    <li><%= link_to "Delete Skill", skill_path(@skill), method: :delete,
+    <li><%#= link_to "Edit Skill", edit_skill_path(@skill), class: "edit" %></li>
+    <li><%#= link_to "Delete Skill", skill_path(@skill), method: :delete,
                 data: { confirm: "Are you sure you want to delete this skill?" },
                 class: "delete" %></li>
   </ul>
 </header>
 
-<p><%= @skill.description %></p>
+<p><%#= @skill.description %></p>
+-->

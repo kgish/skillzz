@@ -12,3 +12,10 @@
 </header>
 
 <p><%= @category.description %></p>
+
+<header>
+  <h2>Skills</h2>
+  <ul class="actions">
+    <li><%= link_to "New Skill", new_category_skill_path(@category), class: "new" %></li>
+  </ul>
+</header>
