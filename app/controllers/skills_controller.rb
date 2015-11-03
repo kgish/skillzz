@@ -18,7 +18,6 @@ class SkillsController < ApplicationController
     if @skill.save
       flash[:notice] = "Skill has been created."
       redirect_to [@category, @skill]
-      # redirect_to category_skill_path(@category, @skill)
     else
       flash.now[:alert] = "Skill has not been created."
       render "new"
@@ -36,7 +35,7 @@ class SkillsController < ApplicationController
 
     if @skill.update(skill_params)
       flash[:notice] = "Skill has been updated."
-      redirect_to @skill
+      redirect_to [@category, @skill]
     else
       flash.now[:alert] = "Skill has not been updated."
       render "edit"

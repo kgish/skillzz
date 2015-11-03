@@ -19,3 +19,18 @@ For example, if a customer needs a worker who can do both cooking and house-clea
 The site could have perhaps up to 1,000 workers, 10,000 customers and 100 skills.
 
 The challenge: create a prototype of this website, with the main focus on the back end, especially the models and search functionality.
+
+## References
+
+Of course, I couldn't have done any of this without the following fantastic resources.
+
+* [Ruby on Rails](http://rubyonrails.org/) - the most amazing website on the face of the Earth.
+* [RSpec](http://rspec.info/) - behavior driven development for Ruby.
+* [Bootstrap](http://getbootstrap.com/) - sleek, intuitive, and powerful front-end framework for (mobile) web development.
+* [FontAwesome](http://fontawesome.io/) - cute collection of icons.
+* [Sass](http://sass-lang.com/) - powerful turbo CSS extension.
+* [Rails 4 in Action](https://www.manning.com/books/rails-4-in-action) - by a long shot the most extensive hands-on Rails guide available.
+* [Devise](https://github.com/plataformatec/devise) - authentication solution for Rails.
+* [Pundit](https://github.com/elabs/pundit) - authorization solution for Rails using policies.
+* [Carrierwave](https://github.com/carrierwaveuploader/carrierwave) - file upload solution for Rails.
+* [Heroku](https://www.heroku.com/) - cloud platform for easily deploying Rails applications.

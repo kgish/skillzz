@@ -1,6 +1,35 @@
 require "rails_helper"
 
 RSpec.feature "Users can edit existing skills" do
+
+  let(:category) { FactoryGirl.create(:category) }
+  let(:skill) { FactoryGirl.create(:skill, category: category) }
+
+  before do
+    visit category_skill_path(category, skill)
+    click_link "Edit Skill"
+  end
+
+
+  scenario "with valid attributes" do
+    fill_in "Name", with: "JavaScript"
+    click_button "Update Skill"
+
+    expect(page).to have_content "Skill has been updated."
+
+    within("#skill h2") do
+      expect(page).to have_content "JavaScript"
+      expect(page).not_to have_content skill.name
+    end
+  end
+
+  scenario "with invalid attributes" do
+    fill_in "Name", with: ""
+
+    click_button "Update Skill"
+    expect(page).to have_content "Skill has not been updated."
+  end
+
   # TODO:
   # before do
   #   FactoryGirl.create(:skill, name: "Fortran", description: "Imperative programming language for scientific computing")

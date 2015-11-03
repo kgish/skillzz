@@ -5,6 +5,10 @@
 
   <header>
     <h2><%= @skill.name %></h2>
+
+    <ul class="actions">
+      <li><%= link_to "Edit Skill", [:edit, @category, @skill], class: "edit" %></li>
+    </ul>
   </header>
 
   <%= simple_format(@skill.description) %>
