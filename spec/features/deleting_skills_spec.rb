@@ -1,16 +1,17 @@
 require "rails_helper"
 
 RSpec.feature "Users can delete skills" do
-  # TODO:
-  # scenario "successfully" do
-  #   FactoryGirl.create(:skill, name: "Fortran", description: "Imperative programming language for scientific computing")
-  #
-  #   visit skills_url
-  #   click_link "Fortran"
-  #   click_link "Delete Skill"
-  #
-  #   expect(page).to have_content "Skill has been deleted."
-  #   expect(page.current_url).to eq skills_url
-  #   expect(page).to have_no_content "Fortran"
-  # end
+  let(:category) { FactoryGirl.create(:category) }
+  let(:skill) { FactoryGirl.create(:skill, category: category) }
+
+  before do
+    visit category_skill_path(category, skill)
+  end
+
+  scenario "successfully" do
+    click_link "Delete Skill"
+
+    expect(page).to have_content "Skill has been deleted."
+    expect(page.current_url).to eq category_url(category)
+  end
 end

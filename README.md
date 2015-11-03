@@ -6,6 +6,7 @@ Selection criteria includes skills, skill categories, hourly rates, availability
 
 Hits are ordered using a ranking scheme which is weighting according to the preferences of the customer.
 
+
 ## Coding Challenge
 
 Given a website which matches workers to customers. 
@@ -19,6 +20,20 @@ For example, if a customer needs a worker who can do both cooking and house-clea
 The site could have perhaps up to 1,000 workers, 10,000 customers and 100 skills.
 
 The challenge: create a prototype of this website, with the main focus on the back end, especially the models and search functionality.
+
+
+## Testing
+
+The functionality of this application is verified by running `rspec` which tests the defined features and scenarios.
+
+In order to run all tests:
+
+    bundle exec rspec
+  
+or in order to run just a specific feature, in this example editing categories:
+
+    bundle exec rspec spec/features/editing_categories_spec.rb
+    
 
 ## References
 

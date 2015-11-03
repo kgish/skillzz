@@ -46,7 +46,7 @@ class SkillsController < ApplicationController
     @skill.destroy
 
     flash[:notice] = "Skill has been deleted."
-    redirect_to skills_path
+    redirect_to @category
   end
 
   private
