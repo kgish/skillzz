@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.feature "Users can edit existing skills" do
   before do
-    FactoryGirl.create(:skill, name: "Fortran")
+    FactoryGirl.create(:skill, name: "Fortran", description: "Imperative programming language for scientific computing")
 
     visit skills_url
     click_link "Fortran"
