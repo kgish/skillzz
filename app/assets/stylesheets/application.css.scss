@@ -41,6 +41,12 @@ ul.actions {
   text-align: right;
 }
 
+// --- FORM --- //
+
+form {
+  max-width: 500px;
+}
+
 // --- BUTTONS: NEW, EDIT and DELETE --- //
 
 a.new {
@@ -76,4 +82,14 @@ a.delete {
     //@extend .fa-trash;
     padding-right: 0.5em;
   }
+}
+
+// --- ALERTS --- //
+
+.alert-notice {
+  @extend .alert-success;
+}
+
+.alert-alert {
+  @extend .alert-danger;
 }
