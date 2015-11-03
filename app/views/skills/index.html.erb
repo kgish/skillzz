@@ -1,6 +1,9 @@
-<h1>Skills</h1>
-
-<%= link_to "New Skill", new_skill_path %>
+<header>
+  <h1>Skills</h1>
+  <ul class="actions">
+    <li><%= link_to "New Skill", new_skill_path, class: "new" %></li>
+  </ul>
+</header>
 
 <div id="skills">
   <% @skills.each do |skill| %>

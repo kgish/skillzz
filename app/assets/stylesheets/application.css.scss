@@ -1,3 +1,79 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "font-awesome";
+//TODO: @import "font-awesome";
+@import "categories";
+@import "skills";
+
+// --- PAGE HEADER --- //
+
+.page-header {
+  position: relative;
+  padding-bottom: 0;
+  &:first-child {
+    margin-top: 20px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    max-width: 55%;
+  }
+}
+
+// --- HEADER (extends page-header) --- //
+
+header {
+  @extend .page-header;
+  position: relative;
+  padding-bottom: 0;
+  &:first-child {
+    margin-top: 20px;
+  }
+}
+
+// --- ACTIONS --- //
+
+ul.actions {
+  @extend .list-unstyled;
+  @extend .list-inline;
+  position: absolute;
+  bottom: -2px;
+  right: 2px;
+  max-width: 45%;
+  text-align: right;
+}
+
+// --- BUTTONS: NEW, EDIT and DELETE --- //
+
+a.new {
+  @extend .btn;
+  @extend .btn-success;
+  &:before {
+    //TODO
+    //font-family: "FontAwesome";
+    //@extend .fa-plus;
+    padding-right: 0.5em;
+  }
+}
+
+a.edit {
+  @extend .btn;
+  @extend .btn-primary;
+
+  &:before {
+    //TODO
+    //font-family: "FontAwesome";
+    //@extend .fa-pencil;
+    padding-right: 0.5em;
+  }
+}
+
+a.delete {
+  @extend .btn;
+  @extend .btn-danger;
+
+  &:before {
+    //TODO
+    //font-family: "FontAwesome";
+    //@extend .fa-trash;
+    padding-right: 0.5em;
+  }
+}

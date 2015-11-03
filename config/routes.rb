@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'skills#index'
+  root 'categories#index'
 
   resources :skills
   resources :categories
