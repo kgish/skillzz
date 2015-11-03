@@ -3,9 +3,15 @@
 //TODO: @import "font-awesome";
 @import "categories";
 @import "skills";
+@import "responsive";
+
+// --- BODY --- //
+body {
+  // Make room for the navigation bar
+  padding-top: 70px;
+}
 
 // --- PAGE HEADER --- //
-
 .page-header {
   position: relative;
   padding-bottom: 0;
@@ -19,36 +25,29 @@
 }
 
 // --- HEADER (extends page-header) --- //
-
 header {
   @extend .page-header;
   position: relative;
   padding-bottom: 0;
+
   &:first-child {
     margin-top: 20px;
   }
 }
 
 // --- ACTIONS --- //
-
 ul.actions {
   @extend .list-unstyled;
   @extend .list-inline;
-  position: absolute;
-  bottom: -2px;
-  right: 2px;
-  max-width: 45%;
-  text-align: right;
 }
 
 // --- FORM --- //
-
 form {
+  // Prevent the form from becoming too large
   max-width: 500px;
 }
 
 // --- BUTTONS: NEW, EDIT and DELETE --- //
-
 a.new {
   @extend .btn;
   @extend .btn-success;
@@ -84,8 +83,7 @@ a.delete {
   }
 }
 
-// --- ALERTS --- //
-
+// --- ALERTS for the messages --- //
 .alert-notice {
   @extend .alert-success;
 }
