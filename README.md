@@ -21,12 +21,23 @@ The site could have perhaps up to 1,000 workers, 10,000 customers and 100 skills
 
 The challenge: create a prototype of this website, with the main focus on the back end, especially the models and search functionality.
 
+## Installation
+
+In order to install and start using this application, do the following:
+
+    git clone git@github.com:kgish/skillzz.git
+    cd skillzz
+    bundle install
+    bundle exec rake db:migrate
+    bundle exec rails server
+
+The application is now up-and-running and can be viewed by pointing your favorite browser at http://localhost:3000.
 
 ## Testing
 
 The functionality of this application is verified by running `rspec` which tests the defined features and scenarios.
 
-In order to run all tests:
+In order to run all the tests:
 
     bundle exec rspec
   
