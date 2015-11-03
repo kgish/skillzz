@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :skill do
-    name "Pascal"
+    name "Ruby"
+    description "Modern object-oriented language"
   end
 end

@@ -18,6 +18,7 @@ class SkillsController < ApplicationController
     if @skill.save
       flash[:notice] = "Skill has been created."
       redirect_to [@category, @skill]
+      # redirect_to category_skill_path(@category, @skill)
     else
       flash.now[:alert] = "Skill has not been created."
       render "new"

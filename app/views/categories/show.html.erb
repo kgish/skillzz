@@ -19,3 +19,12 @@
     <li><%= link_to "New Skill", new_category_skill_path(@category), class: "new" %></li>
   </ul>
 </header>
+
+<ul id="skills">
+  <% @category.skills.each do |skill| %>
+    <li>
+      #<%= skill.id %> -
+      <%= link_to skill.name, [@category, skill] %>
+    </li>
+  <% end %>
+</ul>
