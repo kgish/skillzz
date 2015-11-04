@@ -1,6 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-//TODO: @import "font-awesome";
+@import "font-awesome";
 @import "categories";
 @import "skills";
 @import "admin/application";
@@ -53,9 +53,8 @@ a.new {
   @extend .btn;
   @extend .btn-success;
   &:before {
-    //TODO
-    //font-family: "FontAwesome";
-    //@extend .fa-plus;
+    font-family: "FontAwesome";
+    @extend .fa-plus;
     padding-right: 0.5em;
   }
 }
@@ -65,9 +64,8 @@ a.edit {
   @extend .btn-primary;
 
   &:before {
-    //TODO
-    //font-family: "FontAwesome";
-    //@extend .fa-pencil;
+    font-family: "FontAwesome";
+    @extend .fa-pencil;
     padding-right: 0.5em;
   }
 }
@@ -77,9 +75,8 @@ a.delete {
   @extend .btn-danger;
 
   &:before {
-    //TODO
-    //font-family: "FontAwesome";
-    //@extend .fa-trash;
+    font-family: "FontAwesome";
+    @extend .fa-trash;
     padding-right: 0.5em;
   }
 }
