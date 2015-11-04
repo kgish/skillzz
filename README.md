@@ -4,7 +4,7 @@ This is an advanced website platform for matching highly skilled workers to cust
 
 Selection criteria includes skills, skill categories, hourly rates, availability for filtering through the results.
 
-An example of such a query might be: I am looking for a senior Ruby developer with knowledge of Linux who charges between 60 - 70 euros per hour and will be available next month for three months.
+An example of such a query might be: I am looking for a senior Ruby developer with knowledge of Linux who charges between 60 - 70 euros per hour and will be available starting next month for three months.
 
 A query will generate a number of hits which are then ordered according to a ranking scheme weighted according to criteria and preferences of the customer.
 
@@ -30,6 +30,20 @@ This is the assignment which was given to me.
 I had two weeks the time to design and build it.
 
 
+## Installation
+
+In order to install and start using this application, do the following:
+
+    git clone git@github.com:kgish/skillzz.git
+    cd skillzz
+    bundle install
+    bundle exec rake db:migrate
+    bundle exec rake db:seed
+    bundle exec rails server
+
+The application is now up-and-running and can be viewed by pointing your favorite browser at http://localhost:3000.
+
+
 ## Authentication
 
 In order to be able to take advantages of the services provided by this website, a user has to first login with his username and password.
@@ -39,23 +53,26 @@ In order to be able to take advantages of the services provided by this website,
 
 There are four roles for the website:
 
-* Visitor - the casual Internet user who happens to find the website, gathers information and can sign up was either a worker or a customer.
-* Worker - person with collection of skills who is available for employment.
-* Customer - user who is looking for workers with a given number of skills.
-* Administrator - has complete access rights required for administrating the website.
+Role | Description
+------------ | -------------
+Visitor | happens to find the website, gathers information and can sign up either as a worker or a customer.
+Worker | has collection of skills who is available for employment.
+Customer | looking for workers with a given number of skills.
+Administrator | has complete access rights required for administrating the website.
 
 
-## Installation
+## Users
 
-In order to install and start using this application, do the following:
+During the installation the user table is populated with a number of pre-defined users, namely the following:
 
-    git clone git@github.com:kgish/skillzz.git
-    cd skillzz
-    bundle install
-    bundle exec rake db:migrate
-    bundle exec rails server
+Email | Password
+------------ | -------------
+admin@skillzz.com | admin
+customer1@skillzz.com | customer1
+customer2@skillzz.com | customer2
+worker1@skillzz.com | worker1
+worker2@skillzz.com | worker2
 
-The application is now up-and-running and can be viewed by pointing your favorite browser at http://localhost:3000.
 
 ## Testing
 
