@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+
   namespace :admin do
-    get 'application/index'
+    root 'application#index'
     resources :categories, only: [:new, :create, :destroy]
+    resources :users
   end
 
   devise_for :users

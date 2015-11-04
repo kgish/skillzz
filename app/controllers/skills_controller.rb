@@ -51,20 +51,20 @@ class SkillsController < ApplicationController
 
   private
 
-  def skill_params
-    params.require(:skill).permit(:name, :description)
-  end
+    def skill_params
+      params.require(:skill).permit(:name, :description)
+    end
 
-  def set_skill
-    @skill = @category.skills.find(params[:id])
-    # TODO
-    # rescue ActiveRecord::RecordNotFound
-    # flash[:alert] = "The skill you were looking for could not be found."
-    # redirect_to skills_path
-  end
+    def set_skill
+      @skill = @category.skills.find(params[:id])
+      # TODO
+      # rescue ActiveRecord::RecordNotFound
+      # flash[:alert] = "The skill you were looking for could not be found."
+      # redirect_to skills_path
+    end
 
-  def set_category
-    @category = Category.find(params[:category_id])
-  end
+    def set_category
+      @category = Category.find(params[:category_id])
+    end
 
 end
