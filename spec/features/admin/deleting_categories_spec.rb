@@ -1,6 +1,11 @@
 require "rails_helper"
 
 RSpec.feature "Users can delete categories" do
+
+  before do
+    login_as(FactoryGirl.create(:user, :admin))
+  end
+
   scenario "successfully" do
     FactoryGirl.create(:category, name: "Programming")
 

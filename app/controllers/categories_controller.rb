@@ -1,24 +1,8 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:show, :edit, :update]
 
   def index
     @categories = Category.all
-  end
-
-  def new
-    @category = Category.new
-  end
-
-  def create
-    @category = Category.new(category_params)
-
-    if @category.save
-      flash[:notice] = "Category has been created."
-      redirect_to @category
-    else
-      flash.now[:alert] = "Category has not been created."
-      render "new"
-    end
   end
 
   def show
@@ -37,13 +21,6 @@ class CategoriesController < ApplicationController
       flash.now[:alert] = "Category has not been updated."
       render "edit"
     end
-  end
-
-  def destroy
-    @category.destroy
-
-    flash[:notice] = "Category has been deleted."
-    redirect_to categories_path
   end
 
   private
