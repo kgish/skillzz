@@ -1,8 +1,11 @@
 require "rails_helper"
 
 RSpec.feature "Users can delete skills" do
+  let(:author) { FactoryGirl.create(:user) }
   let(:category) { FactoryGirl.create(:category) }
-  let(:skill) { FactoryGirl.create(:skill, category: category) }
+  let(:skill) do
+    FactoryGirl.create(:skill, category: category, author: author)
+  end
 
   before do
     visit category_skill_path(category, skill)

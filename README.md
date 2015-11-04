@@ -10,6 +10,7 @@ A query will generate a number of hits which are then ordered according to a ran
 
 The website was designed and built as part of a coding challenge given to me by [E-Accent](https://www.e-accent.com/) for the position of Remote Ruby on Rails Developer.
 
+Special thanks to the authors of the book [Rails 4 in Action](https://www.manning.com/books/rails-4-in-action) which provided me with invaluable guidance.
 
 ## Coding Challenge
 

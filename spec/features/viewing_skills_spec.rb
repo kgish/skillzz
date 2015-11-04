@@ -2,14 +2,17 @@ require "rails_helper"
 
 RSpec.feature "Users can view skills" do
   before do
+    author = FactoryGirl.create(:user)
     programming = FactoryGirl.create(:category, name: "Programming")
     FactoryGirl.create(:skill, category: programming,
+      author: author,
       name: "Ruby",
       description: "Modern object-oriented language")
 
     cooking = FactoryGirl.create(:category, name: "Cooking")
     FactoryGirl.create(:skill, category: cooking,
       name: "BBQ",
+      author: author,
       description: "American-style barbeque")
     visit "/"
   end
@@ -25,13 +28,3 @@ RSpec.feature "Users can view skills" do
      expect(page).to have_content "Modern object-oriented language"
   end
 end
-
-# TODO
-# RSpec.feature "Users can view skills" do
-#   scenario "with the skill details" do
-#     skill = FactoryGirl.create(:skill, name: "Elixir", description: "Modern functional programming language")
-#     visit skills_url
-#     click_link "Elixir"
-#     expect(page.current_url).to eq skill_url(skill)
-#   end
-# end
