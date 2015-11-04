@@ -12,8 +12,8 @@ class SkillsController < ApplicationController
   end
 
   def create
-    # @skill = Skill.new(skill_params)
     @skill = @category.skills.build(skill_params)
+    @skill.author = current_user
 
     if @skill.save
       flash[:notice] = "Skill has been created."
@@ -56,7 +56,6 @@ class SkillsController < ApplicationController
   end
 
   def set_skill
-    # @skill = Skill.find(params[:id])
     @skill = @category.skills.find(params[:id])
     # TODO
     # rescue ActiveRecord::RecordNotFound
