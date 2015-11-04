@@ -8,7 +8,7 @@ An example of such a query might be: I am looking for a senior Ruby developer wi
 
 A query will generate a number of hits which are then ordered according to a ranking scheme weighted according to criteria and preferences of the customer.
 
-The website was designed and built as part of a coding challenge given to me by (E-Accent)[https://www.e-accent.com/] for the position of Remote Ruby on Rails Developer.
+The website was designed and built as part of a coding challenge given to me by [E-Accent](https://www.e-accent.com/) for the position of Remote Ruby on Rails Developer.
 
 
 ## Coding Challenge
