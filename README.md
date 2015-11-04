@@ -55,10 +55,10 @@ There are four roles for the website:
 
 Role | Description
 ------------ | -------------
-Visitor | happens to find the website, gathers information and can sign up either as a worker or a customer.
-Worker | has collection of skills who is available for employment.
-Customer | looking for workers with a given number of skills.
-Administrator | has complete access rights required for administrating the website.
+Visitor | Happens to find the website, gathers information and can sign up either as a worker or a customer.
+Worker | Has collection of skills who is available for employment.
+Customer | Looking for workers with a given number of skills.
+Administrator | Has complete access rights required for administrating the website.
 
 
 ## Users
@@ -91,13 +91,16 @@ or in order to run just a specific feature, in this example editing categories:
 
 Of course, I couldn't have done any of this without the following fantastic resources.
 
-* [Ruby on Rails](http://rubyonrails.org/) - the most amazing website on the face of the Earth.
-* [RSpec](http://rspec.info/) - behavior driven development for Ruby.
-* [Bootstrap](http://getbootstrap.com/) - sleek, intuitive, and powerful front-end framework for (mobile) web development.
-* [FontAwesome](http://fontawesome.io/) - cute collection of icons.
-* [Sass](http://sass-lang.com/) - powerful turbo CSS extension.
-* [Rails 4 in Action](https://www.manning.com/books/rails-4-in-action) - by a long shot the most extensive hands-on Rails guide available.
-* [Devise](https://github.com/plataformatec/devise) - authentication solution for Rails.
-* [Pundit](https://github.com/elabs/pundit) - authorization solution for Rails using policies.
-* [Carrierwave](https://github.com/carrierwaveuploader/carrierwave) - file upload solution for Rails.
-* [Heroku](https://www.heroku.com/) - cloud platform for easily deploying Rails applications.
+Reference | Description
+------------ | -------------
+[Ruby on Rails](http://rubyonrails.org/) | The most amazing website on the face of the Earth.
+[RSpec](http://rspec.info/) | Behavior driven development testing framework for Ruby.
+[Bootstrap](http://getbootstrap.com/) | Sleek, intuitive, and powerful front-end framework for (mobile) web development.
+[FontAwesome](http://fontawesome.io/) | Cute collection of awesome icons.
+[Sass](http://sass-lang.com/) | Powerful CSS extension on steroids.
+[Rails 4 in Action](https://www.manning.com/books/rails-4-in-action) | By a long shot the most extensive hands-on Rails guide available.
+[Devise](https://github.com/plataformatec/devise) | Advanced authentication solution for Rails.
+[Pundit](https://github.com/elabs/pundit) | Advanced authorization solution for Rails using policies.
+[Carrierwave](https://github.com/carrierwaveuploader/carrierwave) | File upload solution for Rails.
+[Heroku](https://www.heroku.com/) | Cloud platform for easily deploying Rails applications.
+
