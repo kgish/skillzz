@@ -14,4 +14,13 @@ class User < ActiveRecord::Base
     self.update(archived_at: Time.now)
   end
 
+  # Tell devise to disallow login if the user is archived.
+  def active_for_authentication?
+    super && archived_at.nil?
+  end
+
+  # See config/locales/devise.en.yml => en.devise.failure.user.archived
+  def inactive_message
+    archived_at.nil? ? super : :archived
+  end
 end
