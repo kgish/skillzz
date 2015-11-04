@@ -1,25 +1,49 @@
 # SkillZZ
 
-This is an advanced website platform for matching skilled workers to customers searching for the best and most appropriate person for the given task at hand.
+This is an advanced website platform for matching highly skilled workers to customers who are searching for the best and most appropriate person for a given task at hand.
 
 Selection criteria includes skills, skill categories, hourly rates, availability for filtering through the results.
 
-Hits are ordered using a ranking scheme which is weighting according to the preferences of the customer.
+An example of such a query might be: I am looking for a senior Ruby developer with knowledge of Linux who charges between 60 - 70 euros per hour and will be available next month for three months.
+
+A query will generate a number of hits which are then ordered according to a ranking scheme weighted according to criteria and preferences of the customer.
+
+The website was designed and built as part of a coding challenge given to me by (E-Accent)[https://www.e-accent.com/] for the position of Remote Ruby on Rails Developer.
 
 
 ## Coding Challenge
 
-Given a website which matches workers to customers. 
+This is the assignment which was given to me.
 
-A worker is a registered user, who possesses one or more skills like “cooking”, “house cleaning”, “fixing wireless networks”, and so on. 
+> Given a website which matches workers to customers. 
+> 
+> A worker is a registered user, who possesses one or more skills like “cooking”, “house cleaning”, “fixing wireless networks”, and so on. 
+> 
+> A customer, also a registered user, can search for workers by skill.
+> 
+> For example, if a customer needs a worker who can do both cooking and house-cleaning, she will go to the site, choose both these skills from a list, and get a list of workers from which to choose.
+> 
+> The site could have perhaps up to 1,000 workers, 10,000 customers and 100 skills.
+> 
+> The challenge: create a prototype of this website, with the main focus on the back end, especially the models and search functionality.
 
-A customer, also a registered user, can search for workers by skill.
+I had two weeks the time to design and build it.
 
-For example, if a customer needs a worker who can do both cooking and house-cleaning, she will go to the site, choose both these skills from a list, and get a list of workers from which to choose.
 
-The site could have perhaps up to 1,000 workers, 10,000 customers and 100 skills.
+## Authentication
 
-The challenge: create a prototype of this website, with the main focus on the back end, especially the models and search functionality.
+In order to be able to take advantages of the services provided by this website, a user has to first login with his username and password.
+
+
+## Roles
+
+There are four roles for the website:
+
+* Visitor - the casual Internet user who happens to find the website, gathers information and can sign up was either a worker or a customer.
+* Worker - person with collection of skills who is available for employment.
+* Customer - user who is looking for workers with a given number of skills.
+* Administrator - has complete access rights required for administrating the website.
+
 
 ## Installation
 
