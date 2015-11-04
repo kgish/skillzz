@@ -10,6 +10,7 @@ RSpec.feature "Users can only see the appropriate links" do
       visit "/"
       expect(page).not_to have_link "New Category"
     end
+
     scenario "cannot see the Delete Category link" do
       visit "/"
       expect(page).not_to have_link "Delete Category"
@@ -23,6 +24,7 @@ RSpec.feature "Users can only see the appropriate links" do
       visit "/"
       expect(page).not_to have_link "New Category"
     end
+
     scenario "cannot see the Delete Category link" do
       visit category_path(category)
       expect(page).not_to have_link "Delete Category"
@@ -36,6 +38,7 @@ end
       visit "/"
       expect(page).to have_link "New Category"
     end
+
     scenario "can see the Delete Category link" do
       visit category_path(category)
       expect(page).to have_link "Delete Category"

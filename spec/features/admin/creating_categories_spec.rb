@@ -12,16 +12,19 @@ RSpec.feature "Users can create new categories" do
     fill_in "Name", with: "Programming"
     fill_in "Description", with: "Anything to do with software development"
     click_button "Create Category"
+
     expect(page).to have_content "Programming"
 
     category = Category.find_by(name: "Programming")
     expect(page.current_url).to eq category_url(category)
     title = "Programming - Categories - SkillZZ"
+
     expect(page).to have_title title
   end
 
   scenario "when providing invalid attributes (blank name and description)" do
     click_button "Create Category"
+
     expect(page).to have_content "Category has not been created."
     expect(page).to have_content "Name can't be blank"
     expect(page).to have_content "Description can't be blank"
@@ -30,6 +33,7 @@ RSpec.feature "Users can create new categories" do
   scenario "when providing invalid attributes (blank name)" do
     fill_in "Description", with: "Anything to do with software development"
     click_button "Create Category"
+
     expect(page).to have_content "Category has not been created."
     expect(page).to have_content "Name can't be blank"
   end
@@ -37,6 +41,7 @@ RSpec.feature "Users can create new categories" do
   scenario "when providing invalid attributes (blank description)" do
     fill_in "Name", with: "Programming"
     click_button "Create Category"
+
     expect(page).to have_content "Category has not been created."
     expect(page).to have_content "Description can't be blank"
   end
@@ -45,6 +50,7 @@ RSpec.feature "Users can create new categories" do
     fill_in "Name", with: "Programming"
     fill_in "Description", with: "Anything to do with software development"
     click_button "Create Category"
+
     expect(page).to have_content "Programming"
 
     visit categories_url
@@ -52,6 +58,7 @@ RSpec.feature "Users can create new categories" do
     fill_in "Name", with: "Programming"
     fill_in "Description", with: "This text doesn't really matter"
     click_button "Create Category"
+
     expect(page).to have_content "Category has not been created."
     expect(page).to have_content "Name has already been taken"
   end

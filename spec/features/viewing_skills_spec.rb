@@ -19,12 +19,15 @@ RSpec.feature "Users can view skills" do
 
   scenario "for a given category" do
     click_link "Programming"
-     expect(page).to have_content "Ruby"
-     expect(page).to_not have_content "Modern object-oriented language"
-     click_link "Ruby"
-     within("#skill h2") do
-       expect(page).to have_content "Ruby"
-     end
-     expect(page).to have_content "Modern object-oriented language"
+
+    expect(page).to have_content "Ruby"
+    expect(page).to_not have_content "Modern object-oriented language"
+
+    click_link "Ruby"
+    within("#skill h2") do
+      expect(page).to have_content "Ruby"
+    end
+
+    expect(page).to have_content "Modern object-oriented language"
   end
 end

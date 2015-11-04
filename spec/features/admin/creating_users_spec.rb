@@ -15,6 +15,7 @@ RSpec.feature "Admins can create new users" do
     fill_in "Email", with: "newbie@skillzz.com"
     fill_in "Password", with: "newbie12345"
     click_button "Create User"
+
     expect(page).to have_content "User has been created."
   end
 
@@ -23,6 +24,7 @@ RSpec.feature "Admins can create new users" do
     fill_in "Password", with: "password"
     check "Is an admin?"
     click_button "Create User"
+
     expect(page).to have_content "User has been created."
     expect(page).to have_content "admin2@skillzz.com (Admin)"
   end
