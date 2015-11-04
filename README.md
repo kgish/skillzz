@@ -68,11 +68,11 @@ During the installation the user table is populated with a number of pre-defined
 
 Email | Password
 ------------ | -------------
-admin@skillzz.com | admin
-customer1@skillzz.com | customer1
-customer2@skillzz.com | customer2
-worker1@skillzz.com | worker1
-worker2@skillzz.com | worker2
+admin@skillzz.com | admin123
+customer1@skillzz.com | customer123
+customer2@skillzz.com | customer456
+worker1@skillzz.com | worker123
+worker2@skillzz.com | worker456
 
 
 ## Testing

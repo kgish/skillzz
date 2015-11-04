@@ -1,14 +1,40 @@
-# Create admin unless it already exists.
-unless User.exists?(email: "admin1@skillzz.com")
-  User.create!(email: "admin1@skillzz.com", password: "admin12345", admin: true)
+
+# --- USERS --- #
+
+users = [{
+  email: "admin@skillzz.com",
+  password: "admin123",
+  admin: true
+},{
+  email: "customer1@skillzz.com",
+  password: "customer123",
+  admin: false
+},{
+  email: "customer2@skillzz.com",
+  password: "customer456",
+  admin: false
+},{
+  email: "worker1@skillzz.com",
+  password: "worker123",
+  admin: false
+},{
+  email: "worker2@skillzz.com",
+  password: "worker456",
+  admin: false
+}]
+
+users.each do |user|
+  # Create user unless it already exists.
+  unless User.exists?(email: user[:email])
+    User.create!(user)
+  end
 end
 
-# Create user unless it already exists.
-unless User.exists?(email: "user1@skillzz.com")
-  User.create!(email: "user1@skillzz.com", password: "user12345")
-end
+puts "Users: #{User.count}"
 
-# Populate the category table with items.
+
+# --- CATEGORIES --- #
+
 categories = [{
   name: "Programming",
   description: "Wonderful world of software development"
@@ -22,9 +48,8 @@ categories = [{
 
 categories.each do |category|
   unless Category.exists?(name: category[:name])
-    Category.create!(name: category[:name], description: category[:description])
+    Category.create!(category)
   end
 end
 
-puts "Users: #{User.count}"
 puts "Categories: #{Category.count}"
