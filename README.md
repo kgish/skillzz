@@ -87,6 +87,19 @@ or in order to run just a specific feature, in this example editing categories:
     bundle exec rspec spec/features/editing_categories_spec.rb
     
 
+## Todos
+
+Even if I had a more time to create a more improved version of the application, being a developer at heart in pursuit of perfection means that there will always be stuff to do for later.
+
+Here is a list of todo items for a rainy day.
+
+* Allow users to include profile pictures that can be uploaded.
+* Take into account the availability of workers when matching.
+* Allow customers to create user-defined searches and save them.
+* Email notifications when there are new matches detected.
+* Etc.
+
+
 ## References
 
 Of course, I couldn't have done any of this without the following fantastic resources.
@@ -99,7 +112,9 @@ Reference | Description
 [FontAwesome](http://fontawesome.io/) | Cute collection of awesome icons.
 [Sass](http://sass-lang.com/) | Powerful CSS extension on steroids.
 [Rails 4 in Action](https://www.manning.com/books/rails-4-in-action) | By a long shot the most extensive hands-on Rails guide available.
+[FactoryGirl](https://github.com/thoughtbot/factory_girl_rails) | Fixtures replacement using definition syntax.
 [Devise](https://github.com/plataformatec/devise) | Advanced authentication solution for Rails.
+[Warden](https://github.com/hassox/rails_warden) | Authentication via the [Warden](https://github.com/hassox/warden) Rack authentication framework. 
 [Pundit](https://github.com/elabs/pundit) | Advanced authorization solution for Rails using policies.
 [Carrierwave](https://github.com/carrierwaveuploader/carrierwave) | File upload solution for Rails.
 [Heroku](https://www.heroku.com/) | Cloud platform for easily deploying Rails applications.

@@ -47,4 +47,11 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+
+  # The 'login_as' method isn’t included automatically by Warden, so we need to manually
+  # include the module that defines it. Also need to tell Warden to reset itself after
+  # each test,
+  config.include Warden::Test::Helpers, type: :feature
+  config.after(type: :feature) { Warden.test_reset! }
+
 end
