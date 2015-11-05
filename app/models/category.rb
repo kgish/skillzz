@@ -4,4 +4,6 @@ class Category < ActiveRecord::Base
 
   # Cull all the associated skills when a given category is destroyed
   has_many :skills, dependent: :delete_all
+
+  has_many :roles, dependent: :delete_all
 end

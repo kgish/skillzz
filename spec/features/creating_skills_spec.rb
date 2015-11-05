@@ -6,6 +6,7 @@ RSpec.feature "Users can create new skills" do
   before do
     login_as(user)
     category = FactoryGirl.create(:category, name: "Programming", description: "Wonderful world of software development")
+    assign_role!(user, :viewer, category)
     visit category_path(category)
     click_link "New Skill"
   end

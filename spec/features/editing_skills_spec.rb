@@ -12,7 +12,6 @@ RSpec.feature "Users can edit existing skills" do
     click_link "Edit Skill"
   end
 
-
   scenario "with valid attributes" do
     fill_in "Name", with: "JavaScript"
     click_button "Update Skill"

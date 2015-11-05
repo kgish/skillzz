@@ -8,6 +8,8 @@ RSpec.feature "Users can delete skills" do
   end
 
   before do
+    login_as(author)
+    assign_role!(author, :viewer, category)
     visit category_skill_path(category, skill)
   end
 
