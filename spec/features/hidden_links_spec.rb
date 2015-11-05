@@ -45,6 +45,11 @@ RSpec.feature "Users can only see the appropriate links" do
       visit category_skill_path(category, skill)
       expect(page).not_to have_link "Edit Skill"
     end
+
+    scenario "cannot see the Delete Skill link" do
+      visit category_skill_path(category, skill)
+      expect(page).not_to have_link "Delete Skill"
+    end
   end
 
   context "admin users" do
@@ -68,6 +73,11 @@ RSpec.feature "Users can only see the appropriate links" do
     scenario "can see the Edit Skill link" do
       visit category_skill_path(category, skill)
       expect(page).to have_link "Edit Skill"
+    end
+
+    scenario "can see the Delete Skill link" do
+      visit category_skill_path(category, skill)
+      expect(page).to have_link "Delete Skill"
     end
   end
 end

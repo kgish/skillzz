@@ -46,6 +46,7 @@ class SkillsController < ApplicationController
   end
 
   def destroy
+    authorize @skill, :destroy?
     @skill.destroy
 
     flash[:notice] = "Skill has been deleted."

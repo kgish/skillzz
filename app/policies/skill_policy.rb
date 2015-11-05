@@ -17,4 +17,7 @@ class SkillPolicy < ApplicationPolicy
     user.try(:admin?) || record.category.has_manager?(user) || (record.category.has_editor?(user) && record.author == user)
   end
 
+  def destroy?
+    user.try(:admin?) || record.category.has_manager?(user)
+  end
 end
