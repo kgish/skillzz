@@ -13,4 +13,8 @@ class SkillPolicy < ApplicationPolicy
     user.try(:admin?) || record.category.has_manager?(user) || record.category.has_editor?(user)
   end
 
+  def update?
+    user.try(:admin?) || record.category.has_manager?(user) || (record.category.has_editor?(user) && record.author == user)
+  end
+
 end

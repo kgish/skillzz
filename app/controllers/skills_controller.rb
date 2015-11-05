@@ -30,10 +30,11 @@ class SkillsController < ApplicationController
   end
 
   def edit
+    authorize @skill, :update?
   end
 
   def update
-    @skill.update(skill_params)
+    authorize @skill, :update?
 
     if @skill.update(skill_params)
       flash[:notice] = "Skill has been updated."

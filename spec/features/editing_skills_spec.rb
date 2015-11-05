@@ -8,7 +8,7 @@ RSpec.feature "Users can edit existing skills" do
   end
 
   before do
-    assign_role!(author, :viewer, category)
+    assign_role!(author, :editor, category)
     login_as(author)
     visit category_skill_path(category, skill)
     click_link "Edit Skill"

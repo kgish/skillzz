@@ -70,13 +70,19 @@ There are four roles for the website:
 * Customer - Looking for workers with a given number of skills.
 * Administrator - Has complete access rights required for administrating the website.
 
-Here are the rules:
+Here are the rules for categories:
 
 * Anyone can view the index action, but they will only see categories they are a member of.
 * Only admins can see the new and create actions.
 * Only members of a category can see the show action.
 * Only admins or project managers can see the edit and update actions.
 * Only admins can see the destroy action.
+
+A user can update a skill if one of the following is true:
+
+* The user is an admin.
+* The user is a manager of the project.
+* The user is an editor of the project, and the user is also the author of the ticket.
 
 
 ## Data Model
