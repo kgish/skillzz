@@ -10,10 +10,11 @@ class CategoriesController < ApplicationController
   end
 
   def edit
+    authorize @category, :edit?
   end
 
   def update
-    @category.update(category_params)
+    authorize @category, :update?
 
     if @category.update(category_params)
       flash[:notice] = "Category has been updated."

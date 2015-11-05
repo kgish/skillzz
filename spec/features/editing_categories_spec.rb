@@ -1,12 +1,12 @@
 require "rails_helper"
 
-RSpec.feature "Users can edit existing categories" do
+RSpec.feature "Project managers can edit existing categories" do
   let(:user) { FactoryGirl.create(:user) }
   let(:category) { FactoryGirl.create(:category, name: "Technical Tooling") }
 
   before do
     login_as(user)
-    assign_role!(user, :viewer, category)
+    assign_role!(user, :manager, category)
     visit categories_url
     click_link "Technical Tooling"
     click_link "Edit Category"

@@ -21,7 +21,7 @@ describe CategoryPolicy do
       expect(subject).to include(category)
     end
 
-    it "doesn't include projects a user is not allowed to view" do
+    it "doesn't include categories a user is not allowed to view" do
       expect(subject).to be_empty
     end
 
@@ -60,9 +60,45 @@ describe CategoryPolicy do
     end
 
     it "doesn't allow users assigned to other categories" do
-      other_category = FactoryGirl.create :category
+      other_category = FactoryGirl.create(:category, name: "Other category")
       assign_role!(user, :manager, other_category)
       expect(subject).not_to permit(user, category)
     end
   end
+
+  permissions :update? do
+    let(:user) { FactoryGirl.create :user }
+    let(:category) { FactoryGirl.create :category }
+
+    it "blocks anonymous users" do
+      expect(subject).not_to permit(nil, category)
+    end
+
+    it "doesn't allow viewers of the category" do
+      assign_role!(user, :viewer, category)
+      expect(subject).not_to permit(user, category)
+    end
+
+    it "doesn't allows editors of the category" do
+      assign_role!(user, :editor, category)
+      expect(subject).not_to permit(user, category)
+    end
+
+    it "allows managers of the category" do
+      assign_role!(user, :manager, category)
+        expect(subject).to permit(user, category)
+    end
+
+    it "allows administrators" do
+      admin = FactoryGirl.create :user, :admin
+      expect(subject).to permit(admin, category)
+    end
+
+    it "doesn't allow users assigned to other categories" do
+      other_category = FactoryGirl.create(:category, name: "Other category")
+      assign_role!(user, :manager, other_category)
+      expect(subject).not_to permit(user, category)
+    end
+  end
+
 end
