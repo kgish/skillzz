@@ -22,4 +22,16 @@ RSpec.feature "Admins can manage a user's roles" do
     expect(page).to have_content "Category #98: Viewer"
     expect(page).to have_content "Category #99: Manager"
   end
+
+  scenario "when assigning roles to a new user" do
+    visit new_admin_user_path
+    fill_in "Email", with: "newbie@skillzz.com"
+    fill_in "Password", with: "password"
+    select "Editor", from: "Category #98"
+    click_button "Create User"
+    click_link "newbie@skillzz.com"
+    expect(page).to have_content "Category #98: Editor"
+    expect(page).not_to have_content "Category #99"
+  end
+
 end
