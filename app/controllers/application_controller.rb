@@ -10,6 +10,6 @@ class ApplicationController < ActionController::Base
   private
 
   def not_authorized
-    redirect_to root_path, alert: "You aren't allowed to do that."
+    redirect_to root_path, alert: "Sorry, but you are not allowed to do that."
   end
 end
