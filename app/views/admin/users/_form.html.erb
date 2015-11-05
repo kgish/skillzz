@@ -3,5 +3,22 @@
   <%= f.input :password %>
   <%= f.input :admin, label: "Is an admin?" %>
 
+  <header>
+    <h2>Roles</h2>
+  </header>
+
+   <table class="roles">
+    <% categories.each do |category| %>
+      <tr>
+        <th><%= label_tag dom_id(category), category.name %></th>
+        <td>
+          <%= select_tag dom_id(category), options_for_select(roles,
+            user.role_on(category)), name: "roles[#{category.id}]",
+            include_blank: true %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
   <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
