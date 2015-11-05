@@ -32,6 +32,11 @@ RSpec.feature "Users can only see the appropriate links" do
       visit category_path(category)
       expect(page).not_to have_link "Delete Category"
     end
+
+    scenario "cannot see the Edit Category link" do
+      visit category_path(category)
+      expect(page).not_to have_link "Edit Category"
+    end
   end
 
   context "admin users" do
@@ -45,6 +50,11 @@ RSpec.feature "Users can only see the appropriate links" do
     scenario "can see the Delete Category link" do
       visit category_path(category)
       expect(page).to have_link "Delete Category"
+    end
+
+    scenario "can see the Edit Category link" do
+      visit category_path(category)
+      expect(page).to have_link "Edit Category"
     end
   end
 end
