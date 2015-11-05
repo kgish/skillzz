@@ -83,6 +83,10 @@ Here are the rules:
 
 The database tables, data types and relationships together define the different ways that the application interacts with the underlying data model in order to adhere to the user requirements.
 
+Here is a diagram which shows the high-level structure:
+
+-Diagram goes here-
+
 ## Testing
 
 The functionality of this application is verified by running `rspec` which tests the defined features and scenarios.
