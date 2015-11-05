@@ -15,4 +15,11 @@ RSpec.feature "Users can view categories" do
 
     expect(page.current_url).to eq category_url(category)
   end
+
+  scenario "unless they do not have permission" do
+    FactoryGirl.create(:category, name: "Hidden")
+    visit categories_url
+    expect(page).not_to have_content "Hidden"
+  end
+
 end

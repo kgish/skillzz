@@ -6,6 +6,31 @@ describe CategoryPolicy do
 
   subject { CategoryPolicy }
 
+  context "policy_scope" do
+    subject { Pundit.policy_scope(user, Category) }
+
+    let!(:category) { FactoryGirl.create :category }
+    let(:user) { FactoryGirl.create :user }
+
+    it "is empty for anonymous users" do
+      expect(Pundit.policy_scope(nil, Category)).to be_empty
+    end
+
+    it "includes categories a user is allowed to view" do
+      assign_role!(user, :viewer, category)
+      expect(subject).to include(category)
+    end
+
+    it "doesn't include projects a user is not allowed to view" do
+      expect(subject).to be_empty
+    end
+
+    it "returns all categories for admins" do
+      user.admin = true
+      expect(subject).to include(category)
+    end
+  end
+
   permissions :show? do
     let(:user) { FactoryGirl.create :user }
     let(:category) { FactoryGirl.create :category }

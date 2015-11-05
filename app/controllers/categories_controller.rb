@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update]
 
   def index
-    @categories = Category.all
+    @categories = policy_scope(Category)
   end
 
   def show
