@@ -50,16 +50,6 @@ The application is now up-and-running and can be viewed by pointing your favorit
 In order to be able to take advantages of the services provided by this website, a user has to first login with his username and password.
 
 
-## Roles
-
-There are four roles for the website:
-
-* Visitor - Happens to find the website, gathers information and can sign up either as a worker or a customer.
-* Worker - Has collection of skills who is available for employment.
-* Customer - Looking for workers with a given number of skills.
-* Administrator - Has complete access rights required for administrating the website.
-
-
 ## Users
 
 During the installation the user table is populated with a number of pre-defined users, these are:
@@ -69,6 +59,24 @@ During the installation the user table is populated with a number of pre-defined
 * customer2@skillzz.com / customer456
 * worker1@skillzz.com / worker123
 * worker2@skillzz.com / worker456
+
+
+## Roles
+
+There are four roles for the website:
+
+* Visitor - Happens to find the website, gathers information and can sign up either as a worker or a customer.
+* Worker - Has collection of skills who is available for employment.
+* Customer - Looking for workers with a given number of skills.
+* Administrator - Has complete access rights required for administrating the website.
+
+Here are the rules:
+
+* Anyone can view the index action, but they will only see categories they are a member of.
+* Only admins can see the new and create actions.
+* Only members of a category can see the show action.
+* Only admins or project managers can see the edit and update actions.
+* Only admins can see the destroy action.
 
 
 ## Data Model
