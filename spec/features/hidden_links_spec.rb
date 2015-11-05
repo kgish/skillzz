@@ -24,7 +24,7 @@ RSpec.feature "Users can only see the appropriate links" do
     end
 
     scenario "cannot see the New Category link" do
-      visit "/"
+      visit categories_path
       expect(page).not_to have_link "New Category"
     end
 
@@ -43,7 +43,7 @@ RSpec.feature "Users can only see the appropriate links" do
     before { login_as(admin) }
 
     scenario "can see the New Category link" do
-      visit "/"
+      visit categories_path
       expect(page).to have_link "New Category"
     end
 
