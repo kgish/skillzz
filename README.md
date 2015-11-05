@@ -50,30 +50,42 @@ The application is now up-and-running and can be viewed by pointing your favorit
 In order to be able to take advantages of the services provided by this website, a user has to first login with his username and password.
 
 
+## Users
+
+During the installation the user table is populated with a number of pre-defined users, these are:
+
+* admin@skillzz.com / admin123
+* customer1@skillzz.com / customer123
+* customer2@skillzz.com / customer456
+* worker1@skillzz.com / worker123
+* worker2@skillzz.com / worker456
+
+
 ## Roles
 
 There are four roles for the website:
 
-Role | Description
------------- | -------------
-Visitor | Happens to find the website, gathers information and can sign up either as a worker or a customer.
-Worker | Has collection of skills who is available for employment.
-Customer | Looking for workers with a given number of skills.
-Administrator | Has complete access rights required for administrating the website.
+* Visitor - Happens to find the website, gathers information and can sign up either as a worker or a customer.
+* Worker - Has collection of skills who is available for employment.
+* Customer - Looking for workers with a given number of skills.
+* Administrator - Has complete access rights required for administrating the website.
+
+Here are the rules:
+
+* Anyone can view the index action, but they will only see categories they are a member of.
+* Only admins can see the new and create actions.
+* Only members of a category can see the show action.
+* Only admins or project managers can see the edit and update actions.
+* Only admins can see the destroy action.
 
 
-## Users
+## Data Model
 
-During the installation the user table is populated with a number of pre-defined users, namely the following:
+The database tables, data types and relationships together define the different ways that the application interacts with the underlying data model in order to adhere to the user requirements.
 
-Email | Password
------------- | -------------
-admin@skillzz.com | admin123
-customer1@skillzz.com | customer123
-customer2@skillzz.com | customer456
-worker1@skillzz.com | worker123
-worker2@skillzz.com | worker456
+Here is a diagram which shows the high-level structure:
 
+-Diagram goes here-
 
 ## Testing
 
@@ -98,25 +110,26 @@ Here is a list of todo items for a rainy day.
 * Take into account the availability of workers when matching.
 * Allow customers to create user-defined searches and save them.
 * Email notifications when there are new matches detected.
-* Etc.
+* Ad infinitum.
 
 
 ## References
 
 Of course, I couldn't have done any of this without the following fantastic resources.
 
-Reference | Description
------------- | -------------
-[Ruby on Rails](http://rubyonrails.org/) | The most amazing website on the face of the Earth.
-[RSpec](http://rspec.info/) | Behavior driven development testing framework for Ruby.
-[Bootstrap](http://getbootstrap.com/) | Sleek, intuitive, and powerful front-end framework for (mobile) web development.
-[FontAwesome](http://fontawesome.io/) | Cute collection of awesome icons.
-[Sass](http://sass-lang.com/) | Powerful CSS extension on steroids.
-[Rails 4 in Action](https://www.manning.com/books/rails-4-in-action) | By a long shot the most extensive hands-on Rails guide available.
-[FactoryGirl](https://github.com/thoughtbot/factory_girl_rails) | Fixtures replacement using definition syntax.
-[Devise](https://github.com/plataformatec/devise) | Advanced authentication solution for Rails.
-[Warden](https://github.com/hassox/rails_warden) | Authentication via the [Warden](https://github.com/hassox/warden) Rack authentication framework. 
-[Pundit](https://github.com/elabs/pundit) | Advanced authorization solution for Rails using policies.
-[Carrierwave](https://github.com/carrierwaveuploader/carrierwave) | File upload solution for Rails.
-[Heroku](https://www.heroku.com/) | Cloud platform for easily deploying Rails applications.
+* [Ruby on Rails](http://rubyonrails.org/) - The most amazing website on the face of the Earth.
+* [Rails 4 in Action](https://www.manning.com/books/rails-4-in-action) - By a long shot the most extensive hands-on Rails guide available.
+* [Bootstrap](http://getbootstrap.com/) - Sleek, intuitive, and powerful front-end framework for (mobile) web development.
+* [FontAwesome](http://fontawesome.io/) - Cute collection of awesome icons.
+* [Sass](http://sass-lang.com/) - Powerful CSS extension on steroids.
+* [FactoryGirl](https://github.com/thoughtbot/factory_girl_rails) - Fixtures replacement using definition syntax.
+* [Faker](https://github.com/stympy/faker) - Library for generating fake data such as names, addresses, and phone numbers.
+* [Devise](https://github.com/plataformatec/devise) - Advanced authentication solution for Rails.
+* [Warden](https://github.com/hassox/rails_warden) - Authentication via the [Warden](https://github.com/hassox/warden) Rack authentication framework. 
+* [Pundit](https://github.com/elabs/pundit) - Advanced authorization solution for Rails using policies.
+* [Sunspot](https://github.com/sunspot/sunspot) - library for expressive, powerful interaction with the Solr search engine.
+* [Carrierwave](https://github.com/carrierwaveuploader/carrierwave) - File upload solution for Rails.
+* [RSpec](http://rspec.info/) - Behavior driven development (BDD) testing framework for Ruby.
+* [Cabybara](https://github.com/jnicklas/capybara) - Acceptance test framework for web applications.
+* [Heroku](https://www.heroku.com/) - Cloud platform for easily deploying Rails applications.
 

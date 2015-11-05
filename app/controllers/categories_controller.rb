@@ -2,17 +2,19 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update]
 
   def index
-    @categories = Category.all
+    @categories = policy_scope(Category)
   end
 
   def show
+    authorize @category, :show?
   end
 
   def edit
+    authorize @category, :edit?
   end
 
   def update
-    @category.update(category_params)
+    authorize @category, :update?
 
     if @category.update(category_params)
       flash[:notice] = "Category has been updated."

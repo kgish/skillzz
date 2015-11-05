@@ -7,18 +7,21 @@ RSpec.feature "Users can only see the appropriate links" do
 
   context "anonymous users" do
     scenario "cannot see the New Category link" do
-      visit "/"
+      visit categories_path
       expect(page).not_to have_link "New Category"
     end
 
     scenario "cannot see the Delete Category link" do
-      visit "/"
+      visit categories_path
       expect(page).not_to have_link "Delete Category"
     end
   end
 
-  context "regular users" do
-    before { login_as(user) }
+  context "non-admin users (category viewers)" do
+    before do
+      login_as(user)
+      assign_role!(user, :viewer, category)
+    end
 
     scenario "cannot see the New Category link" do
       visit "/"
@@ -28,7 +31,12 @@ RSpec.feature "Users can only see the appropriate links" do
     scenario "cannot see the Delete Category link" do
       visit category_path(category)
       expect(page).not_to have_link "Delete Category"
-end
+    end
+
+    scenario "cannot see the Edit Category link" do
+      visit category_path(category)
+      expect(page).not_to have_link "Edit Category"
+    end
   end
 
   context "admin users" do
@@ -42,6 +50,11 @@ end
     scenario "can see the Delete Category link" do
       visit category_path(category)
       expect(page).to have_link "Delete Category"
+    end
+
+    scenario "can see the Edit Category link" do
+      visit category_path(category)
+      expect(page).to have_link "Edit Category"
     end
   end
 end
