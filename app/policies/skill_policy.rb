@@ -6,6 +6,11 @@ class SkillPolicy < ApplicationPolicy
   end
 
   def show?
-    user.try(:admin?) || record.category.roles.exists?(user_id: user)
+    user.try(:admin?) || record.category.has_member?(user)
   end
+
+  def create?
+    user.try(:admin?) || record.category.has_manager?(user) || record.category.has_editor?(user)
+  end
+
 end

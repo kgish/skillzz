@@ -7,13 +7,14 @@ class SkillsController < ApplicationController
   end
 
   def new
-    # @skill = Skill.new
     @skill = @category.skills.build
+    authorize @skill, :create?
   end
 
   def create
     @skill = @category.skills.build(skill_params)
     @skill.author = current_user
+    authorize @skill, :create?
 
     if @skill.save
       flash[:notice] = "Skill has been created."

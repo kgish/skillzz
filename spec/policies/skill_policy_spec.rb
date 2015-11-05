@@ -34,7 +34,7 @@ RSpec.describe SkillPolicy do
 
     context "for managers of other categories" do
       before do
-        assign_role!(user, :manager, FactoryGirl.create(:category))
+        assign_role!(user, :manager, FactoryGirl.create(:category, name: "Truly Amazing Stuff"))
       end
 
       it { should_not permit_action :show }

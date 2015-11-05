@@ -62,7 +62,7 @@ describe CategoryPolicy do
 
     context "for managers of other categories" do
       before do
-        assign_role!(user, :manager, FactoryGirl.create(:category))
+        assign_role!(user, :manager, FactoryGirl.create(:category, name: "Yet another category"))
       end
       it { should_not permit_action :show }
       it { should_not permit_action :update }
