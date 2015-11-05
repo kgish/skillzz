@@ -25,6 +25,7 @@ class SkillsController < ApplicationController
   end
 
   def show
+    authorize @skill, :show?
   end
 
   def edit
