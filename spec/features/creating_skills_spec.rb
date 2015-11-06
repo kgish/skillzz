@@ -42,12 +42,12 @@ RSpec.feature "Users can create new skills" do
   scenario "with associated tags" do
     fill_in "Name", with: "Fortran"
     fill_in "Description", with: "Old-fashioned scientific programming language"
-    fill_in "Tags", with: "imperative numeric"
-    click_button "Create Ticket"
-    expect(page).to have_content "Ticket has been created."
-    within("#ticket #tags") do
+    fill_in "Tags", with: "imperative numerical"
+    click_button "Create Skill"
+    expect(page).to have_content "Skill has been created."
+    within("#skill #tags") do
       expect(page).to have_content "imperative"
-      expect(page).to have_content "numeric"
+      expect(page).to have_content "numerical"
     end
   end
 end
