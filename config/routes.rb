@@ -16,4 +16,13 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show, :edit, :update] do
     resources :skills
   end
+
+  resources :skills, only: [] do
+    resources :tags, only: [] do
+      member do
+        delete :remove
+      end
+    end
+  end
+
 end

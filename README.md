@@ -15,7 +15,8 @@ The website was designed and built as part of a coding challenge given to me by 
 for the position of Remote Ruby on Rails Developer.
 
 Special thanks to the authors of the book [Rails 4 in Action](https://www.manning.com/books/rails-4-in-action) which 
-provided me with invaluable guidance. This is a fantastic book.
+provided me with invaluable guidance. I took the liberty of using some ideas and implementations from this source
+of inspiration. This is a fantastic book.
 
 ## Coding Challenge
 
