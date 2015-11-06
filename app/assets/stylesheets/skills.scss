@@ -7,6 +7,7 @@
 #attributes {
   @extend .table;
   @extend .table-condensed;
+
   width: 65%;
 
   th {
@@ -21,5 +22,22 @@
 
   td, th {
     line-height: 24px !important;
+  }
+}
+
+.tag {
+  @extend .state;
+  @extend .label-info;
+
+  margin-right: 10px;
+
+  a {
+    color: white;
+    &.remove {
+      font-family: "FontAwesome";
+      @extend .fa-close;
+      margin-right: 0.5em;
+      text-decoration: none;
+    }
   }
 }

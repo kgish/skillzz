@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104212237) do
+ActiveRecord::Schema.define(version: 20151106092623) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -42,6 +42,18 @@ ActiveRecord::Schema.define(version: 20151104212237) do
 
   add_index "skills", ["author_id"], name: "index_skills_on_author_id"
   add_index "skills", ["category_id"], name: "index_skills_on_category_id"
+
+  create_table "skills_tags", id: false, force: :cascade do |t|
+    t.integer "tag_id",   null: false
+    t.integer "skill_id", null: false
+  end
+
+  add_index "skills_tags", ["skill_id", "tag_id"], name: "index_skills_tags_on_skill_id_and_tag_id"
+  add_index "skills_tags", ["tag_id", "skill_id"], name: "index_skills_tags_on_tag_id_and_skill_id"
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

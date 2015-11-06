@@ -1,34 +1,42 @@
 # SkillZZ
 
-This is an advanced website platform for matching highly skilled workers to customers who are searching for the best and most appropriate person for a given task at hand.
+This is an advanced website platform for matching highly skilled workers to customers who are searching for the best
+and most appropriate person for a given task at hand.
 
 Selection criteria includes skills, skill categories, hourly rates, availability for filtering through the results.
 
-An example of such a query might be: I am looking for a senior Ruby developer with knowledge of Linux who charges between 60 - 70 euros per hour and will be available starting next month for three months.
+An example of such a query might be: I am looking for a senior Ruby developer with knowledge of Linux who charges
+between 60 - 70 euros per hour and will be available starting next month for three months.
 
-A query will generate a number of hits which are then ordered according to a ranking scheme weighted according to criteria and preferences of the customer.
+A query will generate a number of hits which are then ordered according to a ranking scheme weighted according to 
+criteria and preferences of the customer.
 
-The website was designed and built as part of a coding challenge given to me by [E-Accent](https://www.e-accent.com/) for the position of Remote Ruby on Rails Developer.
+The website was designed and built as part of a coding challenge given to me by [E-Accent](https://www.e-accent.com/) 
+for the position of Remote Ruby on Rails Developer.
 
-Special thanks to the authors of the book [Rails 4 in Action](https://www.manning.com/books/rails-4-in-action) which provided me with invaluable guidance.
+Special thanks to the authors of the book [Rails 4 in Action](https://www.manning.com/books/rails-4-in-action) which 
+provided me with invaluable guidance. This is a fantastic book.
 
 ## Coding Challenge
 
 This is the assignment which was given to me.
 
-> Given a website which matches workers to customers. 
+> *Given a website which matches workers to customers.*
 > 
-> A worker is a registered user, who possesses one or more skills like “cooking”, “house cleaning”, “fixing wireless networks”, and so on. 
+> *A worker is a registered user, who possesses one or more skills like “cooking”, “house cleaning”, “fixing wireless 
+> networks”, and so on.*
 > 
-> A customer, also a registered user, can search for workers by skill.
+> *A customer, also a registered user, can search for workers by skill.*
 > 
-> For example, if a customer needs a worker who can do both cooking and house-cleaning, she will go to the site, choose both these skills from a list, and get a list of workers from which to choose.
+> *For example, if a customer needs a worker who can do both cooking and house-cleaning, she will go to the site, 
+> choose both these skills from a list, and get a list of workers from which to choose.*
 > 
-> The site could have perhaps up to 1,000 workers, 10,000 customers and 100 skills.
+> *The site could have perhaps up to 1,000 workers, 10,000 customers and 100 skills.*
 > 
-> The challenge: create a prototype of this website, with the main focus on the back end, especially the models and search functionality.
+> *The challenge: create a prototype of this website, with the main focus on the back end, especially the models and 
+> search functionality.*
 
-I had two weeks the time to design and build it.
+I had two weeks the time to design, build, test and deploy it. Quite a challenge indeed.
 
 
 ## Installation
@@ -47,7 +55,8 @@ The application is now up-and-running and can be viewed by pointing your favorit
 
 ## Authentication
 
-In order to be able to take advantages of the services provided by this website, a user has to first login with his username and password.
+In order to be able to take advantages of the services provided by this website, a user has to first login with his 
+username and password.
 
 
 ## Users
@@ -85,9 +94,26 @@ A user can update a skill if one of the following is true:
 * The user is an editor of the project, and the user is also the author of the ticket.
 
 
+## Tags
+
+In order to be able to group similar skills together and improving searchability tags are used. These are single word
+labels attached to a given skill.
+
+A given skill can have one or more tags.
+
+In this version, a tag can only consist of a single word, and a list of tags is a series of words separated by spaces.
+
+
 ## Data Model
 
-The database tables, data types and relationships together define the different ways that the application interacts with the underlying data model in order to adhere to the user requirements.
+The database tables, data types and relationships together define the different ways that the application interacts 
+with the underlying data model in order to adhere to the user requirements.
+
+On the highest level we have 'Categories' with name and description.
+
+Each category can consist of one or more 'Skills' with name and description.
+
+Finally, each skill can be correlated to one or more 'Tags' for helping with search.
 
 Here is a diagram which shows the high-level structure:
 
@@ -116,6 +142,7 @@ Here is a list of todo items for a rainy day.
 * Take into account the availability of workers when matching.
 * Allow customers to create user-defined searches and save them.
 * Email notifications when there are new matches detected.
+* Allow tags to consist of multiple words.
 * Ad infinitum.
 
 

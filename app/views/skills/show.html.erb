@@ -28,6 +28,12 @@
       <th>Created:</th>
       <td><%= time_ago_in_words(@skill.created_at) %> ago</td>
     </tr>
+    <% if @skill.tags.any? %>
+      <tr id="tags">
+        <th>Tags:</th>
+        <td><%= render @skill.tags %></td>
+      </tr>
+    <% end %>
   </table>
 
   <%= simple_format(@skill.description) %>
