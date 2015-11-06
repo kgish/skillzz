@@ -20,4 +20,8 @@ class SkillPolicy < ApplicationPolicy
   def destroy?
     user.try(:admin?) || record.category.has_manager?(user)
   end
+
+  def tag?
+    destroy?
+  end
 end

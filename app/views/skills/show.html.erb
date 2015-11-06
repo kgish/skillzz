@@ -31,7 +31,7 @@
     <% if @skill.tags.any? %>
       <tr id="tags">
         <th>Tags:</th>
-        <td><%= render @skill.tags %></td>
+        <td><%= render @skill.tags, skill: @skill %></td>
       </tr>
     <% end %>
   </table>

@@ -12,7 +12,16 @@ class SkillsController < ApplicationController
   end
 
   def create
-    @skill = @category.skills.build(skill_params)
+    @skill = @category.skills.new
+
+    whitelisted_params = skill_params
+    unless policy(@skill).tag?
+      whitelisted_params.delete(:tag_names)
+    end
+
+    @skill.attributes = whitelisted_params
+
+    #@skill = @category.skills.build(skill_params)
     @skill.author = current_user
     authorize @skill, :create?
 

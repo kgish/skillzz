@@ -91,7 +91,7 @@ A user can update a skill if one of the following is true:
 
 * The user is an admin.
 * The user is a manager of the project.
-* The user is an editor of the project, and the user is also the author of the ticket.
+* The user is an editor of the project, and the user is also the author of the skill.
 
 
 ## Tags
