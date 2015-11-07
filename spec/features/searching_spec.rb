@@ -27,4 +27,14 @@ RSpec.feature "Users can search for skills matching specific criteria" do
       expect(page).to_not have_link "Create users"
     end
   end
+
+  scenario "when clicking on a tag" do
+    click_link "Create categories"
+    click_link "iteration_1"
+    within("#skills") do
+      expect(page).to have_content "Create categories"
+      expect(page).to_not have_content "Create users"
+    end
+  end
+
 end
