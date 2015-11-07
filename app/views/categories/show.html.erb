@@ -20,7 +20,15 @@
 
 <header>
   <h2>Skills</h2>
+
   <ul class="actions">
+    <li>
+      <%= form_tag search_category_skills_path(@category), method: :get, class: "form-inline" do %>
+        <%= label_tag "search", "Search", class: "sr-only" %>
+        <%= text_field_tag "search", params[:search], class: "form-control" %>
+        <%= submit_tag "Search", class: "btn btn-default" %>
+      <% end %>
+    </li>
     <% if policy(Skill.new(category: @category)).create? %>
       <li><%= link_to "New Skill", new_category_skill_path(@category), class: "new" %></li>
     <% end %>
@@ -28,7 +36,7 @@
 </header>
 
 <ul id="skills">
-  <% @category.skills.each do |skill| %>
+  <% @skills.each do |skill| %>
     <li>
       #<%= skill.id %> -
       <%= link_to skill.name, [@category, skill] %>

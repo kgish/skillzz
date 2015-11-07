@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   root 'categories#index'
 
   resources :categories, only: [:index, :show, :edit, :update] do
-    resources :skills
+    resources :skills do
+      collection do
+        get :search
+      end
+    end
   end
 
   resources :skills, only: [] do

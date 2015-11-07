@@ -161,6 +161,8 @@ Of course, I couldn't have done any of this without the following fantastic reso
 * [Devise](https://github.com/plataformatec/devise) - Advanced authentication solution for Rails.
 * [Warden](https://github.com/hassox/rails_warden) - Authentication via the [Warden](https://github.com/hassox/warden) Rack authentication framework. 
 * [Pundit](https://github.com/elabs/pundit) - Advanced authorization solution for Rails using policies.
+* [Searcher](https://github.com/radar/searcher) - pure SQL implementation which lets you find by pre-defined labels, as well as wildcard matching queries.
+* [will_paginate](https://github.com/mislav/will_paginate) - Simple yet effective pagination library.
 * [Sunspot](https://github.com/sunspot/sunspot) - library for expressive, powerful interaction with the Solr search engine.
 * [Carrierwave](https://github.com/carrierwaveuploader/carrierwave) - File upload solution for Rails.
 * [RSpec](http://rspec.info/) - Behavior driven development (BDD) testing framework for Ruby.

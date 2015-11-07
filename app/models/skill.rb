@@ -1,14 +1,17 @@
 class Skill < ActiveRecord::Base
-  validates :name, presence: true, uniqueness: true
-  validates :description, presence: true, length: { minimum: 10 }
+  belongs_to :category
+  belongs_to :author, class_name: "User"
+  has_and_belongs_to_many :tags, uniq: true
 
   # The 'tag_names' attribute is a 'virtual' attribute with setter/getter methods, not actually present in the database.
   attr_accessor :tag_names
 
-  has_and_belongs_to_many :tags, uniq: true
+  validates :name, presence: true, uniqueness: true
+  validates :description, presence: true, length: { minimum: 10 }
 
-  belongs_to :category
-  belongs_to :author, class_name: "User"
+  searcher do
+    label :tag, from: :tags, field: "name"
+  end
 
   def tag_names=(names)
     @tag_names = names

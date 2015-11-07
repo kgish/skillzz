@@ -62,6 +62,16 @@ class SkillsController < ApplicationController
     redirect_to @category
   end
 
+  def search
+    authorize @category, :show?
+    if params[:search].present?
+      @skills = @category.skills.search(params[:search])
+    else
+      @skills = @category.skills
+    end
+    render "categories/show"
+  end
+
   private
 
     def skill_params

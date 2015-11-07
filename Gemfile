@@ -38,7 +38,7 @@ gem "font-awesome-rails", "~> 4.3"
 gem "simple_form", "~> 3.1.0"
 gem "devise", "~> 3.4.1"
 gem "pundit", "~> 0.3.0"
-
+gem "searcher", github: "radar/searcher"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
 
   def show
     authorize @category, :show?
+    @skills = @category.skills
   end
 
   def edit
