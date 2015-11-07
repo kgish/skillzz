@@ -1,14 +1,17 @@
 <div class="row" id="worker">
   <div class="col-md-9">
     <header>
-      <h1>Worker Page</h1>
+      <h1><%= image_tag "Scruffy.ico", size: "50x50" %> Worker Page</h1>
     </header>
-    <p>Welcome to the SkillZZ Worker Page. Get the ideal job you've been looking for.</p>
+    <p class="lead">Welcome to the SkillZZ Worker Page. <small>Get the ideal job you've been looking for.</small></p>
   </div>
   <div class="col-md-3">
     <h2>Worker Links</h2>
     <ul class="nav nav-stacked">
       <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Categories", categories_path %></li>
+      <li><%= link_to "Skills", categories_path %></li>
+      <li><%= link_to "Tags", categories_path %></li>
       <li><a href="#">...</a></li>
     </ul>
   </div>
