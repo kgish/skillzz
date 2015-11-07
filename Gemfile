@@ -38,7 +38,12 @@ gem "font-awesome-rails", "~> 4.3"
 gem "simple_form", "~> 3.1.0"
 gem "devise", "~> 3.4.1"
 gem "pundit", "~> 0.3.0"
+
+# Not for production, specific for book Rails 4 in Action
 gem "searcher", github: "radar/searcher"
+
+# Generate fake data such as names, addresses, and phone numbers.
+gem 'faker', github: 'stympy/faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

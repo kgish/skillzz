@@ -5,6 +5,13 @@ GIT
     searcher (0.0.7)
       activerecord (~> 4.2)
 
+GIT
+  remote: git://github.com/stympy/faker.git
+  revision: fdbd1bd3262b738f84f96605ec228ee593a2b87c
+  specs:
+    faker (1.5.0)
+      i18n (~> 0.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -220,6 +227,7 @@ DEPENDENCIES
   database_cleaner (~> 1.4)
   devise (~> 3.4.1)
   factory_girl_rails (~> 4.5)
+  faker!
   font-awesome-rails (~> 4.3)
   jbuilder (~> 2.0)
   jquery-rails

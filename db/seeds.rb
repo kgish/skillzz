@@ -1,39 +1,41 @@
 
 # --- USERS --- #
 
-users = [
+User.delete_all
+
+[
   {
     email: "admin@skillzz.com",
-    password: "admin123",
+    password: "password",
     admin: true
   },
   {
-    email: "customer1@skillzz.com",
-    password: "customer123",
+    email: "viewer@skillzz.com",
+    password: "password",
     admin: false
   },
   {
-    email: "customer2@skillzz.com",
-    password: "customer456",
+    email: "manager@skillzz.com",
+    password: "password",
     admin: false
   },
   {
-    email: "worker1@skillzz.com",
-    password: "worker123",
+    email: "customer@skillzz.com",
+    password: "password",
     admin: false
   },
   {
-    email: "worker2@skillzz.com",
-    password: "worker456",
+    email: "worker@skillzz.com",
+    password: "password",
     admin: false
   }
-]
+].each do |user|
+  User.create!(user)
+end
 
-users.each do |user|
-  # Create user unless it already exists.
-  unless User.exists?(email: user[:email])
-    User.create!(user)
-  end
+
+1.times do
+  User.create!(email: Faker::Internet.email, password: "password", admin: false)
 end
 
 puts "Users: #{User.count}"
@@ -41,41 +43,68 @@ puts "Users: #{User.count}"
 
 # --- CATEGORIES --- #
 
-categories = [
+Category.delete_all
+
+[
   {
-    name: "Software Programming",
+    name: "Programming",
     description: "Wonderful world of software development"
   },
   {
-    name: "Functional and Technical Testing",
+    name: "Testing",
     description: "Quality verification of user requirements"
   },
   {
-    name: "System Administration",
+    name: "Infrastructure",
     description: "Upkeep, configuration, and reliable operation of computer systems"
   },
   {
-    name: "Tooling and Monitoring",
+    name: "Tooling",
     description: "Utilities to create, debug, maintain, or otherwise support other programs and applications"
   },
   {
-      name: "Design and User Experience",
+      name: "Design",
+      description: "Sequence of steps that describing all aspects of the software to be built."
+  },
+  {
+      name: "User Experience",
       description: "Usability, accessibility, and pleasure provided in the interaction between user and product."
   },
   {
-      name: "Software Product Methodologies",
+      name: "Methodologies",
       description: "Conceptual frameworks or models for defining and prototyping products"
   },
   {
-    name: "Requirements Analysis",
+    name: "Requirements",
     description: "Tasks to determine crtieria to meet for a new or altered product or project"
   }
-]
-
-categories.each do |category|
-  unless Category.exists?(name: category[:name])
-    Category.create!(category)
-  end
+].each do |category|
+  Category.create!(category)
 end
 
 puts "Categories: #{Category.count}"
+
+
+# --- SKILLS --- #
+
+Skill.delete_all
+Tag.delete_all
+
+admin = User.find_by!(email: 'admin@skillzz.com')
+tags = []
+10.times do
+  tags << Faker::Hipster.word
+end
+
+Category.all.each do |category|
+  5.times do
+    Skill.create(category: category, author: admin, name: Faker::Hipster.word, description: Faker::Hipster.sentence,
+      tag_names: tags.sample(rand(5)+1).join(' '))
+  end
+end
+
+puts "Skills: #{Skill.count}"
+
+# --- TAGS --- #
+
+puts "Tags: #{Tag.count}"

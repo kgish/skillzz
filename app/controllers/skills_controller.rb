@@ -21,7 +21,6 @@ class SkillsController < ApplicationController
 
     @skill.attributes = whitelisted_params
 
-    #@skill = @category.skills.build(skill_params)
     @skill.author = current_user
     authorize @skill, :create?
 
