@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'welcome/index'
+
   namespace :admin do
     root 'application#index'
     resources :categories, only: [:new, :create, :destroy]
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  root 'categories#index'
+  root 'welcome#index'
 
   resources :categories, only: [:index, :show, :edit, :update] do
     resources :skills do

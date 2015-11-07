@@ -34,7 +34,7 @@ User.delete_all
 end
 
 
-1.times do
+95.times do
   User.create!(email: Faker::Internet.email, password: "password", admin: false)
 end
 
@@ -92,12 +92,12 @@ Tag.delete_all
 
 admin = User.find_by!(email: 'admin@skillzz.com')
 tags = []
-10.times do
+20.times do
   tags << Faker::Hipster.word
 end
 
 Category.all.each do |category|
-  5.times do
+  10.times do
     Skill.create(category: category, author: admin, name: Faker::Hipster.word, description: Faker::Hipster.sentence,
       tag_names: tags.sample(rand(5)+1).join(' '))
   end

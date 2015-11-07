@@ -90,3 +90,32 @@ a.delete {
 .alert-alert {
   @extend .alert-danger;
 }
+
+// --- FOOTER sticky bottom --- //
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 100px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 100px;
+}
+
+.footer {
+  color: #efefef;
+  background-color: #333;
+}
+
+.footer a {
+  color: #9af7fe;
+}
