@@ -3,6 +3,7 @@ class TagsController < ApplicationController
     @skill = Skill.find(params[:skill_id])
     @tag = Tag.find(params[:id])
     authorize @skill, :tag?
+
     @skill.tags.destroy(@tag)
     head :ok
   end

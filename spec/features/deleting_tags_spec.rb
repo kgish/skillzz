@@ -18,7 +18,6 @@ RSpec.feature "Users can delete unwanted tags from a skill" do
     within tag("killme") do
       click_link "remove"
     end
-
     expect(page).to_not have_content "killme"
   end
 end
