@@ -5,37 +5,44 @@ User.delete_all
 
 [
   {
+    username: "admin",
     email: "admin@skillzz.com",
     password: "password",
     admin: true
   },
   {
+    username: "viewer",
     email: "viewer@skillzz.com",
     password: "password",
-    admin: false
   },
   {
+    username: "manager",
     email: "manager@skillzz.com",
     password: "password",
-    admin: false
   },
   {
+    username: "customer",
     email: "customer@skillzz.com",
     password: "password",
-    admin: false
+    customer: true
   },
   {
+    username: "worker",
     email: "worker@skillzz.com",
     password: "password",
-    admin: false
+    worker: true
   }
 ].each do |user|
   User.create!(user)
 end
 
 
-95.times do
-  User.create!(email: Faker::Internet.email, password: "password", admin: false)
+95.times do |n|
+  if n.modulo(10) == 0
+    User.create!(username: Faker::Internet.user_name, email: Faker::Internet.email, password: "password", worker: true)
+  else
+    User.create!(username: Faker::Internet.user_name, email: Faker::Internet.email, password: "password", customer: true)
+  end
 end
 
 puts "Users: #{User.count}"
