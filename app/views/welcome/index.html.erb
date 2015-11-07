@@ -2,7 +2,9 @@
   <div class="container">
     <h1>Welcome to SkillZZ&ndash;<i class="fa fa-wrench"></i></h1>
     <p>This is the only real place to find the right person for the task at hand.</p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">Continue &raquo;</a></p>
+    <% unless user_signed_in? %>
+      <p>You will need to <%= link_to "sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %> first.</p>
+    <% end %>
   </div>
 </div>
 
@@ -10,17 +12,17 @@
   <div class="row">
     <div class="col-md-4">
       <h2>Visitors</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+      <p>Proin ac sem sit amet eros aliquam commodo at egestas lacus. Duis vehicula ultrices lorem, id pharetra leo porttitor at. Duis at tellus ac leo ultricies dapibus eget in risus. Nullam sem magna, semper ut ex eget, posuere commodo ipsum. Sed at viverra erat. Aenean sagittis, arcu nec consequat fermentum, lacus sapien molestie metus, quis ultrices diam ex non orci. Nunc viverra enim quis dictum dictum.</p>
       <p><a class="btn btn-default" href="#" role="button">Sign up &raquo;</a></p>
     </div>
     <div class="col-md-4">
       <h2>Workers</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+      <p>Sed ut efficitur nisl. Praesent vitae posuere sem, quis venenatis felis. Duis aliquam viverra eleifend. Suspendisse commodo, ante in auctor tristique, sem felis commodo erat, vel euismod est leo nec arcu. Fusce nec ligula et ante condimentum lobortis. Suspendisse posuere nunc odio, ac accumsan lacus efficitur eget. Suspendisse venenatis nulla id mi blandit eleifend ut quis mauris.</p>
       <p><a class="btn btn-default" href="#" role="button">Sign in &raquo;</a></p>
     </div>
     <div class="col-md-4">
       <h2>Customers</h2>
-      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+      <p>Proin ultricies ligula sodales metus hendrerit, eget consequat est blandit. Praesent sed posuere odio. Praesent vitae lacus ac quam rutrum auctor. Phasellus ut tincidunt eros. Aliquam scelerisque tincidunt turpis dapibus fermentum. Nam ac ligula molestie, iaculis metus sed, faucibus purus. Praesent rutrum felis nunc, molestie pellentesque mauris interdum sed. Nullam dictum sodales auctor.</p>
       <p><a class="btn btn-default" href="#" role="button">Sign in &raquo;</a></p>
     </div>
   </div>
