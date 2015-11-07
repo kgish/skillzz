@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'customer/index'
+
+  get 'worker/index'
+
   get 'welcome/index'
 
   namespace :admin do

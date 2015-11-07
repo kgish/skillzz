@@ -24,9 +24,9 @@ class ApplicationController < ActionController::Base
     if user.admin?
       admin_root_path
     elsif user.worker?
-      worker_root_path
+      worker_index_path
     elsif user.customer?
-      customer_root_path
+      customer_index_path
     else
       root_path
     end
