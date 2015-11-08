@@ -19,18 +19,24 @@
   <div class="row">
     <div class="col-md-4">
       <h2>Visitors</h2>
-      <p>Proin ac sem sit amet eros aliquam commodo at egestas lacus. Duis vehicula ultrices lorem, id pharetra leo porttitor at. Duis at tellus ac leo ultricies dapibus eget in risus. Nullam sem magna, semper ut ex eget, posuere commodo ipsum.</p>
-      <p><a class="btn btn-default" href="#" role="button">Sign up &raquo;</a></p>
+      <p>You are just surfing around on the Internet. Low and behold you happen to discover this website and at first glance your fancy is tickled. Take your time and have a look around. You might find something interesting.</p>
+      <% unless user_signed_in? %>
+        <p><a class="btn btn-default" href="#" role="button">Sign up &raquo;</a></p>
+      <% end %>
     </div>
     <div class="col-md-4">
       <h2>Workers</h2>
-      <p>Sed ut efficitur nisl. Praesent vitae posuere sem, quis venenatis felis. Duis aliquam viverra eleifend. Suspendisse commodo, ante in auctor tristique, sem felis commodo erat, vel euismod est leo nec arcu.</p>
-      <p><a class="btn btn-default" href="#" role="button">Sign in &raquo;</a></p>
+      <p>You are a skilled worker and consider yourself a qualified professional. This could very well be the perfect website for you to show off your amazing skills and land that perfect job. Sounds interesting doesn't it?</p>
+      <% unless user_signed_in? %>
+        <p><a class="btn btn-default" href="#" role="button">Sign in &raquo;</a></p>
+      <% end %>
     </div>
     <div class="col-md-4">
       <h2>Customers</h2>
-      <p>Proin ultricies ligula sodales metus hendrerit, eget consequat est blandit. Praesent sed posuere odio. Praesent vitae lacus ac quam rutrum auctor. Phasellus ut tincidunt eros. Aliquam scelerisque tincidunt turpis dapibus fermentum.</p>
-      <p><a class="btn btn-default" href="#" role="button">Sign in &raquo;</a></p>
+      <p>You have a specific task at hand which needs to be done well by a professional. Or you're interested in hiring more people for an upcoming project that will help your company succeed. The right person for the right job is essential. You've come to the right place.</p>
+      <% unless user_signed_in? %>
+        <p><a class="btn btn-default" href="#" role="button">Sign in &raquo;</a></p>
+      <% end %>
     </div>
   </div>
 </div>
