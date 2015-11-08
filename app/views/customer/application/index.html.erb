@@ -1,20 +1,20 @@
 <div class="row" id="customer">
   <div class="col-md-9">
     <header>
-      <h1><%= image_tag "Leela.ico", size: "50x50" %> Customer Page</h1>
-      <h1>Customer Page</h1>
+      <h1><%= image_tag "Leela.ico", size: "50x50" %> Customer Dashboard</h1>
     </header>
-    <p class="lead">Welcome to the SkillZZ Customer Page. <small>Find the ideal person for the job.</small></p>
+    <p class="lead">Find the ideal person for the job that needs to be done.</p>
+
+    <%= render 'shared/personal_information', user: @user %>
+
   </div>
   <div class="col-md-3">
     <h2>Customer Links</h2>
     <ul class="nav nav-stacked">
-      <li><%= link_to "Home", root_path %></li>
       <li><%= link_to "Users", admin_users_path %></li>
       <li><%= link_to "Categories", categories_path %></li>
       <li><%= link_to "Skills", categories_path %></li>
       <li><%= link_to "Tags", categories_path %></li>
-      <li><a href="#">...</a></li>
     </ul>
   </div>
 </div>

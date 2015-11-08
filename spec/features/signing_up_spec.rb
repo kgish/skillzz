@@ -5,6 +5,7 @@ RSpec.feature "Users can sign up" do
   scenario "when providing valid details" do
     visit "/"
     click_link "Sign up"
+    fill_in "Fullname", with: Faker::Name.name
     # TODO
     fill_in "Username", with: Faker::Internet.user_name
     fill_in "Email", with: Faker::Internet.email

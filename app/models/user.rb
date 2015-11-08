@@ -1,10 +1,12 @@
 class User < ActiveRecord::Base
+  validates :fullname, presence: true, allow_blank: false
   validates :username, presence: true, allow_blank: false, uniqueness: { case_sensitive: false }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
 
   has_many :roles
+  has_and_belongs_to_many :categories
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

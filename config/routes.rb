@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'customer/index'
-
-  get 'worker/index'
-
   get 'welcome/index'
 
   namespace :admin do
@@ -14,6 +10,16 @@ Rails.application.routes.draw do
         patch :archive
       end
     end
+  end
+
+  namespace :worker do
+    root 'application#index'
+    resources :profile, only: [:show, :edit, :update]
+  end
+
+  namespace :customer do
+    root 'application#index'
+    resources :search, only: [:show, :edit, :update]
   end
 
   devise_for :users

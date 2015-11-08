@@ -1,4 +1,5 @@
 require "rails_helper"
+require "faker"
 
 RSpec.feature "Users can delete categories" do
 
@@ -7,14 +8,15 @@ RSpec.feature "Users can delete categories" do
   end
 
   scenario "successfully" do
-    FactoryGirl.create(:category, name: "Programming")
+    category_name = Faker::Hipster.words(2).join(" ")
+    FactoryGirl.create(:category, name: category_name)
 
     visit categories_url
-    click_link "Programming"
+    click_link category_name
     click_link "Delete Category"
 
     expect(page).to have_content "Category has been deleted."
     expect(page.current_url).to eq categories_url
-    expect(page).to have_no_content "Programming"
+    expect(page).to have_no_content category_name
   end
 end

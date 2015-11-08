@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :fullname
     devise_parameter_sanitizer.for(:sign_up) << :username
   end
 
@@ -24,9 +25,9 @@ class ApplicationController < ActionController::Base
     if user.admin?
       admin_root_path
     elsif user.worker?
-      worker_index_path
+      worker_root_path
     elsif user.customer?
-      customer_index_path
+      customer_root_path
     else
       root_path
     end

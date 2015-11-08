@@ -1,0 +1,18 @@
+<div class="row" id="worker-application-index">
+  <div class="col-md-9">
+    <header>
+      <h1><%= image_tag "Scruffy.ico", size: "50x50" %> Worker Dashboard</h1>
+    </header>
+    <p class="lead">Find the ideal job you've always been looking for.</p>
+
+    <%= render @user %>
+
+  </div>
+  <div class="col-md-3">
+    <h2>Worker Links</h2>
+    <ul class="nav nav-stacked">
+      <li><%= link_to "Profile", worker_profile_path(@user) %></li>
+    </ul>
+  </div>
+</div>
+

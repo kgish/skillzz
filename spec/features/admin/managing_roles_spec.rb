@@ -25,6 +25,7 @@ RSpec.feature "Admins can manage a user's roles" do
 
   scenario "when assigning roles to a new user" do
     visit new_admin_user_path
+    fill_in "Fullname", with: "Professor Farnsworth"
     fill_in "Username", with: "newbie"
     fill_in "Email", with: "newbie@skillzz.com"
     fill_in "Password", with: "password"

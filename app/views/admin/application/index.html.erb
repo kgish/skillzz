@@ -3,17 +3,15 @@
     <header>
       <h1><%= image_tag "Farnsworth.ico", size: "50x50" %> Admin Page</h1>
     </header>
-    <p class="lead">Welcome to the SkillZZ Admin Page. <small>With great power comes great responsibility.</small></p>
+    <p class="lead">With great power comes great responsibility.</p>
   </div>
   <div class="col-md-3">
     <h2>Admin Links</h2>
     <ul class="nav nav-stacked">
-      <li><%= link_to "Home", root_path %></li>
       <li><%= link_to "Users", admin_users_path %></li>
       <li><%= link_to "Categories", categories_path %></li>
       <li><%= link_to "Skills", categories_path %></li>
       <li><%= link_to "Tags", categories_path %></li>
-      <li><a href="#">...</a></li>
     </ul>
   </div>
 </div>
