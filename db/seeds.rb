@@ -1,3 +1,4 @@
+debug = ENV['debug']
 
 # --- GENERATE RANDOM PROFILE --- #
 
@@ -15,34 +16,21 @@ def generate_random_profile
       tags_sample.each do |tag|
         t = Profile.create!(name: "tag", this_id: tag.id)
         t.move_to_child_of(s)
-        s.reload
+        #s.reload
       end
       s.move_to_child_of(c)
-      c.reload
+      #c.reload
     end
     c.move_to_child_of(root)
-    root.reload
+    #root.reload
   end
   root
 end
 
-root = generate_random_profile
-root.descendants.each do |child|
-  case (child.name)
-  when "category"
-    puts "Category - '#{Category.find(child.this_id).name}'"
-  when "skill"
-    puts "  Skill - '#{Skill.find(child.this_id).name}'"
-  when "tag"
-    puts "    Tag - '#{Tag.find(child.this_id).name}'"
-  else
-     puts "Unknown name '#{child.name}'"
-  end
-end
-exit
 
 # --- CATEGORIES --- #
 
+puts "Category.delete_all"
 Category.delete_all
 
 [
@@ -79,51 +67,85 @@ Category.delete_all
         description: "Tasks to determine crtieria to meet for a new or altered product or project"
     }
 ].each do |category|
+  puts "Category.create!(#{category[:name]})"
   Category.create!(category)
 end
 
 puts "Categories: #{Category.count}"
 
 
-# --- SKILLS --- #
+# --- TAGS --- #
 
-Skill.delete_all
+puts "Tag.delete_all"
 Tag.delete_all
 
 tags = []
-20.times do
-  tags << Faker::Hipster.word.downcase
+20.times do |n|
+  tag = Faker::Hipster.word.downcase
+  puts "#{n+1}/20 Tag = #{tag}"
+  tags << tag
 end
 
+
+
+# --- SKILLS --- #
+
+puts "User.delete_all"
+User.delete_all
+
+puts "User.create!(admin)"
+admin = User.create!({
+    fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
+    username: "admin",
+    email: "admin@skillzz.com",
+    password: "password",
+    admin: true,
+    profile: Profile.create!(name: "root", this_id: 0)
+})
+
+puts "Skill.delete_all"
+Skill.delete_all
+
 Category.all.each do |category|
-  10.times do
-    Skill.create(category: category, author: admin, name: Faker::Hipster.word.downcase, description: Faker::Hipster.sentence,
-      tag_names: tags.sample(rand(5)+1).join(' '))
+  cnt = rand(10) + 1
+  cnt.times do |n|
+    name = Faker::Hipster.word.downcase
+    description = Faker::Hipster.sentence
+    tag_names = tags.sample(rand(5)+1).join(' ')
+    puts "#{n+1}/#{cnt} Skill.create(category=#{category.name},skill=#{name},tag_names=[#{tag_names.gsub(' ',',')}])"
+    Skill.create(category: category, author: admin, name: name, description: description, tag_names: tag_names)
   end
 end
 
 puts "Skills: #{Skill.count}"
-
-
-# --- TAGS --- #
-
 puts "Tags: #{Tag.count}"
 
 
 # --- USERS --- #
 
-User.delete_all
+if debug
+  puts "debug"
+  root = generate_random_profile
+  root.descendants.each do |child|
+    case (child.name)
+      when "category"
+        puts "Category - '#{Category.find(child.this_id).name}'"
+      when "skill"
+        puts "  Skill - '#{Skill.find(child.this_id).name}'"
+      when "tag"
+        puts "    Tag - '#{Tag.find(child.this_id).name}'"
+      else
+        puts "Unknown name '#{child.name}'"
+    end
+  end
+end
+exit
+
+
+puts "Profile.delete_all"
 Profile.delete_all
 
 [
-    {
-        fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
-        username: "admin",
-        email: "admin@skillzz.com",
-        password: "password",
-        admin: true,
-        profile: Profile.create!(name: "root", this_id: 0)
-    },
     {
         fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
         username: "viewer",
@@ -157,10 +179,6 @@ Profile.delete_all
 ].each do |user|
   User.create!(user)
 end
-
-admin = User.find_by!(username: 'admin')
-worker = User.find_by!(username: 'worker')
-customer = User.find_by!(username: 'customer')
 
 5.times do |n|
   fullname = Faker::Name.first_name + " " + Faker::Name.last_name
