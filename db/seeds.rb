@@ -94,7 +94,7 @@ puts "User.delete_all"
 User.delete_all
 
 puts "User.create!(admin)"
-admin = User.create!({
+User.create!({
     fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
     username: "admin",
     email: "admin@skillzz.com",
@@ -107,13 +107,9 @@ puts "Skill.delete_all"
 Skill.delete_all
 
 Category.all.each do |category|
-  cnt = rand(10) + 1
-  cnt.times do |n|
-    name = Faker::Hipster.word.downcase
-    description = Faker::Hipster.sentence
-    tag_names = tags.sample(rand(5)+1).join(' ')
-    puts "#{n+1}/#{cnt} Skill.create(category=#{category.name},skill=#{name},tag_names=[#{tag_names.gsub(' ',',')}])"
-    Skill.create(category: category, author: admin, name: name, description: description, tag_names: tag_names)
+  10.times do
+    Skill.create(category: category, author: admin, name: Faker::Hipster.word.downcase, description: Faker::Hipster.sentence,
+      tag_names: tags.sample(rand(5)+1).join(' '))
   end
 end
 
