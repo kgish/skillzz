@@ -51,33 +51,33 @@ User.delete_all
 
 [
   {
-    fullname: Faker::Name.name,
+    fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
     username: "admin",
     email: "admin@skillzz.com",
     password: "password",
     admin: true
   },
   {
-    fullname: Faker::Name.name,
+    fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
     username: "viewer",
     email: "viewer@skillzz.com",
     password: "password",
   },
   {
-    fullname: Faker::Name.name,
+    fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
     username: "manager",
     email: "manager@skillzz.com",
     password: "password",
   },
   {
-    fullname: Faker::Name.name,
+    fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
     username: "customer",
     email: "customer@skillzz.com",
     password: "password",
     customer: true
   },
   {
-    fullname: Faker::Name.name,
+    fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
     username: "worker",
     email: "worker@skillzz.com",
     password: "password",
@@ -95,13 +95,19 @@ Category.all().each do |category|
   worker.categories << category
 end
 
-# 95.times do |n|
-#   if n.modulo(5) == 0
-#     User.create!(fullname: Faker::Name.name, username: Faker::Internet.user_name, email: Faker::Internet.email, password: "password", worker: true)
-#   else
-#     User.create!(fullname: Faker::Name.name, username: Faker::Internet.user_name, email: Faker::Internet.email, password: "password", customer: true)
-#   end
-# end
+5.times do |n|
+  fullname = Faker::Name.first_name + " " + Faker::Name.last_name
+  username = Faker::Internet.user_name
+  email = Faker::Internet.email
+  puts fullname
+  puts username
+  puts email
+   if n.modulo(2) == 0
+     User.create!(fullname: fullname, username: username, email: email, password: "password", worker: true)
+   else
+     User.create!(fullname: fullname, username: username, email: email, password: "password", customer: true)
+   end
+ end
 
 puts "Users: #{User.count}"
 
