@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151108194007) do
+ActiveRecord::Schema.define(version: 20151109195004) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -20,13 +20,17 @@ ActiveRecord::Schema.define(version: 20151108194007) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "categories_users", id: false, force: :cascade do |t|
-    t.integer "user_id",     null: false
-    t.integer "category_id", null: false
+  create_table "profiles", force: :cascade do |t|
+    t.string  "name"
+    t.integer "this_id"
+    t.integer "parent_id"
+    t.integer "lft"
+    t.integer "rgt"
+    t.integer "depth",          default: 0
+    t.integer "children_count", default: 0
   end
 
-  add_index "categories_users", ["category_id", "user_id"], name: "index_categories_users_on_category_id_and_user_id"
-  add_index "categories_users", ["user_id", "category_id"], name: "index_categories_users_on_user_id_and_category_id"
+  add_index "profiles", ["parent_id", "lft", "rgt", "depth"], name: "index_profiles_on_parent_id_and_lft_and_rgt_and_depth"
 
   create_table "roles", force: :cascade do |t|
     t.integer  "user_id"
@@ -82,9 +86,11 @@ ActiveRecord::Schema.define(version: 20151108194007) do
     t.boolean  "worker",                 default: false
     t.string   "username"
     t.string   "fullname"
+    t.integer  "profile_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["profile_id"], name: "index_users_on_profile_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["username"], name: "index_users_on_username", unique: true
 

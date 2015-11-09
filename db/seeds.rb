@@ -1,6 +1,36 @@
-# --- CATEGORIES --- #
 
-category_ids = []
+# --- GENERATE RANDOM PROFILE --- #
+
+def generate_random_profile
+  root = Profile.create!(name: "root", this_id: 0)
+  categories_sample = Category.all().sample(1 + rand(Category.count))
+  categories_sample.each do |category|
+    c = Profile.create!(name: "category", this_id: category.id)
+    skills = category.skills
+    skills_sample = skills.sample(1 + rand(skills.count))
+    skills_sample.each do |skill|
+      s = Profile.create!(name: "skill", this_id: skill.id)
+      tags = skill.tags
+      tags_sample = tags.sample(1 + rand(tags.count))
+      tags_sample.each do |tag|
+        t = Profile.create!(name: "tag", this_id: tag.id)
+        t.move_to_child_of(s)
+        s.reload
+      end
+      s.move_to_child_of(c)
+      c.reload
+    end
+    c.move_to_child_of(root)
+    root.reload
+  end
+  root
+end
+
+root = generate_random_profile
+puts "#{root.leaves.inspect}"
+exit
+
+# --- CATEGORIES --- #
 
 Category.delete_all
 
@@ -38,75 +68,10 @@ Category.delete_all
         description: "Tasks to determine crtieria to meet for a new or altered product or project"
     }
 ].each do |category|
-  category = Category.create!(category)
-  category_ids << category.id
+  Category.create!(category)
 end
 
 puts "Categories: #{Category.count}"
-
-
-# --- USERS --- #
-
-User.delete_all
-
-[
-  {
-    fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
-    username: "admin",
-    email: "admin@skillzz.com",
-    password: "password",
-    admin: true
-  },
-  {
-    fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
-    username: "viewer",
-    email: "viewer@skillzz.com",
-    password: "password",
-  },
-  {
-    fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
-    username: "manager",
-    email: "manager@skillzz.com",
-    password: "password",
-  },
-  {
-    fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
-    username: "customer",
-    email: "customer@skillzz.com",
-    password: "password",
-    customer: true
-  },
-  {
-    fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
-    username: "worker",
-    email: "worker@skillzz.com",
-    password: "password",
-    worker: true
-  }
-].each do |user|
-  User.create!(user)
-end
-
-admin = User.find_by!(username: 'admin')
-worker = User.find_by!(username: 'worker')
-customer = User.find_by!(username: 'customer')
-
-Category.all().each do |category|
-  worker.categories << category
-end
-
-5.times do |n|
-  fullname = Faker::Name.first_name + " " + Faker::Name.last_name
-  username = Faker::Internet.user_name
-  email = Faker::Internet.email
-   if n.modulo(2) == 0
-     User.create!(fullname: fullname, username: username, email: email, password: "password", worker: true)
-   else
-     User.create!(fullname: fullname, username: username, email: email, password: "password", customer: true)
-   end
- end
-
-puts "Users: #{User.count}"
 
 
 # --- SKILLS --- #
@@ -128,6 +93,75 @@ end
 
 puts "Skills: #{Skill.count}"
 
+
 # --- TAGS --- #
 
 puts "Tags: #{Tag.count}"
+
+
+# --- USERS --- #
+
+User.delete_all
+Profile.delete_all
+
+[
+    {
+        fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
+        username: "admin",
+        email: "admin@skillzz.com",
+        password: "password",
+        admin: true,
+        profile: Profile.create!(name: "root", this_id: 0)
+    },
+    {
+        fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
+        username: "viewer",
+        email: "viewer@skillzz.com",
+        password: "password",
+        profile: Profile.create!(name: "root", this_id: 0)
+    },
+    {
+        fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
+        username: "manager",
+        email: "manager@skillzz.com",
+        password: "password",
+        profile: Profile.create!(name: "root", this_id: 0)
+    },
+    {
+        fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
+        username: "customer",
+        email: "customer@skillzz.com",
+        password: "password",
+        customer: true,
+        profile: Profile.create!(name: "root", this_id: 0)
+    },
+    {
+        fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
+        username: "worker",
+        email: "worker@skillzz.com",
+        password: "password",
+        worker: true,
+        #    profile: Profile.create!(name: "root", this_id: 0)
+    }
+].each do |user|
+  User.create!(user)
+end
+
+admin = User.find_by!(username: 'admin')
+worker = User.find_by!(username: 'worker')
+customer = User.find_by!(username: 'customer')
+
+5.times do |n|
+  fullname = Faker::Name.first_name + " " + Faker::Name.last_name
+  username = Faker::Internet.user_name
+  email = Faker::Internet.email
+  profile = Profile.create!(name: "root", this_id: 0)
+  if n.modulo(2) == 0
+    User.create!(fullname: fullname, username: username, email: email, password: "password", worker: true, profile: profile)
+  else
+    User.create!(fullname: fullname, username: username, email: email, password: "password", customer: true, profile: profile)
+  end
+end
+
+puts "Users: #{User.count}"
+

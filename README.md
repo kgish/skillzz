@@ -159,11 +159,11 @@ Of course, I couldn't have done any of this without the following fantastic reso
 * [FactoryGirl](https://github.com/thoughtbot/factory_girl_rails) - Fixtures replacement using definition syntax.
 * [Faker](https://github.com/stympy/faker) - Library for generating fake data such as names, addresses, and phone numbers.
 * [Devise](https://github.com/plataformatec/devise) - Advanced authentication solution for Rails.
-* [Warden](https://github.com/hassox/rails_warden) - Authentication via the [Warden](https://github.com/hassox/warden) Rack authentication framework. 
 * [Pundit](https://github.com/elabs/pundit) - Advanced authorization solution for Rails using policies.
 * [Searcher](https://github.com/radar/searcher) - Simple search by pre-defined labels and wildcard matching queries.
 * [will_paginate](https://github.com/mislav/will_paginate) - Simple yet effective pagination library.
 * [Sunspot](https://github.com/sunspot/sunspot) - library for expressive, powerful interaction with the Solr search engine.
+* [Awesome Nested Set](https://github.com/collectiveidea/awesome_nested_set) - implementation of the nested set pattern for ActiveRecord models.
 * [Carrierwave](https://github.com/carrierwaveuploader/carrierwave) - File upload solution for Rails.
 * [RSpec](http://rspec.info/) - Behavior driven development (BDD) testing framework for Ruby.
 * [Cabybara](https://github.com/jnicklas/capybara) - Acceptance test framework for web applications.

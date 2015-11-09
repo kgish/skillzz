@@ -38,6 +38,7 @@ gem "font-awesome-rails", "~> 4.3"
 gem "simple_form", "~> 3.1.0"
 gem "devise", "~> 3.4.1"
 gem "pundit", "~> 0.3.0"
+gem "awesome_nested_set"
 
 # Not for production, specific for book Rails 4 in Action
 gem "searcher", github: "radar/searcher"
