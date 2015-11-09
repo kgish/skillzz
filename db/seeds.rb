@@ -27,7 +27,18 @@ def generate_random_profile
 end
 
 root = generate_random_profile
-puts "#{root.leaves.inspect}"
+root.descendants.each do |child|
+  case (child.name)
+  when "category"
+    puts "Category - '#{Category.find(child.this_id).name}'"
+  when "skill"
+    puts "  Skill - '#{Skill.find(child.this_id).name}'"
+  when "tag"
+    puts "    Tag - '#{Tag.find(child.this_id).name}'"
+  else
+     puts "Unknown name '#{child.name}'"
+  end
+end
 exit
 
 # --- CATEGORIES --- #
@@ -141,7 +152,7 @@ Profile.delete_all
         email: "worker@skillzz.com",
         password: "password",
         worker: true,
-        #    profile: Profile.create!(name: "root", this_id: 0)
+        profile: generate_random_profile
     }
 ].each do |user|
   User.create!(user)
