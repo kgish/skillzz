@@ -8,15 +8,13 @@
     <div class="panel panel-primary">
       <div class="panel-heading"><strong>Categories</strong></div>
       <ul class="list-group">
-        <%= render @user.categories %>
+        <% if @user.categories.count > 0 %>
+          <%= render @user.categories %>
+        <% else %>
+          <li class="list-group-item">No categories</li>
+        <% end %>
       </ul>
     </div>
 
-  </div>
-  <div class="col-md-3">
-    <h2>Worker Links</h2>
-    <ul class="nav nav-stacked">
-      <li class="active"><%= link_to "Profile", worker_profile_path(@user) %></li>
-    </ul>
   </div>
 </div>

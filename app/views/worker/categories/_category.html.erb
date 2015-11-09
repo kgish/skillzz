@@ -1,1 +1,12 @@
-<li class="list-group-item"><%= category.name %></li>
+<li class="list-group-item"><%= category.name %>
+<div class="panel panel-primary">
+  <div class="panel-heading"><strong>Skills</strong></div>
+  <ul class="list-group">
+    <% if category.skills.count > 0 %>
+      <%= render category.skills %>
+    <% else %>
+      <li class="list-group-item">No skills</li>
+    <% end %>
+  </ul>
+</div>
+</li>

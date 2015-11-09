@@ -99,9 +99,6 @@ end
   fullname = Faker::Name.first_name + " " + Faker::Name.last_name
   username = Faker::Internet.user_name
   email = Faker::Internet.email
-  puts fullname
-  puts username
-  puts email
    if n.modulo(2) == 0
      User.create!(fullname: fullname, username: username, email: email, password: "password", worker: true)
    else
@@ -119,12 +116,12 @@ Tag.delete_all
 
 tags = []
 20.times do
-  tags << Faker::Hipster.word
+  tags << Faker::Hipster.word.downcase
 end
 
 Category.all.each do |category|
   10.times do
-    Skill.create(category: category, author: admin, name: Faker::Hipster.word, description: Faker::Hipster.sentence,
+    Skill.create(category: category, author: admin, name: Faker::Hipster.word.downcase, description: Faker::Hipster.sentence,
       tag_names: tags.sample(rand(5)+1).join(' '))
   end
 end

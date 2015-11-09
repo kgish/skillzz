@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   get 'welcome/index'
+  get 'skills', to: 'skills_all#index'
+  get 'tags', to: 'tags_all#index'
 
   namespace :admin do
     root 'application#index'

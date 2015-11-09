@@ -32,9 +32,14 @@
             <li class="<%= "active" if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
             <% admins_only do %>
               <li class="<%= "active" if current_page?(admin_root_path) %>"><%= link_to "Admin", admin_root_path %></li>
+              <li class="<%= "active" if current_page?(admin_users_path) %>"><%= link_to "Users", admin_users_path %></li>
+              <li class="<%= "active" if current_page?(categories_path) %>"><%= link_to "Categories", categories_path %></li>
+              <li class="<%= "active" if current_page?(skills_path) %>"><%= link_to "Skills", skills_path %></li>
+              <li class="<%= "active" if current_page?(tags_path) %>"><%= link_to "Tags", tags_path %></li>
             <% end %>
             <% workers_only do %>
               <li class="<%= "active" if current_page?(worker_root_path) %>"><%= link_to "Worker", worker_root_path %></li>
+              <li class="<%= "active" if current_page?(worker_profile_path(current_user)) %>"><%= link_to "Profile", worker_profile_path(current_user) %></li>
             <% end %>
             <% customers_only do %>
               <li class="<%= "active" if current_page?(customer_root_path) %>"><%= link_to "Customer", customer_root_path %></li>

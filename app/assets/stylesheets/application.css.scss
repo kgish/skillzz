@@ -49,9 +49,10 @@ form {
   max-width: 500px;
 }
 
-// --- BUTTONS: NEW, EDIT and DELETE --- //
+// --- BUTTONS: NEW, EDIT, SHOW and DELETE --- //
 a.new {
   @extend .btn;
+  @extend .btn-sm;
   @extend .btn-success;
   &:before {
     font-family: "FontAwesome";
@@ -62,6 +63,7 @@ a.new {
 
 a.edit {
   @extend .btn;
+  @extend .btn-sm;
   @extend .btn-primary;
 
   &:before {
@@ -71,8 +73,21 @@ a.edit {
   }
 }
 
+a.show {
+  @extend .btn;
+  @extend .btn-sm;
+  @extend .btn-primary;
+
+  &:before {
+    font-family: "FontAwesome";
+    @extend .fa-chevron-left;
+    padding-right: 0.5em;
+  }
+}
+
 a.delete {
   @extend .btn;
+  @extend .btn-sm;
   @extend .btn-danger;
 
   &:before {
@@ -116,4 +131,8 @@ body {
 
 .footer a {
   color: #9af7fe;
+}
+
+.nowrap {
+  white-space: nowrap;
 }

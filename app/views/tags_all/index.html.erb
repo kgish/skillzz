@@ -1,0 +1,40 @@
+<header>
+  <h1>Tags - <small>belong to one or more skills</small></h1>
+  <p class="lead">This is a list of all tags.</p>
+</header>
+
+<div id="tags" class="row">
+  <div class='col-md-12'>
+    <% if @tags.count > 0 %>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Skills</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="hover-cursor">
+            <% @tags.each do |tag| %>
+              <tr>
+                <td><%= tag.name %></td>
+                <td>
+                  <% tag.skills.each do |skill| %>
+                    <span class="nowrap">[ <%= skill.name %></div> ]</span>
+                  <% end %>
+                </td>
+                <%# TODO %>
+                <td><a href="#" class="show" onclick="alert('Sorry, not yet implemented. Please be patient.')">Show</a></td>
+                <td><a href="#" class="edit" onclick="alert('Sorry, not yet implemented. Please be patient.')">Edit</a></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <p>No tags found.</p>
+    <% end %>
+  </div>
+</div>

@@ -1,10 +1,10 @@
 <div id="skill">
   <header>
-    <h1><%= @category.name %></h1>
+    <h1>Category - <%= @category.name %></h1>
   </header>
 
   <header>
-    <h2><%= @skill.name %></h2>
+    <h2>Skill - <%= @skill.name %> - <small>belongs to one category and has many tags</small></h2>
 
     <ul class="actions">
       <% if policy(@skill).update? %>
@@ -21,7 +21,15 @@
 
   <table id="attributes">
     <tr>
+      <th>Description:</th>
+      <td><%= simple_format(@skill.description) %></td>
+    </tr>
+    <tr>
       <th>Author:</th>
+      <td><%= @skill.author.fullname %></td>
+    </tr>
+    <tr>
+      <th>Email:</th>
       <td><%= @skill.author.email %></td>
     </tr>
     <tr>
@@ -35,6 +43,4 @@
       </tr>
     <% end %>
   </table>
-
-  <%= simple_format(@skill.description) %>
 </div>
