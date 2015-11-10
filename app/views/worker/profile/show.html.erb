@@ -10,7 +10,7 @@
       <ul class="list-group">
         <% if @user.profile.children.count > 0 %>
           <% @user.profile.children.each do |category| %>
-            <%= render 'worker/profile/category', category: category %>
+            <%= render 'shared/profile/category', category: category %>
           <% end %>
         <% else %>
           <li class="list-group-item">No categories</li>

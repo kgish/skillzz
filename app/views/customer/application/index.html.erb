@@ -1,12 +1,12 @@
 <div class="row" id="customer">
-  <div class="col-md-12">
+  <div class="col-md-9">
     <header>
       <h1><%= image_tag "Leela.ico", size: "50x50" %> Customer Dashboard</h1>
     </header>
     <p class="lead">Find the ideal person for the job that needs to be done.</p>
     <p>Get going by clicking on one of the navigation links at the top of the page.</p>
 
-    <%= render 'shared/personal_information', user: @user %>
+    <%= render 'shared/profile/user', user: @user %>
 
   </div>
 </div>

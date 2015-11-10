@@ -8,7 +8,6 @@
     <%= f.input :fullname, required: true, autofocus: true %>
     <%= f.input :username, required: true %>
     <%= f.input :email, required: true %>
-    <%= f.input :bio, required: true %>
     <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable) %>
     <%= f.input :password_confirmation, required: true %>
   </div>

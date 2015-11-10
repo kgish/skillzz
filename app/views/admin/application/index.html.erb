@@ -1,9 +1,12 @@
 <div class="row" id="admin">
-  <div class="col-md-12">
+  <div class="col-md-9">
     <header>
       <h1><%= image_tag "Farnsworth.ico", size: "50x50" %> Admin Page</h1>
     </header>
     <p class="lead">With great power comes great responsibility.</p>
     <p>Get going by clicking on one of the navigation links at the top of the page.</p>
+
+    <%= render 'shared/profile/user', user: current_user %>
+
   </div>
 </div>

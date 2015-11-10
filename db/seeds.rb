@@ -127,9 +127,11 @@ Category.all.each do |category|
   cnt = rand(skills_max) + 1
   cnt.times do |n|
     name = Faker::Hipster.word.downcase
-    tag_names = tags.sample(rand(5)+1).join(',')
+    tag_names = tags.sample(rand(5)+1).join(' ')
     puts "#{n+1}/#{cnt} Skill.create(category=#{category.name},name=#{name},tags=[#{tag_names}])"
-    Skill.create(category: category, author: admin, name: Faker::Hipster.word.downcase, description: Faker::Hipster.sentence, tag_names: tag_names)
+    skill = Skill.create(category: category, author: admin, name: Faker::Hipster.word.downcase, description: Faker::Hipster.sentence)
+    skill.tag_names = tag_names
+    skill.save!
   end
 end
 
@@ -156,7 +158,6 @@ if debug
   end
   puts "---debug---"
 end
-
 
 puts "Profile.delete_all"
 Profile.delete_all

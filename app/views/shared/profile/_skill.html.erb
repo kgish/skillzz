@@ -4,7 +4,7 @@
     <ul class="list-group">
       <% if skill.children.count > 0 %>
         <% skill.children.each do |tag| %>
-        <%= render 'worker/profile/tag', tag: tag %>
+        <%= render 'shared/profile/tag', tag: tag %>
           <% end %>
       <% else %>
         <li class="list-group-item">No tags</li>
