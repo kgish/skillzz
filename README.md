@@ -46,12 +46,18 @@ I was given plus minus two weeks to design, build, test and deploy it: quite the
 
 In order to install and start using this application, do the following:
 
-    git clone git@github.com:kgish/skillzz.git
-    cd skillzz
-    bundle install
-    bundle exec rake db:migrate
-    bundle exec rake db:seed
-    bundle exec rails server
+    $ git clone git@github.com:kgish/skillzz.git
+    $ cd skillzz
+    $ rvm use ruby-2.2.2@skillzz --create
+    $ rvm --rvmrc ruby-2.2.2@skillzz
+    $ rvm rvmrc trust `pwd`
+    $ rvm rvmrc warning ignore  `pwd`/.rvmrc
+    $ gem install bundler
+    $ bundle update 
+    $ bundle install
+    $ bundle exec rake db:migrate
+    $ bundle exec rake db:seed
+    $ bundle exec rails server
 
 The application is now up-and-running and can be viewed by pointing your favorite browser at http://localhost:3000.
 
@@ -125,6 +131,14 @@ Here is a diagram which shows the high-level structure:
 -Diagram goes here-
 
 
+## Database
+
+I decided to use [MySQL](https://www.mysql.com/) for development and testing since the default 
+[SQLite](https://www.sqlite.org/) that Rails uses is not robust enough for my large datasets.
+
+For production I use [PostgreSQL](http://www.postgresql.org/) since that is the default for Heroku.
+
+
 ## Testing
 
 The functionality of this application is verified by running `rspec` which tests the defined features and scenarios.
@@ -145,11 +159,14 @@ perfection means that there will always be stuff to do for later.
 
 Here is a list of todo items for a rainy day.
 
-* Allow users to login using either username or email
+* Allow users to login using either username or email.
+* Allow user to sign up via the registration form.
 * Allow users to include profile picture that can be uploaded.
 * Take into account the availability of workers when matching.
 * Take into account the hourly rate of workers when matching.
+* Allow workers to create multiple profile and save them by title.
 * Allow customers to create user-defined searches and save them.
+* Policy scopes for workers and customers as well.
 * Email notifications when there are new matches detected.
 * Allow tags to consist of multiple words.
 * Ad infinitum...
@@ -160,8 +177,9 @@ Here is a list of todo items for a rainy day.
 Of course, I couldn't have done any of this without the following fantastic resources which have helped me out very 
 much. The open source community is a fantastic place with lots of coding heroes.
 
-* [Ruby on Rails](http://rubyonrails.org/) - The most amazing website on the face of the Earth.
+* [Ruby on Rails](http://rubyonrails.org/) - The most amazing website on the face of the Earth which includes everything you'd ever want to know about this fantastic web framework.
 * [Rails 4 in Action](https://www.manning.com/books/rails-4-in-action) - By a long shot the most extensive hands-on Rails guide available.
+* [The Twelve-Factor App](http://12factor.net/) - A modern methodology for building [Software-as-a-Service](https://en.wikipedia.org/wiki/Software_as_a_service) applications.
 * [Bootstrap](http://getbootstrap.com/) - Sleek, intuitive, and powerful front-end framework for (mobile) web development.
 * [FontAwesome](http://fontawesome.io/) - Cute collection of awesome icons.
 * [Sass](http://sass-lang.com/) - Powerful CSS extension on steroids.

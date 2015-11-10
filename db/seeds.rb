@@ -4,9 +4,18 @@ tag_max = 20
 skills_max = 5
 customers_every = 5
 
-# --- GENERATE RANDOM PROFILE --- #
+# --- RANDOM FULLNAME, BIO AND PROFILE --- #
 
-def generate_random_profile
+def random_fullname
+  Faker::Name.first_name + " " + Faker::Name.last_name
+end
+
+def random_bio
+  Faker::Lorem.sentences(3).join(' ')
+end
+
+
+def random_profile
   root = Profile.create!(name: "root", this_id: 0)
   categories_sample = Category.all().sample(1 + rand(Category.count/2))
   categories_sample.each do |category|
@@ -99,13 +108,13 @@ User.delete_all
 # Need an admin
 puts "User.create!(admin)"
 admin = User.create!({
-   fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
+   fullname: random_fullname,
    username: "admin",
    email: "admin@skillzz.com",
    password: "password",
    admin: true,
    profile: Profile.create!(name: "root", this_id: 0),
-   bio: Faker::Lorem.sentence
+   bio: random_bio
 })
 
 
@@ -132,7 +141,7 @@ puts "Tags: #{Tag.count}"
 
 if debug
   puts "---debug---"
-  root = generate_random_profile
+  root = random_profile
   root.descendants.each do |child|
     case (child.name)
       when "category"
@@ -154,38 +163,38 @@ Profile.delete_all
 
 [
     {
-        fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
+        fullname: random_fullname,
         username: "viewer",
         email: "viewer@skillzz.com",
         password: "password",
-        bio: Faker::Lorem.sentence,
+        bio: random_bio,
         profile: Profile.create!(name: "root", this_id: 0)
     },
     {
-        fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
+        fullname: random_fullname,
         username: "manager",
         email: "manager@skillzz.com",
         password: "password",
-        bio: Faker::Lorem.sentence,
+        bio: random_bio,
         profile: Profile.create!(name: "root", this_id: 0)
     },
     {
-        fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
+        fullname: random_fullname,
         username: "customer",
         email: "customer@skillzz.com",
         password: "password",
         customer: true,
-        bio: Faker::Lorem.sentence,
+        bio: random_bio,
         profile: Profile.create!(name: "root", this_id: 0)
     },
     {
-        fullname: Faker::Name.first_name + " " + Faker::Name.last_name,
+        fullname: random_fullname,
         username: "worker",
         email: "worker@skillzz.com",
         password: "password",
         worker: true,
-        bio: Faker::Lorem.sentence,
-        profile: generate_random_profile
+        bio: random_bio,
+        profile: random_profile
     }
 ].each do |user|
   puts "User.create!(username=#{user[:username]},fullname=#{user[:fullname]})"
@@ -193,16 +202,17 @@ Profile.delete_all
 end
 
 users_max.times do |n|
-  fullname = Faker::Name.first_name + " " + Faker::Name.last_name
+  fullname = random_fullname,
   username = Faker::Internet.user_name
   email = Faker::Internet.email
-  profile = generate_random_profile
+  profile = random_profile
+  bio = random_bio
   if n.modulo(customers_every) == 0
     puts "#{n+1}/#{users_max} User.create!(customer,username=#{username},fullname=#{fullname})"
-    User.create!(fullname: fullname, username: username, email: email, password: "password", customer: true, profile: profile)
+    User.create!(fullname: fullname, username: username, email: email, password: "password", customer: true, bio: bio, profile: profile)
   else
     puts "#{n+1}/#{users_max} User.create!(worker,username=#{username},fullname=#{fullname})"
-    User.create!(fullname: fullname, username: username, email: email, password: "password", worker: true, profile: profile)
+    User.create!(fullname: fullname, username: username, email: email, password: "password", worker: true, bio: bio, profile: profile)
   end
 end
 
