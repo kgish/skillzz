@@ -8,8 +8,10 @@
     <div class="panel panel-primary">
       <div class="panel-heading"><strong>Categories</strong></div>
       <ul class="list-group">
-        <% if @user.categories.count > 0 %>
-          <%= render @user.categories %>
+        <% if @user.profile.children.count > 0 %>
+          <% @user.profile.children.each do |category| %>
+            <%= render 'worker/profile/category', category: category %>
+          <% end %>
         <% else %>
           <li class="list-group-item">No categories</li>
         <% end %>

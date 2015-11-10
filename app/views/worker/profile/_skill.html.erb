@@ -1,9 +1,11 @@
-<li class="list-group-item"><%= skill.name %>
+<li class="list-group-item"><%= Skill.find(skill.this_id).name %>
   <div class="panel panel-primary">
     <div class="panel-heading"><strong>Tags</strong></div>
     <ul class="list-group">
-      <% if skill.tags.count > 0 %>
-        <%= render skill.tags %>
+      <% if skill.children.count > 0 %>
+        <% skill.children.each do |tag| %>
+        <%= render 'worker/profile/tag', tag: tag %>
+          <% end %>
       <% else %>
         <li class="list-group-item">No tags</li>
       <% end %>

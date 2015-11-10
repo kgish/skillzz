@@ -1,0 +1,14 @@
+<li class="list-group-item"><%= Category.find(category.this_id).name %>
+<div class="panel panel-primary">
+  <div class="panel-heading"><strong>Skills</strong></div>
+  <ul class="list-group">
+    <% if category.children.count > 0 %>
+      <% category.children.each do |skill| %>
+        <%= render 'worker/profile/skill', skill: skill %>
+      <% end %>
+    <% else %>
+      <li class="list-group-item">No skills</li>
+    <% end %>
+  </ul>
+</div>
+</li>

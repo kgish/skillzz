@@ -169,6 +169,7 @@ Here is a list of todo items for a rainy day.
 * Policy scopes for workers and customers as well.
 * Email notifications when there are new matches detected.
 * Allow tags to consist of multiple words.
+* Responsive design for mobiles
 * Ad infinitum...
 
 

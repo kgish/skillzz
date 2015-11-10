@@ -11,7 +11,7 @@ def random_fullname
 end
 
 def random_bio
-  Faker::Lorem.sentences(3).join(' ')
+  Faker::Lorem.sentences(5).join(' ')
 end
 
 
@@ -202,7 +202,7 @@ Profile.delete_all
 end
 
 users_max.times do |n|
-  fullname = random_fullname,
+  fullname = random_fullname
   username = Faker::Internet.user_name
   email = Faker::Internet.email
   profile = random_profile
