@@ -20,11 +20,7 @@
             <% @tags.each do |tag| %>
               <tr>
                 <td><%= tag.name %></td>
-                <td>
-                  <% tag.skills.each do |skill| %>
-                    <span class="nowrap">[ <%= skill.name %></div> ]</span>
-                  <% end %>
-                </td>
+                <td><%= render tag.skills %></td>
                 <%# TODO %>
                 <td><a href="#" class="show" onclick="alert('Sorry, not yet implemented. Please be patient.')">Show</a></td>
                 <td><a href="#" class="edit" onclick="alert('Sorry, not yet implemented. Please be patient.')">Edit</a></td>

@@ -27,11 +27,7 @@
             <tr>
               <td><%= category.name %></td>
               <td><%= category.description %></td>
-              <td>
-                <% category.skills.each do |skill| %>
-                  <span class="nowrap">[ <%= skill.name %> ]</span>
-                <% end %>
-              </td>
+              <td><%= render category.skills %></td>
               <td><%= link_to "Show", category_path(category), class: "show" %></td>
               <td><%= link_to "Edit", edit_category_path(category), class: "edit" %></td>
             </tr>

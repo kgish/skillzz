@@ -24,11 +24,7 @@
                 <td><%= skill.name %></td>
                 <td><%= skill.description %></td>
                 <td><%= skill.category.name %></td>
-                <td>
-                  <% skill.tags.each do |tag| %>
-                    <span class="nowrap">[ <%= tag.name %></div> ]</span>
-                  <% end %>
-                </td>
+                <td><%= render skill.tags, skill: skill, readonly: true %></td>
                 <td><%= link_to "Show", category_skill_path(skill.category, skill), class: "show" %></td>
                 <td><%= link_to "Edit", edit_category_skill_path(skill.category, skill), class: "edit" %></td>
               </tr>
