@@ -3,7 +3,7 @@
 This is an advanced website platform for matching highly skilled workers to customers who are searching for the best
 and most appropriate person for a given task at hand.
 
-Selection criteria includes categories, skills, user-defined tags, bios, hourly rates, availability for filtering
+Selection criteria includes categories, skills, user-defined tags, bio, hourly rates, availability for filtering
 through the results.
 
 An example of such a query might be: I am looking for a senior Ruby developer with knowledge of Linux who charges
@@ -58,8 +58,8 @@ In order to install and start using this application, do the following:
 
 The application is now up-and-running and can be viewed by pointing your favorite browser at http://localhost:3000.
 
-If you are cloning this repositry for development purposes, it is recommended that you also do the following from 
-within the project root directory just after you run `bunde install`:
+If you are cloning this repository for development purposes, it is recommended that you also do the following from 
+within the project root directory just after you run `bundle install`:
 
     $ rvm use ruby-2.2.2@skillzz --create
     $ rvm --rvmrc ruby-2.2.2@skillzz
@@ -166,7 +166,7 @@ perfection means that there will always be stuff to do for later.
 
 Here is a list of todo items for a rainy day.
 
-* Allow users to login using either username or email.
+* Allow users to login using either their username or email.
 * Allow user to sign up via the registration form.
 * Allow users to include profile picture that can be uploaded.
 * Take into account the availability of workers when matching.
@@ -209,4 +209,4 @@ much. The open source community is a fantastic place with lots of coding heroes.
 Kiffin Gish
 kiffin.gish@planet.nl
 
-Never too old to learn new stuff.
+- You're never too old to learn new stuff.
