@@ -202,4 +202,4 @@ much. The open source community is a fantastic place with lots of coding heroes.
 Kiffin Gish
 kiffin.gish@planet.nl
 
-Never to old to learn new stuff.
+Never too old to learn new stuff.
