@@ -3,10 +3,11 @@
 This is an advanced website platform for matching highly skilled workers to customers who are searching for the best
 and most appropriate person for a given task at hand.
 
-Selection criteria includes skills, skill categories, hourly rates, availability for filtering through the results.
+Selection criteria includes categories, skills, user-defined tags, bios, hourly rates, availability for filtering
+through the results.
 
 An example of such a query might be: I am looking for a senior Ruby developer with knowledge of Linux who charges
-between 60 - 70 euros per hour and will be available starting next month for three months.
+between 60-70 euros per hour and will be available starting next month for three months.
 
 A query will generate a number of hits which are then ordered according to a ranking scheme weighted according to 
 criteria and preferences of the customer.
@@ -15,8 +16,9 @@ The website was designed and built as part of a coding challenge given to me by 
 for the position of Remote Ruby on Rails Developer.
 
 Special thanks to the authors of the book [Rails 4 in Action](https://www.manning.com/books/rails-4-in-action) which 
-provided me with invaluable guidance. I took the liberty of using some ideas and implementations from this source
-of inspiration. This is a fantastic book.
+provided me with invaluable guidance. This is a fantastic book.
+
+I took the liberty of using some of the ideas and implementations from this source of inspiration.
 
 ## Coding Challenge
 
@@ -37,7 +39,7 @@ This is the assignment which was given to me.
 > *The challenge: create a prototype of this website, with the main focus on the back end, especially the models and 
 > search functionality.*
 
-I had two weeks the time to design, build, test and deploy it. Quite a challenge indeed.
+I was given plus minus two weeks to design, build, test and deploy it: quite the challenge indeed!
 
 
 ## Installation
@@ -64,11 +66,13 @@ username and password.
 
 During the installation the user table is populated with a number of pre-defined users, these are:
 
-* admin@skillzz.com / admin123
-* customer1@skillzz.com / customer123
-* customer2@skillzz.com / customer456
-* worker1@skillzz.com / worker123
-* worker2@skillzz.com / worker456
+* admin@skillzz.com / password
+* worker@skillzz.com / password
+* customer@skillzz.com / password
+* viewer@skillzz.com / password
+* manager@skillzz.com / password
+
+In addition to those, the database is seeded with random users using the [Faker](https://github.com/stympy/faker) gem.
 
 
 ## Roles
@@ -110,15 +114,16 @@ In this version, a tag can only consist of a single word, and a list of tags is 
 The database tables, data types and relationships together define the different ways that the application interacts 
 with the underlying data model in order to adhere to the user requirements.
 
-On the highest level we have 'Categories' with name and description.
+On the highest level we have 'Categories' with a name (unique) and a description.
 
-Each category can consist of one or more 'Skills' with name and description.
+Each category can consist of one or more 'Skills' with name (unique) and a description.
 
-Finally, each skill can be correlated to one or more 'Tags' for helping with search.
+Finally, each skill can be correlated to one or more user-defined 'Tags' for helping with the search.
 
 Here is a diagram which shows the high-level structure:
 
 -Diagram goes here-
+
 
 ## Testing
 
@@ -135,21 +140,25 @@ or in order to run just a specific feature, in this example editing categories:
 
 ## Todos
 
-Even if I had a more time to create a more improved version of the application, being a developer at heart in pursuit of perfection means that there will always be stuff to do for later.
+Even if I had more time to create a more improved version of this application, being a developer at heart in pursuit of
+perfection means that there will always be stuff to do for later.
 
 Here is a list of todo items for a rainy day.
 
-* Allow users to include profile pictures that can be uploaded.
+* Allow users to login using either username or email
+* Allow users to include profile picture that can be uploaded.
 * Take into account the availability of workers when matching.
+* Take into account the hourly rate of workers when matching.
 * Allow customers to create user-defined searches and save them.
 * Email notifications when there are new matches detected.
 * Allow tags to consist of multiple words.
-* Ad infinitum.
+* Ad infinitum...
 
 
 ## References
 
-Of course, I couldn't have done any of this without the following fantastic resources.
+Of course, I couldn't have done any of this without the following fantastic resources which have helped me out very 
+much. The open source community is a fantastic place with lots of coding heroes.
 
 * [Ruby on Rails](http://rubyonrails.org/) - The most amazing website on the face of the Earth.
 * [Rails 4 in Action](https://www.manning.com/books/rails-4-in-action) - By a long shot the most extensive hands-on Rails guide available.
@@ -157,7 +166,7 @@ Of course, I couldn't have done any of this without the following fantastic reso
 * [FontAwesome](http://fontawesome.io/) - Cute collection of awesome icons.
 * [Sass](http://sass-lang.com/) - Powerful CSS extension on steroids.
 * [FactoryGirl](https://github.com/thoughtbot/factory_girl_rails) - Fixtures replacement using definition syntax.
-* [Faker](https://github.com/stympy/faker) - Library for generating fake data such as names, addresses, and phone numbers.
+* [Faker](https://github.com/stympy/faker) - Library for generating fake data such as fullnames, usernames, emails and bios.
 * [Devise](https://github.com/plataformatec/devise) - Advanced authentication solution for Rails.
 * [Pundit](https://github.com/elabs/pundit) - Advanced authorization solution for Rails using policies.
 * [Searcher](https://github.com/radar/searcher) - Simple search by pre-defined labels and wildcard matching queries.
@@ -169,3 +178,9 @@ Of course, I couldn't have done any of this without the following fantastic reso
 * [Cabybara](https://github.com/jnicklas/capybara) - Acceptance test framework for web applications.
 * [Heroku](https://www.heroku.com/) - Cloud platform for easily deploying Rails applications.
 
+## Author
+
+Kiffin Gish
+kiffin.gish@planet.nl
+
+Never to old to learn new stuff.
