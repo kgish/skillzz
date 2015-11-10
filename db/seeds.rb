@@ -186,7 +186,7 @@ Profile.delete_all
         password: "password",
         customer: true,
         bio: random_bio,
-        profile: Profile.create!(name: "root", this_id: 0)
+        profile: random_profile
     },
     {
         fullname: random_fullname,

@@ -43,6 +43,7 @@
             <% end %>
             <% customers_only do %>
               <li class="<%= "active" if current_page?(customer_root_path) %>"><%= link_to "Customer", customer_root_path %></li>
+              <li class="<%= "active" if current_page?(customer_search_path(current_user)) %>"><%= link_to "Search", customer_search_path(current_user) %></li>
             <% end %>
           </ul>
           <% if user_signed_in? %>

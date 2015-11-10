@@ -1,0 +1,32 @@
+<div class="row" id="worker-profile-show">
+  <div class="col-md-9">
+    <header>
+      <h1><%= image_tag "Leela.ico", size: "50x50" %> Customer Dashboard</h1>
+    </header>
+    <p class="lead">Find the right person for the right job.</p>
+
+    <form class="form-search form-inline">
+      <div class="input-group">
+        <input type="text" class="form-control search-query" placeholder="Search..." />
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary">Search</button></span>
+      </div>
+    </form>
+
+
+    <h2>Criteria</h2>
+    <div class="panel panel-primary">
+      <div class="panel-heading"><strong>Categories</strong></div>
+      <ul class="list-group">
+        <% if @user.profile.children.count > 0 %>
+          <% @user.profile.children.each do |category| %>
+            <%= render 'shared/profile/category', category: category %>
+          <% end %>
+        <% else %>
+          <li class="list-group-item">No categories</li>
+        <% end %>
+      </ul>
+    </div>
+
+  </div>
+</div>
