@@ -14,28 +14,107 @@ def random_bio
   Faker::Lorem.sentences(5).join(' ')
 end
 
+def random_unique_skill
+  cnt = 5
+  found = false
+  name = 'unknown'
+  while cnt > 0 and not found
+    name = Faker::Hipster.word.downcase
+    unless Skill.find_by(name: name)
+      found = true
+    end
+    cnt = cnt - 1
+  end
+
+  if cnt == 0
+    puts "random_unique_skill failed!"
+    exit
+  end
+
+  name
+end
+
+def random_unique_username
+  cnt = 5
+  found = false
+  username = 'unknown'
+  while cnt > 0 and not found
+    username = Faker::Hipster.word.downcase
+    unless User.find_by(username: username)
+      found = true
+    end
+    cnt = cnt - 1
+  end
+
+  if cnt == 0
+    puts "random_unique_username failed!"
+    exit
+  end
+
+  username
+end
+
+def random_unique_email
+  cnt = 5
+  found = false
+  email = 'unknown@example.com'
+  while cnt > 0 and not found
+    email = Faker::Internet.email.downcase
+    unless User.find_by(email: email)
+      found = true
+    end
+    cnt = cnt - 1
+  end
+
+  if cnt == 0
+    puts "random_unique_email failed!"
+    exit
+  end
+
+  email
+end
+
+def random_unique_tag
+  cnt = 5
+  found = false
+  name = 'unknown'
+  while cnt > 0 and not found
+    name = Faker::Hipster.word.downcase
+    unless Tag.find_by(name: name)
+      found = true
+    end
+    cnt = cnt - 1
+  end
+
+  if cnt == 0
+    puts "random_unique_tag failed!"
+    exit
+  end
+
+  name
+end
 
 def random_profile
   root = Profile.create!(name: "root", this_id: 0)
-  categories_sample = Category.all().sample(1 + rand(Category.count/2))
+  categories_sample = Category.all().sample(3 + rand(3))
   categories_sample.each do |category|
     c = Profile.create!(name: "category", this_id: category.id)
     skills = category.skills
-    skills_sample = skills.sample(1 + rand(skills.count/2))
+    skills_sample = skills.sample(3 + rand(skills.count-3))
     skills_sample.each do |skill|
       s = Profile.create!(name: "skill", this_id: skill.id)
       tags = skill.tags
-      tags_sample = tags.sample(1 + rand(tags.count/2))
+      tags_sample = tags.sample(3 + rand(tags.count-3))
       tags_sample.each do |tag|
         t = Profile.create!(name: "tag", this_id: tag.id)
         t.move_to_child_of(s)
-        #s.reload
+        s.reload
       end
       s.move_to_child_of(c)
-      #c.reload
+      c.reload
     end
     c.move_to_child_of(root)
-    #root.reload
+    root.reload
   end
   root
 end
@@ -94,7 +173,7 @@ Tag.delete_all
 
 tags = []
 tag_max.times do |n|
-  tag = Faker::Hipster.word.downcase
+  tag = random_unique_tag
   puts "#{n+1}/#{tag_max} Tag = #{tag}"
   tags << tag
 end
@@ -108,13 +187,13 @@ User.delete_all
 # Need an admin
 puts "User.create!(admin)"
 admin = User.create!({
-   fullname: random_fullname,
-   username: "admin",
-   email: "admin@skillzz.com",
-   password: "password",
-   admin: true,
-   profile: Profile.create!(name: "root", this_id: 0),
-   bio: random_bio
+  fullname: random_fullname,
+  username: "admin",
+  email: "admin@skillzz.com",
+  password: "password",
+  admin: true,
+  bio: "Manage all of the computer systems at the company as well as everything having to do with the network infrastructure. Monitoring, trouble-shooting and overall customer technical support",
+  profile: Profile.create!(name: "root", this_id: 0)
 })
 
 
@@ -123,16 +202,17 @@ admin = User.create!({
 puts "Skill.delete_all"
 Skill.delete_all
 
+category_max = Category.count
+category_cnt = 0
 Category.all.each do |category|
-  cnt = rand(skills_max) + 1
+  cnt = 1 + rand(skills_max)
   cnt.times do |n|
-    name = Faker::Hipster.word.downcase
+    name = random_unique_skill
     tag_names = tags.sample(rand(5)+1).join(' ')
-    puts "#{n+1}/#{cnt} Skill.create(category=#{category.name},name=#{name},tags=[#{tag_names}])"
-    skill = Skill.create(category: category, author: admin, name: Faker::Hipster.word.downcase, description: Faker::Hipster.sentence)
-    skill.tag_names = tag_names
-    skill.save!
+    puts "#{category_cnt+1}/#{category_max} #{category.name} #{n+1}/#{cnt} Skill.create(category=#{category.name},name=#{name})"
+    Skill.create(category: category, author: admin, name: Faker::Hipster.word.downcase, description: Faker::Hipster.sentence, tag_names: tag_names)
   end
+  category_cnt = category_cnt + 1
 end
 
 puts "Skills: #{Skill.count}"
@@ -185,7 +265,7 @@ Profile.delete_all
         email: "customer@skillzz.com",
         password: "password",
         customer: true,
-        bio: random_bio,
+        bio: "As one of the most demanding customers on this planet, I expect nothing less than the very best possible service there is. I am starting to get impatient because I am in immediate need of a skilled professional. For one of my prestigious project I need someone with the right knowledge and at least five years of experience in the role as a senior architect.",
         profile: random_profile
     },
     {
@@ -194,7 +274,7 @@ Profile.delete_all
         email: "worker@skillzz.com",
         password: "password",
         worker: true,
-        bio: random_bio,
+        bio: "With more than ten years experience as a software developer, I view myself as a hard working and determined expert in my field. I prefer the more complex and challenging projects. Young and heart and eager to learn more. Skills include C/C++, Perl, Ruby, Ruby on Rails, Elixir, JavaScript, HTML5, CSS3, Bootstrap, Linux, Apache and MySQL.",
         profile: random_profile
     }
 ].each do |user|
@@ -204,8 +284,8 @@ end
 
 users_max.times do |n|
   fullname = random_fullname
-  username = Faker::Internet.user_name
-  email = Faker::Internet.email
+  username = random_unique_username
+  email = random_unique_email
   profile = random_profile
   bio = random_bio
   if n.modulo(customers_every) == 0
