@@ -9,6 +9,9 @@ through the results.
 An example of such a query might be: I am looking for a senior Ruby developer with knowledge of Linux who charges
 between 60-70 euros per hour and will be available starting next month for three months.
 
+You can select a number of pre-defined labels (tags) to narrow down the search or introduce your own user-defined tags 
+to be more specific.
+
 A query will generate a number of hits which are then ordered according to a ranking scheme weighted according to 
 criteria and preferences of the customer.
 
@@ -48,18 +51,22 @@ In order to install and start using this application, do the following:
 
     $ git clone git@github.com:kgish/skillzz.git
     $ cd skillzz
-    $ rvm use ruby-2.2.2@skillzz --create
-    $ rvm --rvmrc ruby-2.2.2@skillzz
-    $ rvm rvmrc trust `pwd`
-    $ rvm rvmrc warning ignore  `pwd`/.rvmrc
-    $ gem install bundler
-    $ bundle update 
     $ bundle install
     $ bundle exec rake db:migrate
     $ bundle exec rake db:seed
     $ bundle exec rails server
 
 The application is now up-and-running and can be viewed by pointing your favorite browser at http://localhost:3000.
+
+If you are cloning this repositry for development purposes, it is recommended that you also do the following from 
+within the project root directory just after you run `bunde install`:
+
+    $ rvm use ruby-2.2.2@skillzz --create
+    $ rvm --rvmrc ruby-2.2.2@skillzz
+    $ rvm rvmrc trust `pwd`
+    $ rvm rvmrc warning ignore  `pwd`/.rvmrc
+    $ gem install bundler
+    $ bundle update 
 
 
 ## Authentication
@@ -86,8 +93,8 @@ In addition to those, the database is seeded with random users using the [Faker]
 There are four roles for the website:
 
 * Visitor - Happens to find the website, gathers information and can sign up either as a worker or a customer.
-* Worker - Has collection of skills who is available for employment.
-* Customer - Looking for workers with a given number of skills.
+* Worker - Is available for employment whose profile is a collection of skills that can be searched.
+* Customer - Looking for workers with a given number of skills and can search using tags.
 * Administrator - Has complete access rights required for administrating the website.
 
 Here are the rules for categories:
