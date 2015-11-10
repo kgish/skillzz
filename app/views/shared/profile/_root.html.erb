@@ -1,12 +1,10 @@
-<div class="panel panel-primary">
-  <div class="panel-heading"><strong>Categories</strong></div>
-  <ul class="list-group">
+<p><strong>Categories</strong></p>
+  <ul>
     <% if profile.children.count > 0 %>
       <% profile.children.each do |category| %>
         <%= render 'shared/profile/category', category: category %>
       <% end %>
-    <% else %>
-      <li class="list-group-item">No categories</li>
     <% end %>
+    <li>Add category</li>
   </ul>
 </div>

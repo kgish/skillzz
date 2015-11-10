@@ -1,14 +1,11 @@
-<li class="list-group-item"><%= Skill.find(skill.this_id).name %>
-  <div class="panel panel-primary">
-    <div class="panel-heading"><strong>Tags</strong></div>
-    <ul class="list-group">
-      <% if skill.children.count > 0 %>
-        <% skill.children.each do |tag| %>
-        <%= render 'shared/profile/tag', tag: tag %>
-          <% end %>
-      <% else %>
-        <li class="list-group-item">No tags</li>
-      <% end %>
-    </ul>
-  </div>
+<li><%= Skill.find(skill.this_id).name %>
+  <p><strong>Tags</strong></p>
+  <ul>
+    <% if skill.children.count > 0 %>
+      <% skill.children.each do |tag| %>
+      <%= render 'shared/profile/tag', tag: tag %>
+        <% end %>
+    <% end %>
+    <li>Add tag</li>
+  </ul>
 </li>
