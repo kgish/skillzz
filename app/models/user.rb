@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   validates :fullname, presence: true, allow_blank: false
   validates :username, presence: true, allow_blank: false, uniqueness: { case_sensitive: false }
+  validates :bio, presence: true, allow_blank: false
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }

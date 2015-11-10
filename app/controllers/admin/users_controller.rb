@@ -66,7 +66,7 @@ class Admin::UsersController < Admin::ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:fullname, :username, :email, :password, :admin, :worker, :customer)
+      params.require(:user).permit(:fullname, :username, :email, :bio, :password, :admin, :worker, :customer)
     end
 
     def set_user

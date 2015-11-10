@@ -6,6 +6,7 @@ FactoryGirl.define do
     fullname { Faker::Name.name }
     username { Faker::Internet.user_name }
     email { Faker::Internet.email }
+    bio { Faker::Lorem.sentence }
     password "password"
 
     trait :admin do

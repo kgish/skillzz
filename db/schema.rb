@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109195004) do
+ActiveRecord::Schema.define(version: 20151110094642) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20151109195004) do
     t.string   "username"
     t.string   "fullname"
     t.integer  "profile_id"
+    t.text     "bio",                    default: ".",   null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
