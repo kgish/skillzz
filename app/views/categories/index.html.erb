@@ -25,10 +25,9 @@
           <tbody class="hover-cursor">
           <% @categories.each do |category| %>
             <tr>
-              <td><%= category.name %></td>
+              <td><%= link_to category.name, category_path(category) %></td>
               <td><%= category.description %></td>
               <td><%= render category.skills %></td>
-              <td><%= link_to "Show", category_path(category), class: "show" %></td>
               <td><%= link_to "Edit", edit_category_path(category), class: "edit" %></td>
             </tr>
           <% end %>

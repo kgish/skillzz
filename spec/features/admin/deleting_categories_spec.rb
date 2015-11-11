@@ -8,7 +8,7 @@ RSpec.feature "Users can delete categories" do
   end
 
   scenario "successfully" do
-    category_name = Faker::Hipster.words(2).join(" ")
+    category_name = Faker::Hipster.word
     FactoryGirl.create(:category, name: category_name)
 
     visit categories_url

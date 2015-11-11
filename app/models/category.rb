@@ -6,7 +6,8 @@ class Category < ActiveRecord::Base
   has_many :skills, dependent: :delete_all
 
   has_many :roles, dependent: :delete_all
-  has_and_belongs_to_many :categories
+  # TODO: Why is this here?
+  #has_and_belongs_to_many :categories
 
   # Is the given user a member of this model?
   def has_member?(user)
