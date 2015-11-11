@@ -74,7 +74,7 @@ def random_unique_tag
 end
 
 def random_profile(role)
-  puts "random_profile(#{role}) => start"
+  #puts "random_profile(#{role}) => start"
   root = Profile.create!(name: "root", this_id: 0)
   if role == 'worker' or role == 'customer'
     # Must include 'Programming' as the first skill for demo
@@ -115,7 +115,7 @@ def random_profile(role)
     c.move_to_child_of(root)
     root.reload
   end
-  puts "random_profile(#{role}) => done"
+  #puts "random_profile(#{role}) => done"
   root
 end
 
