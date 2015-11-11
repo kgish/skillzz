@@ -120,7 +120,9 @@ In order to be able to group similar skills together and improving searchability
 
 A given skill can have one or more tags.
 
-In this version, a tag can only consist of a single word, and a list of tags is a series of words separated by spaces. As a workaround you can use dashes, for example `continuous-integration`.
+In this version, a tag can only consist of a single word, and a list of tags is a series of words separated by spaces.
+
+As a workaround you can use dashes, for example `continuous-integration`.
 
 
 ## Data Model
