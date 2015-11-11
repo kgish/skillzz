@@ -14,12 +14,46 @@ def random_bio
   Faker::Lorem.sentences(5).join(' ')
 end
 
-def random_unique_skill
+def random_programming_skill
+  %w{
+    angular.js
+    apache
+    backbone.js
+    c/c++
+    clojure
+    cordova
+    css
+    elixir
+    ember.js
+    erlang
+    ext.js
+    extjs
+    html
+    java
+    javascript
+    jquery
+    linux
+    lua
+    meteor.js
+    mongodb
+    mysql
+    perl
+    postgres
+    ruby
+  }.sample(1).first
+end
+
+def random_unique_skill(category)
   cnt = 5
   found = false
   name = 'unknown'
   while cnt > 0 and not found
-    name = Faker::Hipster.word.downcase
+    if category.name == 'Programming'
+      name = random_programming_skill
+    else
+      name = Faker::Hipster.word.downcase
+    end
+    #puts "random_unique_skill(category=#{category.name}) => skill='#{name}'"
     unless Skill.find_by(name: name)
       found = true
     end
@@ -27,7 +61,7 @@ def random_unique_skill
   end
 
   if cnt == 0
-    puts "random_unique_skill failed!"
+    puts "random_unique_skill(category=#{category.name}) => failed!"
     exit
   end
 
@@ -47,7 +81,7 @@ def random_unique_username
   end
 
   if cnt == 0
-    puts "random_unique_username failed!"
+    puts "random_unique_username() failed!"
     exit
   end
 
@@ -67,7 +101,7 @@ def random_unique_email
   end
 
   if cnt == 0
-    puts "random_unique_email failed!"
+    puts "random_unique_email() failed!"
     exit
   end
 
@@ -87,19 +121,29 @@ def random_unique_tag
   end
 
   if cnt == 0
-    puts "random_unique_tag failed!"
+    puts "random_unique_tag() failed!"
     exit
   end
 
   name
 end
 
-def random_profile
+def random_profile(role)
   root = Profile.create!(name: "root", this_id: 0)
-  categories_sample = Category.all().sample(3 + rand(3))
+  if role == 'worker' or role == 'customer'
+    # Must include 'Programming' as the first skill for demo
+    programming = Category.find_by!(name: 'Programming')
+    categories = Category.where.not(name: 'Programming')
+    categories_sample = categories.sample(3)
+    categories_sample.unshift(programming)
+  else
+    categories_sample = Category.all().sample(3 + rand(3))
+  end
+  #puts "random_profile(#{role}) categories_sample=#{categories_sample.inspect}"
   categories_sample.each do |category|
     c = Profile.create!(name: "category", this_id: category.id)
     skills = category.skills
+    #puts "random_profile(#{role}) category=#{category.name}, skills=#{skills.inspect}"
     skills_sample = skills.sample(3 + rand(skills.count-3))
     skills_sample.each do |skill|
       s = Profile.create!(name: "skill", this_id: skill.id)
@@ -108,10 +152,10 @@ def random_profile
       tags_sample.each do |tag|
         t = Profile.create!(name: "tag", this_id: tag.id)
         t.move_to_child_of(s)
-        s.reload
+        #s.reload
       end
       s.move_to_child_of(c)
-      c.reload
+      #c.reload
     end
     c.move_to_child_of(root)
     root.reload
@@ -174,7 +218,7 @@ Tag.delete_all
 tags = []
 tag_max.times do |n|
   tag = random_unique_tag
-  puts "#{n+1}/#{tag_max} Tag = #{tag}"
+  #puts "#{n+1}/#{tag_max} Tag = #{tag}"
   tags << tag
 end
 
@@ -207,10 +251,10 @@ category_cnt = 0
 Category.all.each do |category|
   cnt = 1 + rand(skills_max)
   cnt.times do |n|
-    name = random_unique_skill
+    name = random_unique_skill(category)
     tag_names = tags.sample(rand(5)+1).join(' ')
-    puts "#{category_cnt+1}/#{category_max} #{category.name} #{n+1}/#{cnt} Skill.create(category=#{category.name},name=#{name},tag_name=#{tag_names})"
-    Skill.create(category: category, author: admin, name: Faker::Hipster.word.downcase, description: Faker::Hipster.sentence, tag_names: tag_names)
+    puts "#{category_cnt+1}/#{category_max} #{category.name} #{n+1}/#{cnt} Skill.create(category=#{category.name},name=#{name},tag_names='#{tag_names}')"
+    Skill.create(category: category, author: admin, name: name, description: Faker::Hipster.sentence, tag_names: tag_names)
   end
   category_cnt = category_cnt + 1
 end
@@ -223,7 +267,7 @@ puts "Tags: #{Tag.count}"
 
 if debug
   puts "---debug---"
-  root = random_profile
+  root = random_profile('dummy')
   root.descendants.each do |child|
     case (child.name)
       when "category"
@@ -266,7 +310,7 @@ Profile.delete_all
         password: "password",
         customer: true,
         bio: "As one of the most demanding customers on this planet, I expect nothing less than the very best possible service there is. I am starting to get impatient because I am in immediate need of a skilled professional. For one of my prestigious project I need someone with the right knowledge and at least five years of experience in the role as a senior architect.",
-        profile: random_profile
+        profile: random_profile('customer')
     },
     {
         fullname: random_fullname,
@@ -275,18 +319,21 @@ Profile.delete_all
         password: "password",
         worker: true,
         bio: "With more than ten years experience as a software developer, I view myself as a hard working and determined expert in my field. I prefer the more complex and challenging projects. Young and heart and eager to learn more. Skills include C/C++, Perl, Ruby, Ruby on Rails, Elixir, JavaScript, HTML5, CSS3, Bootstrap, Linux, Apache and MySQL.",
-        profile: random_profile
+        profile: random_profile('worker')
     }
 ].each do |user|
   puts "User.create!(username=#{user[:username]},fullname=#{user[:fullname]})"
   User.create!(user)
 end
 
+puts "Exit"
+exit
+
 users_max.times do |n|
   fullname = random_fullname
   username = random_unique_username
   email = random_unique_email
-  profile = random_profile
+  profile = random_profile('dummy')
   bio = random_bio
   if n.modulo(customers_every) == 0
     puts "#{n+1}/#{users_max} User.create!(customer,username=#{username},fullname=#{fullname})"
