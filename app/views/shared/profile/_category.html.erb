@@ -1,13 +1,16 @@
-<li><h2><%= render 'categories/category', category: Category.find(category.this_id) %></h2>
-  <ul class="profile-list">
-    <% if category.children.count > 0 %>
-      <% category.children.each do |skill| %>
-        <%= render 'shared/profile/skill', skill: skill %>
-      <% end %>
+<h2><%= render 'categories/category', category: Category.find(category.this_id) %></h2>
+<table class="profile-list">
+  <% if category.children.count > 0 %>
+    <% category.children.each do |skill| %>
+      <%= render 'shared/profile/skill', skill: skill %>
     <% end %>
-    <div class="skill">
-      <%= link_to "<span></span>".html_safe, class: "new", title: "new" %>
-      <%= link_to '+' %>
-    </div>
-  </ul>
-</li>
+  <% end %>
+  <tr class="profile-list">
+    <td>
+      <div class="skill">
+        <%= link_to "<span></span>".html_safe, class: "new", title: "new" %>
+        <%= link_to '+' %>
+      </div>
+    </td>
+  </tr>
+</table>

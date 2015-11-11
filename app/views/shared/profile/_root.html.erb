@@ -1,11 +1,17 @@
 <ul class="profile-list">
   <% if profile.children.count > 0 %>
-    <% profile.children.each do |category| %>
-      <%= render 'shared/profile/category', category: category %>
-    <% end %>
+    <li>
+      <% profile.children.each do |category| %>
+        <%= render 'shared/profile/category', category: category %>
+      <% end %>
+    </li>
   <% end %>
-  <div class="category">
-    <%= link_to "<span></span>".html_safe, class: "new", title: "new" %>
-    <%= link_to '+' %>
-  </div>
+  <li>
+    <h2>
+      <div class="category">
+        <%= link_to "<span></span>".html_safe, class: "new", title: "new" %>
+        <%= link_to '+' %>
+      </div>
+    </h2>
+  </li>
 </ul>

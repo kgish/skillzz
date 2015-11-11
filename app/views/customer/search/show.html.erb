@@ -13,20 +13,8 @@
       </div>
     </form>
 
-
     <h2>Criteria</h2>
-    <div class="panel panel-primary">
-      <div class="panel-heading"><strong>Categories</strong></div>
-      <ul class="list-group">
-        <% if @user.profile.children.count > 0 %>
-          <% @user.profile.children.each do |category| %>
-            <%= render 'shared/profile/category', category: category %>
-          <% end %>
-        <% else %>
-          <li class="list-group-item">No categories</li>
-        <% end %>
-      </ul>
-    </div>
+    <%= render 'shared/profile/root', profile: @user.profile %>
 
   </div>
 </div>

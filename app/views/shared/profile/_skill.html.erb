@@ -1,11 +1,14 @@
-<li><%= render 'skills/skill', skill: Skill.find(skill.this_id) %>
+<tr class="profile-list">
+  <td><%= render 'skills/skill', skill: Skill.find(skill.this_id) %></td>
+  <td>
     <% if skill.children.count > 0 %>
       <% skill.children.each do |tag| %>
       <%= render 'shared/profile/tag', tag: tag %>
         <% end %>
     <% end %>
-  <div class="tag">
-    <%= link_to "<span></span>".html_safe, class: "new", title: "new" %>
-    <%= link_to '+' %>
-  </div>
-</li>
+    <div class="tag">
+      <%= link_to "<span></span>".html_safe, class: "new", title: "new" %>
+      <%= link_to '+' %>
+    </div>
+  </td>
+</tr>
