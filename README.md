@@ -146,17 +146,26 @@ I decided to use [MySQL](https://www.mysql.com/) for development and testing sin
 For production I use [PostgreSQL](http://www.postgresql.org/) since that is the default for Heroku.
 
 
+## Seeding
+
+If after the installation, you decide that you want to pre-populated the database with a bunch of random data then you first have to remember to re-create the database from scratch.
+
+  $ bundle exec rake db:migrate:reset
+  $ bundle exec rake db:seed
+
+Otherwise, running `rake db:seed` without doing this will abort with errors about non-unique names.
+
 ## Testing
 
 The functionality of this application is verified by running `rspec` which tests the defined features and scenarios.
 
 In order to run all the tests:
 
-    bundle exec rspec
+    $ bundle exec rspec
   
 or in order to run just a specific feature, in this example editing categories:
 
-    bundle exec rspec spec/features/editing_categories_spec.rb
+    $ bundle exec rspec spec/features/editing_categories_spec.rb
     
 
 ## Todos
