@@ -1,7 +1,6 @@
 debug = ENV['debug']
 users_max = 10
 tag_max = 20
-skills_max = 5
 customers_every = 5
 
 # --- RANDOM (UNIQUE) --- #
@@ -12,60 +11,6 @@ end
 
 def random_bio
   Faker::Lorem.sentences(5).join(' ')
-end
-
-def random_programming_skill
-  %w{
-    angular.js
-    apache
-    backbone.js
-    c/c++
-    clojure
-    cordova
-    css
-    elixir
-    ember.js
-    erlang
-    ext.js
-    extjs
-    html
-    java
-    javascript
-    jquery
-    linux
-    lua
-    meteor.js
-    mongodb
-    mysql
-    perl
-    postgres
-    ruby
-  }.sample(1).first
-end
-
-def random_unique_skill(category)
-  cnt = 5
-  found = false
-  name = 'unknown'
-  while cnt > 0 and not found
-    if category.name == 'Programming'
-      name = random_programming_skill
-    else
-      name = Faker::Hipster.word.downcase
-    end
-    #puts "random_unique_skill(category=#{category.name}) => skill='#{name}'"
-    unless Skill.find_by(name: name)
-      found = true
-    end
-    cnt = cnt - 1
-  end
-
-  if cnt == 0
-    puts "random_unique_skill(category=#{category.name}) => failed!"
-    exit
-  end
-
-  name
 end
 
 def random_unique_username
@@ -132,23 +77,32 @@ def random_profile(role)
   root = Profile.create!(name: "root", this_id: 0)
   if role == 'worker' or role == 'customer'
     # Must include 'Programming' as the first skill for demo
+    # Get 2 additional random categories for a total of 3
     programming = Category.find_by!(name: 'Programming')
     categories = Category.where.not(name: 'Programming')
-    categories_sample = categories.sample(3)
+    categories_sample = categories.sample(2)
     categories_sample.unshift(programming)
   else
-    categories_sample = Category.all().sample(3 + rand(3))
+    # Get 2-4 random categories
+    categories_sample = Category.all().sample(2 + rand(3))
   end
   #puts "random_profile(#{role}) categories_sample=#{categories_sample.inspect}"
   categories_sample.each do |category|
     c = Profile.create!(name: "category", this_id: category.id)
     skills = category.skills
     #puts "random_profile(#{role}) category=#{category.name}, skills=#{skills.inspect}"
-    skills_sample = skills.sample(3 + rand(skills.count-3))
+    if role == 'worker' or role == 'customer'
+      # Get 4 random skills
+      skills_sample = skills.sample(4)
+    else
+      # Get 2-4 random skills
+      skills_sample = skills.sample(2 + rand(3))
+    end
     skills_sample.each do |skill|
       s = Profile.create!(name: "skill", this_id: skill.id)
       tags = skill.tags
-      tags_sample = tags.sample(3 + rand(tags.count-3))
+      # Get 2-3 random tags
+      tags_sample = tags.sample(2 + rand(2))
       tags_sample.each do |tag|
         t = Profile.create!(name: "tag", this_id: tag.id)
         t.move_to_child_of(s)
@@ -169,42 +123,47 @@ end
 puts "Category.delete_all"
 Category.delete_all
 
-[
+category_list = [
     {
         name: "Programming",
-        description: "Wonderful world of software development"
+        description: "Wonderful world of software development",
+        skills: %w{ angular.js apache backbone.js c/c++ clojure cordova css elixir ember.js erlang ext.js extjs html java javascript jquery linux lua meteor.js mongodb mysql perl postgres python ruby ruby-on-rails xml }
     },
     {
         name: "Testing",
-        description: "Quality verification of user requirements"
+        description: "Quality verification of user requirements",
+        skills: %w{ functional non-functional tmap cucumber rspec selenium junit soapui winrunner linux }
     },
     {
         name: "Infrastructure",
-        description: "Upkeep, configuration, and reliable operation of computer systems"
+        description: "Upkeep, configuration, and reliable operation of computer systems",
+        skills: %w{ linux bash puppet chef idocker centos itil otrs jira topdesk nagios splunk ldap ssh postfix dovecot }
     },
     {
         name: "Tooling",
-        description: "Utilities to create, debug, maintain, or otherwise support other programs and applications"
+        description: "Utilities to create, debug, maintain, or otherwise support other programs and applications",
+        skills: %w{ jira git jmeter subversion travis bamboo hudson greenhopper jenkins trac vim wireshark }
     },
     {
         name: "Design",
-        description: "Sequence of steps that describing all aspects of the software to be built."
-    },
-    {
-        name: "User Experience",
-        description: "Usability, accessibility, and pleasure provided in the interaction between user and product."
+        description: "Usability, accessibility, and pleasure provided in the interaction between user and product.",
+        skills: %w{ uml gui mobile responsive css branding wire-framing prototyping axure sketch invision mockups photoshop gimp }
     },
     {
         name: "Methodologies",
-        description: "Conceptual frameworks or models for defining and prototyping products"
+        description: "Conceptual frameworks or models for defining and prototyping products",
+        skills: %w{ lean bdd tdd domain-driven scrum agile waterfall xp design-patterns rup continuous-delivery kanban rad }
     },
     {
         name: "Requirements",
-        description: "Tasks to determine crtieria to meet for a new or altered product or project"
+        description: "Tasks to determine crtieria to meet for a new or altered product or project",
+        skills: %w{ jira scrum agile rally ibm-rational change-management case caliber enterprise-architect }
     }
-].each do |category|
+]
+
+category_list.each do |category|
   puts "Category.create!(#{category[:name]})"
-  Category.create!(category)
+  Category.create!(name: category[:name], description: category[:description])
 end
 
 puts "Categories: #{Category.count}"
@@ -218,9 +177,10 @@ Tag.delete_all
 tags = []
 tag_max.times do |n|
   tag = random_unique_tag
-  #puts "#{n+1}/#{tag_max} Tag = #{tag}"
   tags << tag
 end
+
+puts "Tags=[#{tags.join(' ')}]"
 
 
 # --- ADMIN USER --- #
@@ -249,12 +209,15 @@ Skill.delete_all
 category_max = Category.count
 category_cnt = 0
 Category.all.each do |category|
-  cnt = 1 + rand(skills_max)
-  cnt.times do |n|
-    name = random_unique_skill(category)
-    tag_names = tags.sample(rand(5)+1).join(' ')
-    puts "#{category_cnt+1}/#{category_max} #{category.name} #{n+1}/#{cnt} Skill.create(category=#{category.name},name=#{name},tag_names='#{tag_names}')"
-    Skill.create(category: category, author: admin, name: name, description: Faker::Hipster.sentence, tag_names: tag_names)
+  category_item = category_list.select { |c| c[:name] == category.name }
+  skill_names = category_item.first[:skills]
+  skill_max = skill_names.count
+  cnt = 0
+  skill_names.each do |skill_name|
+    tag_names = tags.sample(1 + rand(5)).join(' ')
+    puts "#{category_cnt+1}/#{category_max} #{category.name} #{cnt+1}/#{skill_max} Skill.create(category=#{category.name},name=#{skill_name},tag_names='#{tag_names}')"
+    Skill.create(category: category, author: admin, name: skill_name, description: Faker::Hipster.sentence, tag_names: tag_names)
+    cnt = cnt + 1
   end
   category_cnt = category_cnt + 1
 end
@@ -285,6 +248,7 @@ end
 
 puts "Profile.delete_all"
 Profile.delete_all
+puts "Profile.delete_all => done"
 
 [
     {
