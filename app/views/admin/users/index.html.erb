@@ -23,7 +23,7 @@
           </thead>
           <tbody class="hover-cursor">
             <% @users.each do |user| %>
-            <% role = user.admin? ? "Admin" : (user.worker? ? "Worker" : (user.customer? ? "Customer" : "Unknown")) %>
+            <% role = user.admin? ? "Admin" : (user.worker? ? "Worker" : (user.customer? ? "Customer" : "None")) %>
               <tr>
                 <td><%= user.fullname %></td>
                 <td><%= user.username %></td>

@@ -74,6 +74,7 @@ def random_unique_tag
 end
 
 def random_profile(role)
+  puts "random_profile(#{role}) => start"
   root = Profile.create!(name: "root", this_id: 0)
   if role == 'worker' or role == 'customer'
     # Must include 'Programming' as the first skill for demo
@@ -114,6 +115,7 @@ def random_profile(role)
     c.move_to_child_of(root)
     root.reload
   end
+  puts "random_profile(#{role}) => finish"
   root
 end
 
@@ -137,7 +139,7 @@ category_list = [
     {
         name: "Infrastructure",
         description: "Upkeep, configuration, and reliable operation of computer systems",
-        skills: %w{ linux bash puppet chef idocker centos itil otrs jira topdesk nagios splunk ldap ssh postfix dovecot }
+        skills: %w{ linux bash puppet chef docker centos itil otrs jira topdesk nagios splunk ldap ssh postfix dovecot }
     },
     {
         name: "Tooling",
@@ -289,9 +291,6 @@ puts "Profile.delete_all => done"
   puts "User.create!(username=#{user[:username]},fullname=#{user[:fullname]})"
   User.create!(user)
 end
-
-puts "Exit"
-exit
 
 users_max.times do |n|
   fullname = random_fullname
