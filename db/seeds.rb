@@ -115,15 +115,15 @@ def random_profile(role)
     c.move_to_child_of(root)
     root.reload
   end
-  puts "random_profile(#{role}) => finish"
+  puts "random_profile(#{role}) => done"
   root
 end
 
 
 # --- CATEGORIES --- #
 
-puts "Category.delete_all"
-Category.delete_all
+puts "Category.delete_all => skipped!"
+#Category.delete_all
 
 category_list = [
     {
@@ -187,8 +187,8 @@ puts "Tags=[#{tags.join(' ')}]"
 
 # --- ADMIN USER --- #
 
-puts "User.delete_all"
-User.delete_all
+puts "User.delete_all => skipped!"
+#User.delete_all
 
 # Need an admin
 puts "User.create!(admin)"
@@ -205,8 +205,8 @@ admin = User.create!({
 
 # --- SKILLS --- #
 
-puts "Skill.delete_all"
-Skill.delete_all
+puts "Skill.delete_all => skipped!"
+#Skill.delete_all
 
 category_max = Category.count
 category_cnt = 0
@@ -248,9 +248,8 @@ if debug
   puts "---debug---"
 end
 
-puts "Profile.delete_all"
-Profile.delete_all
-puts "Profile.delete_all => done"
+puts "Profile.delete_all => skipped!"
+#Profile.delete_all
 
 [
     {

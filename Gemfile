@@ -5,8 +5,8 @@ ruby "2.2.2"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
 
-gem 'sqlite3', group: [:development, :test]
-#gem 'mysql2', '~> 0.3.20', group: [:development, :test]
+#gem 'sqlite3', group: [:development, :test]
+gem 'mysql2', '~> 0.3.20', group: [:development, :test]
 gem "pg",      group:  :production
 
 # Use SCSS for stylesheets
