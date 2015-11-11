@@ -36,7 +36,13 @@ namespace :profile do
     end
 
     def match_rank(customer, worker)
-      33
+      rank = 0
+      0.upto 2 do |n|
+        puts "match_rank: #{n}"
+        puts customer[n].inspect
+        puts worker[n].inspect
+      end
+      rank
     end
 
     worker = flatten_user('worker')
