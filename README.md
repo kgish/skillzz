@@ -1,25 +1,21 @@
 # SkillZZ
 
-This is an advanced website platform for matching highly skilled workers to customers who are searching for the best
-and most appropriate person for a given task at hand.
+This is an advanced website platform for matching highly skilled workers to customers who are searching for the best and most appropriate person for a given task at hand.
 
 Selection criteria includes categories, skills, user-defined tags, bio, hourly rates, availability for filtering
 through the results.
 
-An example of such a query might be: I am looking for a senior Ruby developer with knowledge of Linux who charges
-between 60-70 euros per hour and will be available starting next month for three months.
+An example of such a query might be: "I am looking for a senior Ruby developer with knowledge of Linux who charges
+between 60-70 euros per hour and will be available starting next month for three months."
 
-You can select a number of pre-defined labels (tags) to narrow down the search or introduce your own user-defined tags 
-to be more specific.
+You can select a number of pre-defined labels (tags) to narrow down the search or introduce your own user-defined tags to be more specific.
 
 A query will generate a number of hits which are then ordered according to a ranking scheme weighted according to 
 criteria and preferences of the customer.
 
-The website was designed and built as part of a coding challenge given to me by [E-Accent](https://www.e-accent.com/) 
-for the position of Remote Ruby on Rails Developer.
+The website was designed and built as part of a coding challenge given to me by [E-Accent](https://www.e-accent.com/) for the position of Remote Ruby on Rails Developer.
 
-Special thanks to the authors of the book [Rails 4 in Action](https://www.manning.com/books/rails-4-in-action) which 
-provided me with invaluable guidance. This is a fantastic book.
+Special thanks to the authors of the book [Rails 4 in Action](https://www.manning.com/books/rails-4-in-action) which provided me with invaluable guidance. This is a fantastic book.
 
 I took the liberty of using some of the ideas and implementations from this source of inspiration.
 
@@ -58,7 +54,7 @@ In order to install and start using this application, do the following:
 
 The application is now up-and-running and can be viewed by pointing your favorite browser at http://localhost:3000.
 
-If you are cloning this repository for development purposes, it is recommended that you also do the following from 
+If you are cloning this repository for development purposes, it is recommended that you also do the following from
 within the project root directory just after you run `bundle install`:
 
     $ rvm use ruby-2.2.2@skillzz --create
@@ -71,8 +67,12 @@ within the project root directory just after you run `bundle install`:
 
 ## Authentication
 
-In order to be able to take advantages of the services provided by this website, a user has to first login with his 
-username and password.
+In order to be able to take advantages of the services provided by this website, a user has to first login with his username and password.
+
+The setup used is the one defined by the standard [Devise](https://github.com/plataformatec/devise) setup after running:
+
+    $ rails generate devise:install
+    $ rails generate devise user
 
 
 ## Users
@@ -85,7 +85,9 @@ During the installation the user table is populated with a number of pre-defined
 * viewer@skillzz.com / password
 * manager@skillzz.com / password
 
-In addition to those, the database is seeded with random users using the [Faker](https://github.com/stympy/faker) gem.
+In order to facilitate a more usable demo, the worker and customer are pre-seeded with programming skills along with a number of other randomly selected categories and skills.
+
+In addition to those pre-defined users, the database is seeded with a number of random users using the [Faker](https://github.com/stympy/faker) gem.
 
 
 ## Roles
@@ -114,8 +116,7 @@ A user can update a skill if one of the following is true:
 
 ## Tags
 
-In order to be able to group similar skills together and improving searchability tags are used. These are single word
-labels attached to a given skill.
+In order to be able to group similar skills together and improving searchability tags are used. These are single word labels attached to a given skill.
 
 A given skill can have one or more tags.
 
@@ -124,8 +125,7 @@ In this version, a tag can only consist of a single word, and a list of tags is 
 
 ## Data Model
 
-The database tables, data types and relationships together define the different ways that the application interacts 
-with the underlying data model in order to adhere to the user requirements.
+The database tables, data types and relationships together define the different ways that the application interacts with the underlying data model in order to adhere to the user requirements.
 
 On the highest level we have 'Categories' with a name (unique) and a description.
 
@@ -135,7 +135,7 @@ Finally, each skill can be correlated to one or more user-defined 'Tags' for hel
 
 Here is a diagram which shows the high-level structure:
 
--Diagram goes here-
+![](images/database-diagram.png?raw=true)
 
 
 ## Database
@@ -161,8 +161,7 @@ or in order to run just a specific feature, in this example editing categories:
 
 ## Todos
 
-Even if I had more time to create a more improved version of this application, being a developer at heart in pursuit of
-perfection means that there will always be stuff to do for later.
+Even if I had more time to create a more improved version of this application, being a developer at heart in pursuit of perfection means that there will always be stuff to do for later.
 
 Here is a list of todo items for a rainy day.
 
@@ -182,8 +181,7 @@ Here is a list of todo items for a rainy day.
 
 ## References
 
-Of course, I couldn't have done any of this without the following fantastic resources which have helped me out very 
-much. The open source community is a fantastic place with lots of coding heroes.
+Of course, I couldn't have done any of this without the following fantastic resources which have helped me out very much. The open source community is a fantastic place with lots of coding heroes.
 
 * [Ruby on Rails](http://rubyonrails.org/) - The most amazing website on the face of the Earth which includes everything you'd ever want to know about this fantastic web framework.
 * [Rails 4 in Action](https://www.manning.com/books/rails-4-in-action) - By a long shot the most extensive hands-on Rails guide available.
