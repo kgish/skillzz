@@ -219,6 +219,6 @@ Of course, I couldn't have done any of this without the following fantastic reso
 
 ## Author
 
-Kiffin Gish <kiffin.gish@planet.nl>
+Kiffin Gish \< kiffin.gish@planet.nl \>
 
-- You're never too old to learn new stuff.
+\- You're never too old to learn new stuff.
