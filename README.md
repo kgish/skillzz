@@ -120,7 +120,7 @@ In order to be able to group similar skills together and improving searchability
 
 A given skill can have one or more tags.
 
-In this version, a tag can only consist of a single word, and a list of tags is a series of words separated by spaces.
+In this version, a tag can only consist of a single word, and a list of tags is a series of words separated by spaces. As a workaround you can use dashes, for example `continuous-integration`.
 
 
 ## Data Model
@@ -150,8 +150,8 @@ For production I use [PostgreSQL](http://www.postgresql.org/) since that is the 
 
 If after the installation, you decide that you want to pre-populated the database with a bunch of random data then you first have to remember to re-create the database from scratch.
 
-  $ bundle exec rake db:migrate:reset
-  $ bundle exec rake db:seed
+    $ bundle exec rake db:migrate:reset
+    $ bundle exec rake db:seed
 
 Otherwise, running `rake db:seed` without doing this will abort with errors about non-unique names.
 
