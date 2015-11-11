@@ -136,3 +136,30 @@ body {
 .nowrap {
   white-space: nowrap;
 }
+
+// --- CATEGORY LABELS --- //
+
+.category {
+  @extend .label;
+  @extend .label-primary;
+
+  font-size: 12px;
+  padding: 0.3em 0.6em;
+  margin-right: 10px;
+
+  a {
+    color: white;
+    &.remove {
+      font-family: "FontAwesome";
+      @extend .fa-close;
+      margin-right: 0.5em;
+      text-decoration: none;
+    }
+  }
+}
+
+// --- REMOVE BULLETS (PROFILE LISTS) --- //
+
+ul.profile-list {
+  list-style-type: none;
+}

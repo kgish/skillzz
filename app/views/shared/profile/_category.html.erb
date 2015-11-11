@@ -1,11 +1,13 @@
-<li><%= Category.find(category.this_id).name %>
-  <p><strong>Skills</strong></p>
-  <ul>
+<li><h2><%= render 'categories/category', category: Category.find(category.this_id) %></h2>
+  <ul class="profile-list">
     <% if category.children.count > 0 %>
       <% category.children.each do |skill| %>
         <%= render 'shared/profile/skill', skill: skill %>
       <% end %>
     <% end %>
-    <li>Add skill</li>
+    <div class="skill">
+      <%= link_to "<span></span>".html_safe, class: "new", title: "new" %>
+      <%= link_to '+' %>
+    </div>
   </ul>
 </li>

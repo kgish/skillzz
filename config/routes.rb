@@ -28,6 +28,9 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :categories, only: [:index, :show, :edit, :update] do
+    collection do
+      get :search
+    end
     resources :skills do
       collection do
         get :search

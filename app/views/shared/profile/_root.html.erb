@@ -1,10 +1,11 @@
-<p><strong>Categories</strong></p>
-  <ul>
-    <% if profile.children.count > 0 %>
-      <% profile.children.each do |category| %>
-        <%= render 'shared/profile/category', category: category %>
-      <% end %>
+<ul class="profile-list">
+  <% if profile.children.count > 0 %>
+    <% profile.children.each do |category| %>
+      <%= render 'shared/profile/category', category: category %>
     <% end %>
-    <li>Add category</li>
-  </ul>
-</div>
+  <% end %>
+  <div class="category">
+    <%= link_to "<span></span>".html_safe, class: "new", title: "new" %>
+    <%= link_to '+' %>
+  </div>
+</ul>

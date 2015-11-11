@@ -1,3 +1,6 @@
-<% Tag.find(tag.this_id).name.split(',').each do |tag| %>
-  <li><%= tag %></li>
+<% Tag.find(tag.this_id).name.split(',').each do |name| %>
+    <div class="tag">
+      <%= link_to "<span></span>".html_safe, class: "remove", title: "remove" %>
+      <%= link_to name %>
+    </div>
 <% end %>

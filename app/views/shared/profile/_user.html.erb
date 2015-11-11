@@ -7,7 +7,7 @@
       <tr><td><strong>Email</strong> :</td><td><%= user.email %></td></tr>
       <tr><td><strong>Created at</strong> :</td><td><%= time_ago_in_words(user.created_at) + " ago" %></td></tr>
       <tr><td><strong>Sign in count</strong> :</td><td><%= user.sign_in_count %></td></tr>
-      <tr><td><strong>Avatar</strong> :</td><td><%= image_tag "rand/#{rand(9)}.ico", size: "30x30" %></td></tr>
+      <tr><td><strong>Photo</strong> :</td><td><%= image_tag "rand/#{rand(9)}.ico", size: "30x30" %></td></tr>
     </tbody>
   </table>
   <div class="panel-heading"><strong>Bio</strong></div>

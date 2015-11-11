@@ -26,6 +26,17 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def search
+    authorize @category, :show?
+    if params[:search].present?
+      @categories = @category.search(params[:search])
+    else
+      @categories = Category.all
+    end
+    render "categories/show"
+  end
+
+
   private
 
     def category_params

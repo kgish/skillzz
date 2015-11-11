@@ -4,7 +4,7 @@ tag_max = 20
 skills_max = 5
 customers_every = 5
 
-# --- RANDOM FULLNAME, BIO AND PROFILE --- #
+# --- RANDOM (UNIQUE) --- #
 
 def random_fullname
   Faker::Name.first_name + " " + Faker::Name.last_name
@@ -209,7 +209,7 @@ Category.all.each do |category|
   cnt.times do |n|
     name = random_unique_skill
     tag_names = tags.sample(rand(5)+1).join(' ')
-    puts "#{category_cnt+1}/#{category_max} #{category.name} #{n+1}/#{cnt} Skill.create(category=#{category.name},name=#{name})"
+    puts "#{category_cnt+1}/#{category_max} #{category.name} #{n+1}/#{cnt} Skill.create(category=#{category.name},name=#{name},tag_name=#{tag_names})"
     Skill.create(category: category, author: admin, name: Faker::Hipster.word.downcase, description: Faker::Hipster.sentence, tag_names: tag_names)
   end
   category_cnt = category_cnt + 1
