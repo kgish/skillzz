@@ -314,9 +314,7 @@ Of course, I couldn't have done any of this without the following fantastic reso
 * [Pundit](https://github.com/elabs/pundit) - Advanced authorization solution for Rails using policies.
 * [Searcher](https://github.com/radar/searcher) - Simple search by pre-defined labels and wildcard matching queries.
 * [will_paginate](https://github.com/mislav/will_paginate) - Simple yet effective pagination library.
-* [Sunspot](https://github.com/sunspot/sunspot) - library for expressive, powerful interaction with the Solr search engine.
 * [Awesome Nested Set](https://github.com/collectiveidea/awesome_nested_set) - implementation of the nested set pattern for ActiveRecord models.
-* [Carrierwave](https://github.com/carrierwaveuploader/carrierwave) - File upload solution for Rails.
 * [RSpec](http://rspec.info/) - Behavior driven development (BDD) testing framework for Ruby.
 * [Cabybara](https://github.com/jnicklas/capybara) - Acceptance test framework for web applications.
 * [Heroku](https://www.heroku.com/) - Cloud platform for easily deploying Rails applications.
