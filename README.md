@@ -130,6 +130,8 @@ As a workaround you can use dashes for multi-word labels, for example `continuou
 
 Each user has a profile which is a heirarchical tree-structure with the root being the user who has one or more categories, each category having one or more skills, and each skill with one or more tags.
 
+![](images/profile-tree.png?raw=true)
+
 This implementation of the nested set pattern was created using the [Awesome Nested Set](https://github.com/collectiveidea/awesome_nested_set) gem.
 
 ```ruby
