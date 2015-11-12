@@ -1,6 +1,6 @@
 debug = ENV['debug']
-users_max = 10
-tag_max = 20
+users_max = 25
+tag_max = 10
 customers_every = 5
 
 # --- RANDOM (UNIQUE) --- #
@@ -18,7 +18,7 @@ def random_unique_username
   found = false
   username = 'unknown'
   while cnt > 0 and not found
-    username = Faker::Hipster.word.downcase
+    username = Faker::Internet.user_name
     unless User.find_by(username: username)
       found = true
     end
@@ -59,6 +59,9 @@ def random_unique_tag
   name = 'unknown'
   while cnt > 0 and not found
     name = Faker::Hipster.word.downcase
+    # Don't want digits or goofy characters.
+    name.gsub!(/\d/, 'x')
+    name.gsub!(/'/, 'z')
     unless Tag.find_by(name: name)
       found = true
     end
