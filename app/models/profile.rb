@@ -9,9 +9,35 @@ class Profile < ActiveRecord::Base
                       :before_remove  => :do_before_remove,
                       :after_remove   => :do_after_remove
 
+  def flatten
+    # TODO: This should only be cached as long as not dirty!
+    # Good enough now for demo purposes.
+    @flattened || @flattened = flatten_me
+  end
+
+  def flatten_me
+    graphs = []
+    graphs_1 = []
+    graphs_2 = []
+    graphs_3 = []
+    self.children.each do |category|
+      graphs_1.push([category.this_id])
+      category.children.each do |skill|
+        graphs_2.push([category.this_id, skill.this_id])
+        skill.children.each do |tag|
+          graphs_3.push([category.this_id, skill.this_id, tag.this_id])
+        end
+      end
+    end
+    graphs.push(graphs_1)
+    graphs.push(graphs_2)
+    graphs.push(graphs_3)
+    graphs.to_json
+  end
+
   private
 
-    # TODO
+    # TODO: Maybe useful?
     # def do_before_add(child_node)
     #   #puts "Profile.do_before_add"
     # end

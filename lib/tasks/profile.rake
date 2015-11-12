@@ -6,30 +6,30 @@ namespace :profile do
   desc 'Flatten a user profile'
 
   task flatten: :environment do
-    def flatten_user_profile(username)
-      flatten_profile(User.find_by!(username: username).profile)
-    end
-
-    def flatten_profile(profile)
-      graphs = []
-      graphs_1 = []
-      graphs_2 = []
-      graphs_3 = []
-      profile.children.each do |category|
-        #puts "Category: #{Category.find(category.this_id).name}"
-        graphs_1.push([category.this_id])
-        category.children.each do |skill|
-          graphs_2.push([category.this_id, skill.this_id])
-          skill.children.each do |tag|
-            graphs_3.push([category.this_id, skill.this_id, tag.this_id])
-          end
-        end
-      end
-      graphs.push(graphs_1)
-      graphs.push(graphs_2)
-      graphs.push(graphs_3)
-      graphs.to_json
-    end
+    # def flatten_user_profile(username)
+    #   flatten_profile(User.find_by!(username: username).profile)
+    # end
+    #
+    # def flatten_profile(profile)
+    #   graphs = []
+    #   graphs_1 = []
+    #   graphs_2 = []
+    #   graphs_3 = []
+    #   profile.children.each do |category|
+    #     #puts "Category: #{Category.find(category.this_id).name}"
+    #     graphs_1.push([category.this_id])
+    #     category.children.each do |skill|
+    #       graphs_2.push([category.this_id, skill.this_id])
+    #       skill.children.each do |tag|
+    #         graphs_3.push([category.this_id, skill.this_id, tag.this_id])
+    #       end
+    #     end
+    #   end
+    #   graphs.push(graphs_1)
+    #   graphs.push(graphs_2)
+    #   graphs.push(graphs_3)
+    #   graphs.to_json
+    # end
 
     def rank_match_by_profile(customer, worker)
       customer_profile = JSON.parse(customer)
@@ -54,13 +54,14 @@ namespace :profile do
     #worker = flatten_user_profile('worker')
     #puts "Worker: #{worker.inspect}"
 
-    customer_profile_flat = flatten_user_profile('customer')
-    #puts "Customer:" #{customer.inspect}"
+    customer = User.where(username: 'customer').first
+    customer_profile = customer.profile.flatten
+    puts "Customer:" #{customer_profile.inspect}"
 
     results = []
     User.where(worker: true).each do |worker|
-      worker_profile_flat = flatten_user_profile(worker.username)
-      rank = rank_match_by_profile(customer_profile_flat, worker_profile_flat)
+      worker_profile = worker.profile.flatten
+      rank = rank_match_by_profile(customer_profile, worker_profile)
       puts "Worker: #{worker.username} => #{rank}"
       results.push({ id: worker.id, rank: rank})
     end
