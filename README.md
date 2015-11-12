@@ -142,7 +142,9 @@ class CreateProfiles < ActiveRecord::Migration
       t.integer :parent_id
       t.integer :lft
       t.integer :rgt
-      ...
+      
+      t.integer :depth, default: 0
+      t.integer :children_count, default: 0
 
     end
     add_index :profiles, [:parent_id, :lft, :rgt, :depth]
@@ -162,6 +164,8 @@ So for instance, if we have `name == 'category'` and `this_id = 234` we can grab
 ```ruby
 categery = Category.find(this_id)
 ```
+
+Sure, I realize that I could have used the `depth` attribute for the same thing where values of `1, 2 or 3` correspond to `category, skill or tag`, but `name` strings are easier for me to read than raw digits.
 
 In order to make the search more efficient, the profile is `flattened` by serializing it into a string which is saved in the `flattened_profile` attribute.
 
