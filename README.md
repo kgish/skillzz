@@ -142,10 +142,8 @@ class CreateProfiles < ActiveRecord::Migration
       t.integer :parent_id
       t.integer :lft
       t.integer :rgt
-
-      # optional fields
-      t.integer :depth, default: 0
-      t.integer :children_count, default: 0
+      
+      ...
 
     end
     add_index :profiles, [:parent_id, :lft, :rgt, :depth]
@@ -182,7 +180,7 @@ A given customer has a profile which is used to compare with each worker when fi
 ```ruby
 workers = User.find_by(worker: true)
 workers.each do |worker|
-    rank = rank_match(customer.profile, worker.profile)
+    rank = rank_match(customer, worker)
 end
 ```
 
