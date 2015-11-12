@@ -243,23 +243,6 @@ def rank_match(customer, worker)
 end
 ```
 
-Finally, the rankings are compiled by scanning through every user with the `worker` role and ordering the results in descending order like this:
-
-```ruby
-def rankings
-  results = []
-  # Search through all of the workers.
-  User.where(worker: true).each do |worker|
-    rank, categories, skills, tags = rank_match(customer, worker)
-    if rank > 0
-      results.push({ rank: rank, user: User.find_by!(id: worker.id), categories: categories, skills: skills, tags: tags })
-    end
-  end
-
-  # Sort results by RANK in descending order.
-  results.sort! { |x,y| y[:rank] <=> x[:rank] }
-end
-```
 
 ## Data Model
 
