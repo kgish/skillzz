@@ -73,15 +73,36 @@ def random_unique_tag
   name
 end
 
+def random_unique_profile_id
+  cnt = 5
+  found = false
+  id = -1
+  while cnt > 0 and not found
+    id = rand(10000)
+    unless Profile.find(id)
+      found = true
+    end
+    cnt = cnt - 1
+  end
+
+  if cnt == 0
+    puts "random_unique_profile_id() failed!"
+    exit
+  end
+
+  name
+end
+
 def random_profile(role)
   #puts "random_profile(#{role}) => start"
-  root = Profile.create!(name: "root", this_id: 0)
-  if role == 'worker' or role == 'customer'
-    # Must include 'Programming' as the first skill for demo
-    # Get 2 additional random categories for a total of 3
+  root = Profile.create!(name: "root", this_id: random_unique_profile_id)
+  demo = (role == 'worker-demo' or role == 'customer-demo')
+  if demo
+    # Must include 'Programming' as the first skill for demo. Get 3 additional
+    # random categories for a total of 4 categories.
     programming = Category.find_by!(name: 'Programming')
     categories = Category.where.not(name: 'Programming')
-    categories_sample = categories.sample(2)
+    categories_sample = categories.sample(3)
     categories_sample.unshift(programming)
   else
     # Get 2-4 random categories
@@ -92,7 +113,7 @@ def random_profile(role)
     c = Profile.create!(name: "category", this_id: category.id)
     skills = category.skills
     #puts "random_profile(#{role}) category=#{category.name}, skills=#{skills.inspect}"
-    if role == 'worker' or role == 'customer'
+    if demo
       # Get 4 random skills
       skills_sample = skills.sample(4)
     else
@@ -102,8 +123,13 @@ def random_profile(role)
     skills_sample.each do |skill|
       s = Profile.create!(name: "skill", this_id: skill.id)
       tags = skill.tags
-      # Get 2-3 random tags
-      tags_sample = tags.sample(2 + rand(2))
+      if demo
+        # Get 3 random tags
+        tags_sample = tags.sample(3)
+      else
+        # Get 2-3 random tags
+        tags_sample = tags.sample(2 + rand(2))
+      end
       tags_sample.each do |tag|
         t = Profile.create!(name: "tag", this_id: tag.id)
         t.move_to_child_of(s)
@@ -199,7 +225,7 @@ admin = User.create!({
   password: "password",
   admin: true,
   bio: "Manage all of the computer systems at the company as well as everything having to do with the network infrastructure. Monitoring, trouble-shooting and overall customer technical support",
-  profile: Profile.create!(name: "root", this_id: 0)
+  profile: nil
 })
 
 
@@ -258,7 +284,7 @@ puts "Profile.delete_all => skipped!"
         email: "viewer@skillzz.com",
         password: "password",
         bio: random_bio,
-        profile: Profile.create!(name: "root", this_id: 0)
+        profile: nil
     },
     {
         fullname: random_fullname,
@@ -266,7 +292,7 @@ puts "Profile.delete_all => skipped!"
         email: "manager@skillzz.com",
         password: "password",
         bio: random_bio,
-        profile: Profile.create!(name: "root", this_id: 0)
+        profile: nil
     },
     {
         fullname: random_fullname,
@@ -275,7 +301,7 @@ puts "Profile.delete_all => skipped!"
         password: "password",
         customer: true,
         bio: "As one of the most demanding customers on this planet, I expect nothing less than the very best possible service there is. I am starting to get impatient because I am in immediate need of a skilled professional. For one of my prestigious project I need someone with the right knowledge and at least five years of experience in the role as a senior architect.",
-        profile: random_profile('customer')
+        profile: random_profile('customer-demo')
     },
     {
         fullname: random_fullname,
@@ -284,7 +310,7 @@ puts "Profile.delete_all => skipped!"
         password: "password",
         worker: true,
         bio: "With more than ten years experience as a software developer, I view myself as a hard working and determined expert in my field. I prefer the more complex and challenging projects. Young and heart and eager to learn more. Skills include C/C++, Perl, Ruby, Ruby on Rails, Elixir, JavaScript, HTML5, CSS3, Bootstrap, Linux, Apache and MySQL.",
-        profile: random_profile('worker')
+        profile: random_profile('worker-demo')
     }
 ].each do |user|
   puts "User.create!(username=#{user[:username]},fullname=#{user[:fullname]})"
