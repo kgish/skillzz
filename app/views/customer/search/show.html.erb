@@ -5,7 +5,7 @@
     </header>
     <p class="lead">Find the right person for the right job.</p>
 
-    <%= link_to "Search !!", customer_search_results_path(@user), class: "btn btn-primary" %>
+    <%= link_to "Search !!", customer_search_result_path(@user, @user.profile.id), class: "btn btn-primary" %>
 
     <h2>Criteria</h2>
     <p>This is the profile which will be used when making matches and ranking the results.</p>
