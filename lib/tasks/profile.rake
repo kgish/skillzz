@@ -1,59 +1,61 @@
 require 'rubygems'
-
-#require ::File.expand_path('../../../config/environment', __FILE__)
+require 'json'
 
 namespace :profile do
 
-  desc 'Flatten worker profile'
+  desc 'Flatten a user profile'
 
   task flatten: :environment do
-    def flatten_user(username)
+    def flatten_user_profile(username)
       graphs = []
       graphs_1 = []
       graphs_2 = []
       graphs_3 = []
-      worker = User.find_by!(username: username)
-      profile = worker.profile
-      #puts "Profile: #{profile.inspect}"
+      user = User.find_by!(username: username)
+      profile = user.profile
       profile.children.each do |category|
-        category_name = Category.find(category.this_id).name
-        graphs_1.push([category_name])
-        #puts "#{category_name}"
+        puts "Category: #{Category.find(category.this_id).name}"
+        graphs_1.push([category.this_id])
         category.children.each do |skill|
-          skill_name = Skill.find(skill.this_id).name
-          graphs_2.push([category_name, skill_name])
-          #puts "-#{skill_name}"
+          graphs_2.push([category.this_id, skill.this_id])
           skill.children.each do |tag|
-            tag_name = Tag.find(tag.this_id).name
-            graphs_3.push([category_name, skill_name, tag_name])
-            #puts "--#{tag_name}"
+            graphs_3.push([category.this_id, skill.this_id, tag.this_id])
           end
         end
       end
       graphs.push(graphs_1)
       graphs.push(graphs_2)
       graphs.push(graphs_3)
+      graphs.to_json
     end
 
-    def rank_match(customer, worker)
-      rank = 0
+    def rank_match_by_profile(customer, worker)
+      customer_profile = JSON.parse(customer)
+      worker_profile = JSON.parse(worker)
+      puts "rank_match_by_profile()"
+      rank_total = 0
       0.upto 2 do |n|
         puts "match_rank: #{n}"
-        puts customer[n].inspect
-        puts worker[n].inspect
+        puts customer_profile[n-1].inspect
+        puts worker_profile[n-1].inspect
+        intersection = customer_profile[n] & worker_profile[n]
+        puts "intersection = #{intersection.inspect}"
+        rank = (n + 1) * intersection.length
+        puts "rank = #{rank}"
+        rank_total = rank + 1
+        puts "rank_total = #{rank_total}"
       end
-      rank
+      puts "rank_match_by_profile() => #{rank_total}"
+      rank_total
     end
 
-    worker = flatten_user('worker')
-    puts "Worker:"
-    puts "#{worker.inspect}"
+    worker = flatten_user_profile('worker')
+    puts "Worker: #{worker.inspect}"
 
-    customer = flatten_user('customer')
-    puts "Customer:"
-    puts "#{customer.inspect}"
+    customer = flatten_user_profile('customer')
+    puts "Customer:" #{customer.inspect}"
 
-    rank = rank_match(customer, worker)
+    rank = rank_match_by_profile(customer, worker)
     puts "Rank: #{rank}"
 
   end
