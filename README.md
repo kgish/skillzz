@@ -211,6 +211,7 @@ workers.each do |worker|
 end
 ```
 
+![](images/search-results.png?raw=true)
 
 ## Ranking
 

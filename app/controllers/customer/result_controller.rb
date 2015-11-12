@@ -23,12 +23,25 @@ class Customer::ResultController < ApplicationController
       customer_profile = JSON.parse(customer)
       worker_profile = JSON.parse(worker)
       rank_total = 0
+      categories = []
+      skills = []
+      tags = []
       0.upto 2 do |n|
         intersection = customer_profile[n] & worker_profile[n]
+        intersection.each do |arr|
+          case n
+            when 0
+              categories << Category.find(arr[0]).name
+            when 1
+              skills << Skill.find(arr[1]).name
+            when 2
+              tags << Tag.find(arr[2]).name
+          end
+        end
         rank = (n + 1) * intersection.length
         rank_total = rank + 1
       end
-      rank_total
+      return rank_total, categories, skills, tags
     end
 
     def rankings
@@ -38,8 +51,8 @@ class Customer::ResultController < ApplicationController
       # Search through all of the workers.
       User.where(worker: true).each do |worker|
         worker_profile = worker.profile.flatten
-        rank = rank_match_by_profile(customer_profile, worker_profile)
-        results.push({ rank: rank, user: User.find_by!(id: worker.id) })
+        rank, categories, skills, tags = rank_match_by_profile(customer_profile, worker_profile)
+        results.push({ rank: rank, user: User.find_by!(id: worker.id), categories: categories, skills: skills, tags: tags })
       end
 
       # Sort results by RANK in descending order.

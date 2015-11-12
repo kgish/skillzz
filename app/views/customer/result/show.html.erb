@@ -15,8 +15,9 @@
                 <th>Rank</th>
                 <th>Fullname</th>
                 <th>Email</th>
-                <th>Matches</th>
-                <th></th>
+                <th>Categories</th>
+                <th>Skills</th>
+                <th>Tags</th>
                 <th></th>
               </tr>
               </thead>
@@ -26,10 +27,11 @@
                   <td><%= result[:rank] %></td>
                   <td><%= result[:user].fullname %></td>
                   <td><%= result[:user].email %></td>
-                  <td>...</td>
-                  <td><%= link_to "Skills", worker_profile_path(result[:user]), class: "show" %></td>
+                  <td><%= result[:categories].join(', ') %></td>
+                  <td><%= result[:skills].join(', ') %></td>
+                  <td><%= result[:tags].join(', ') %></td>
                   <!-- TODO -->
-                  <td><%= link_to "Profile", worker_profile_path(result[:user]), class: "show" %></td>
+                  <td><a href="#" class="show" onclick="alert('Sorry, not yet implemented. Please be patient.')">Info</a></td>
                 </tr>
               <% end %>
               </tbody>
