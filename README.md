@@ -171,7 +171,7 @@ Sure, I realize that I could have used the `depth` attribute for the same thing 
 
 In order to make the search more efficient, the profile is `flattened` by serializing it into a string which is saved in the `flattened_profile` attribute.
 
-The 'flattened_profile` attribute is built upon user creation and updated whenever the profile is changed, for example adding and or deleting elements (category, skill or tag).
+The `flattened_profile` attribute is built upon user creation and updated whenever the profile is changed, for example adding and or deleting elements (category, skill or tag).
 
 This flattened representation is an array of arrays containing every possible route through the tree, each array item identified using the (unique) model id for that level.
 
