@@ -282,7 +282,7 @@ or in order to run just a specific test, for example editing categories:
 
 A demo version of this application is available on Heroku:
 
-    https://mysterious-cliffs-8546.herokuapp.com
+https://mysterious-cliffs-8546.herokuapp.com
     
 In order to enable this, I changed my `Gemfile` to include these lines:
 
@@ -295,10 +295,6 @@ end
 ```
 
 See [Deploying Rails Applications with the Puma Web Server](https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server).
-
-```ruby
-web: bundle exec puma -C config/puma.rb
-```
 
 Finally, I went to the application root directory `/path/to/skillz` and did the following:
     
