@@ -54,7 +54,7 @@ group :test do
   gem 'database_cleaner', '~> 1.4'
 end
 
-group :prodcution do
+group :production do
   gem 'pg'
   gem 'rails_12factor'
   gem 'puma'

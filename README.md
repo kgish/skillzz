@@ -278,6 +278,38 @@ or in order to run just a specific test, for example editing categories:
     $ bundle exec rspec spec/features/editing_categories_spec.rb
     
 
+## Heroku
+
+A demo version of this application is available on Heroku:
+
+    https://mysterious-cliffs-8546.herokuapp.com
+    
+In order to enable this, I changed my `Gemfile` to include these lines:
+
+```ruby
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+  gem 'puma'
+end
+```
+
+See [Deploying Rails Applications with the Puma Web Server](https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server).
+
+```ruby
+web: bundle exec puma -C config/puma.rb
+```
+
+Finally, I went to the application root directory `/path/to/skillz` and did the following:
+    
+    $ heroku login
+    $ heroku apps:create
+    $ git push heroku master
+    $ heroku run rake db:migrate
+    $ heroku run rake db:seed
+
+Voilà, it should be up and running now.
+
 ## Todos
 
 Since I am a hard-core developer at heart, I tend to be a bit of a perfectionist. Even if I had more time for improving this application, I could go on forever. There will always be more to do later and even more after that.
