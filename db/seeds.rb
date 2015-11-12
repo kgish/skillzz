@@ -79,7 +79,7 @@ def random_unique_profile_id
   id = -1
   while cnt > 0 and not found
     id = rand(10000)
-    unless Profile.find(id)
+    unless Profile.find_by(id: id)
       found = true
     end
     cnt = cnt - 1
@@ -90,7 +90,7 @@ def random_unique_profile_id
     exit
   end
 
-  name
+  id
 end
 
 def random_profile(role)
@@ -332,4 +332,7 @@ users_max.times do |n|
   end
 end
 
-puts "Users: #{User.count}"
+puts "Total users:     #{User.count}"
+puts "      admins:    #{User.where(admin: true).count}"
+puts "      customers  #{User.where(customer: true).count}"
+puts "      workers:   #{User.where(worker: true).count}"
