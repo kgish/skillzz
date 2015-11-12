@@ -170,6 +170,8 @@ The 'flattened_profile` attribute is built upon user creation and updated whenev
 This flattened representation is an array of arrays containing every possible route through the tree, each array item identified using the (unique) model id for that level.
 
 ```ruby
+require 'json'
+
 def flatten_profile(profile)
     graphs = []
     graphs_1 = []
@@ -178,15 +180,16 @@ def flatten_profile(profile)
     profile.children.each do |category|
         graphs_1.push([category.this_id])
         category.children.each do |skill|
-          graphs_2.push([category.this_id, skill.this_id])
-          skill.children.each do |tag|
-            graphs_3.push([category.this_id, skill.this_id, tag.this_id])
-          end
+            graphs_2.push([category.this_id, skill.this_id])
+            skill.children.each do |tag|
+                graphs_3.push([category.this_id, skill.this_id, tag.this_id])
+            end
         end
-      end
-      graphs.push(graphs_1)
-      graphs.push(graphs_2)
-      graphs.push(graphs_3)
+    end
+    graphs.push(graphs_1)
+    graphs.push(graphs_2)
+    graphs.push(graphs_3)
+    graphs.to_json
 end
 ```
 
@@ -209,9 +212,11 @@ The ranking algorith is simple and pretty straight forward. Basically, the two p
 
 ```ruby
 def rank_match(customer, worker)
+    customer_profile = JSON.parse(customer)
+    worker_profile = JSON.parse(worker)
     rank_total = 0
     0.upto 2 do |n|
-        intersection = customer[n] & worker[n]
+        intersection = customer_proifle[n] & worker_profile[n]
         rank = (n + 1) * intersection.length
         rank_total = rank + 1
       end
