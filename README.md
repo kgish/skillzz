@@ -126,6 +126,72 @@ In this version, a tag can only consist of a single word, and a list of tags is 
 As a workaround you can use dashes for multi-word labels, for example `continuous-integration` or `ruby-on-rails`.
 
 
+## Profile
+
+Each user has a profile which is a heirarchical tree-structure with the root being the user who has one or more categories, each category having one or more skills, and each skill with one or more tags.
+
+This implementation of the nested set pattern was created using the [Awesome Nested Set](https://github.com/collectiveidea/awesome_nested_set) gem.
+
+```ruby
+class CreateProfiles < ActiveRecord::Migration
+  def change
+    create_table :profiles do |t|
+      t.string :name
+      t.integer :this_id
+
+      t.integer :parent_id
+      t.integer :lft
+      t.integer :rgt
+
+      # optional fields
+      t.integer :depth, default: 0
+      t.integer :children_count, default: 0
+
+    end
+    add_index :profiles, [:parent_id, :lft, :rgt, :depth]
+    add_reference :users, :profile, index: true, foreign_key: true
+  end
+end
+```
+
+The `name` is one of `%w{root category skill tag}` and `this_id` is the record `id` of the given table. Access the given object by doing the following:
+
+```ruby
+obj = Model.find(this_id)
+```
+
+So for instance, if we have `name == 'category'` and `this_id = 234` we can grab that record like this:
+
+```ruby
+categery = Category.find(this_id)
+```
+
+In order to make the search more efficient, the profile is `flattened` by serializing it into a string which is saved in the `flattened_profile` attribute.
+
+The 'flattened_profile` attribute is built upon user creation and updated whenever the profile is changed, for example adding and or deleting elements (category, skill or tag).
+
+[TODO] More about flattening goes here.
+
+
+## Search
+
+A given customer has a profile which is used to compare with each worker to find the best match based on a ranking scheme.
+
+```ruby
+workers = User.find_by(worker: true)
+workers.each do |worker|
+    rank = rank_match(customer.profile, worker.profile)
+end
+```
+
+[TODO] Explain more details.
+
+
+## Ranking
+
+[TODO] Explain how the ranking works.
+
+
 ## Data Model
 
 The database tables, data types and relationships together define the different ways that the application interacts with the underlying data model in order to adhere to the user requirements (see code challenge).
