@@ -80,7 +80,7 @@ a.show {
 
   &:before {
     font-family: "FontAwesome";
-    @extend .fa-chevron-left;
+/*    @extend .fa-chevron-left; */
     padding-right: 0.5em;
   }
 }
