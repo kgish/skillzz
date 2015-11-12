@@ -1,7 +1,7 @@
 debug = ENV['debug']
-users_max = 25
-tag_max = 10
-customers_every = 5
+users_max = 30
+tag_max = 12
+customers_every = 7
 
 # --- RANDOM (UNIQUE) --- #
 
@@ -227,7 +227,7 @@ admin = User.create!({
   email: "admin@skillzz.com",
   password: "password",
   admin: true,
-  bio: "Manage all of the computer systems at the company as well as everything having to do with the network infrastructure. Monitoring, trouble-shooting and overall customer technical support",
+  bio: "Manage all of the computer systems at the company as well as everything having to do with the network infrastructure. This includes monitoring, trouble-shooting and overall customer technical support. Can also take apart computers blind-folded and pull cables from one end of the building to the other.",
   profile: nil
 })
 
@@ -303,7 +303,7 @@ puts "Profile.delete_all => skipped!"
         email: "customer@skillzz.com",
         password: "password",
         customer: true,
-        bio: "As one of the most demanding customers on this planet, I expect nothing less than the very best possible service there is. I am starting to get impatient because I am in immediate need of a skilled professional. For one of my prestigious project I need someone with the right knowledge and at least five years of experience in the role as a senior architect.",
+        bio: "As one of the most demanding customers on this planet, I expect nothing less than the very best possible service there is. I am starting to get impatient because I am in immediate need of a skilled professional. For one of my prestigious projects I need someone with the right knowledge and at least five years of experience in the role as a senior architect. The candidate must be an expert but not cost too much.",
         profile: random_profile('customer-demo')
     },
     {
@@ -312,7 +312,7 @@ puts "Profile.delete_all => skipped!"
         email: "worker@skillzz.com",
         password: "password",
         worker: true,
-        bio: "With more than ten years experience as a software developer, I view myself as a hard working and determined expert in my field. I prefer the more complex and challenging projects. Young and heart and eager to learn more. Skills include C/C++, Perl, Ruby, Ruby on Rails, Elixir, JavaScript, HTML5, CSS3, Bootstrap, Linux, Apache and MySQL.",
+        bio: "With more than ten years experience as a software developer, I view myself as a hard working and determined expert in my field. Prefer the more complex and challenging projects working in a small team. Young at heart and eager to learn more, roll up my sleeves and get the job done. Skills include C/C++, Perl, Ruby, Ruby on Rails, Elixir, JavaScript, HTML5, CSS3, Bootstrap, Linux, Apache and MySQL.",
         profile: random_profile('worker-demo')
     }
 ].each do |user|

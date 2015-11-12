@@ -219,18 +219,47 @@ The ranking algorith is simple and pretty straight forward. Basically, the two p
 
 ```ruby
 def rank_match(customer, worker)
-  customer_profile = JSON.parse(customer)
-  worker_profile = JSON.parse(worker)
-  rank_total = 0
+  categories = []
+  skills = []
+  tags = []
   0.upto 2 do |n|
-    intersection = customer_proifle[n] & worker_profile[n]
-    rank = (n + 1) * intersection.length
-    rank_total = rank + 1
+    intersection = customer[n] & worker[n]
+    if intersection.length
+      intersection.each do |arr|
+        case n
+          when 0
+            categories << Category.find(arr[0]).name
+          when 1
+            skills << Skill.find(arr[1]).name
+          when 2
+            tags << Tag.find(arr[2]).name
+        end
+      end
+    end
   end
-  rank_total
+  # Weighted results, the further down the tree, the better.
+  rank = categories.length + 2 * skills.length + 3 * tags.length
+  return rank, categories, skills, tags
 end
 ```
 
+Finally, the rankings are compiled by scanning through every user with the `worker` role and ordering the results in descending order like this:
+
+```ruby
+def rankings
+  results = []
+  # Search through all of the workers.
+  User.where(worker: true).each do |worker|
+    rank, categories, skills, tags = rank_match(customer, worker)
+    if rank > 0
+      results.push({ rank: rank, user: User.find_by!(id: worker.id), categories: categories, skills: skills, tags: tags })
+    end
+  end
+
+  # Sort results by RANK in descending order.
+  results.sort! { |x,y| y[:rank] <=> x[:rank] }
+end
+```
 
 ## Data Model
 
