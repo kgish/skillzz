@@ -173,23 +173,23 @@ This flattened representation is an array of arrays containing every possible ro
 require 'json'
 
 def flatten_profile(profile)
-    graphs = []
-    graphs_1 = []
-    graphs_2 = []
-    graphs_3 = []
-    profile.children.each do |category|
-        graphs_1.push([category.this_id])
-        category.children.each do |skill|
-            graphs_2.push([category.this_id, skill.this_id])
-            skill.children.each do |tag|
-                graphs_3.push([category.this_id, skill.this_id, tag.this_id])
-            end
-        end
+  graphs = []
+  graphs_1 = []
+  graphs_2 = []
+  graphs_3 = []
+  profile.children.each do |category|
+    graphs_1.push([category.this_id])
+    category.children.each do |skill|
+      graphs_2.push([category.this_id, skill.this_id])
+      skill.children.each do |tag|
+        graphs_3.push([category.this_id, skill.this_id, tag.this_id])
+      end
     end
-    graphs.push(graphs_1)
-    graphs.push(graphs_2)
-    graphs.push(graphs_3)
-    graphs.to_json
+  end
+  graphs.push(graphs_1)
+  graphs.push(graphs_2)
+  graphs.push(graphs_3)
+  graphs.to_json
 end
 ```
 
@@ -201,7 +201,7 @@ A given customer has a profile which is used to compare with each worker when fi
 ```ruby
 workers = User.find_by(worker: true)
 workers.each do |worker|
-    rank = rank_match(customer, worker)
+  rank = rank_match(customer, worker)
 end
 ```
 
@@ -212,15 +212,15 @@ The ranking algorith is simple and pretty straight forward. Basically, the two p
 
 ```ruby
 def rank_match(customer, worker)
-    customer_profile = JSON.parse(customer)
-    worker_profile = JSON.parse(worker)
-    rank_total = 0
-    0.upto 2 do |n|
-        intersection = customer_proifle[n] & worker_profile[n]
-        rank = (n + 1) * intersection.length
-        rank_total = rank + 1
-      end
-      rank_total
+  customer_profile = JSON.parse(customer)
+  worker_profile = JSON.parse(worker)
+  rank_total = 0
+  0.upto 2 do |n|
+    intersection = customer_proifle[n] & worker_profile[n]
+    rank = (n + 1) * intersection.length
+    rank_total = rank + 1
+  end
+  rank_total
 end
 ```
 
