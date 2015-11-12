@@ -35,7 +35,7 @@ namespace :profile do
       graphs.push(graphs_3)
     end
 
-    def match_rank(customer, worker)
+    def rank_match(customer, worker)
       rank = 0
       0.upto 2 do |n|
         puts "match_rank: #{n}"
@@ -53,7 +53,7 @@ namespace :profile do
     puts "Customer:"
     puts "#{customer.inspect}"
 
-    rank = match_rank(customer, worker)
+    rank = rank_match(customer, worker)
     puts "Rank: #{rank}"
 
   end
