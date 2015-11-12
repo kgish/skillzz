@@ -170,7 +170,7 @@ The 'flattened_profile` attribute is built upon user creation and updated whenev
 This flattened representation is an array of arrays containing every possible route through the tree, each array item identified using the (unique) model id for that level.
 
 ```ruby
-def flatten_user_profile(profile)
+def flatten_profile(profile)
     graphs = []
     graphs_1 = []
     graphs_2 = []
@@ -209,7 +209,20 @@ end
 
 ## Ranking
 
-[TODO] Explain how the ranking works.
+The ranking algorith is simple and pretty straight forward. Basically, the two profiles are compared by taking the lengths of the intersecting arrays and weighting them according to how far down the tree (more specific) the match is.
+
+
+```ruby
+def rank_match(customer, worker)
+    rank_total = 0
+    0.upto 2 do |n|
+        intersection = customer[n] & worker[n]
+        rank = (n + 1) * intersection.length
+        rank_total = rank + 1
+      end
+      rank_total
+end
+```
 
 
 ## Data Model
