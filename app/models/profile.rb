@@ -11,19 +11,20 @@ class Profile < ActiveRecord::Base
 
   private
 
-    def do_before_add(child_node)
-      #puts "Profile.do_before_add"
-    end
-
-    def do_after_add(child_node)
-      #puts "Profile.do_after_add"
-    end
-
-    def do_before_remove(child_node)
-      #puts "Profile.do_before_remove"
-    end
-
-    def do_after_remove(child_node)
-      #puts "Profile.do_after_remove"
-    end
+    # TODO
+    # def do_before_add(child_node)
+    #   #puts "Profile.do_before_add"
+    # end
+    #
+    # def do_after_add(child_node)
+    #   #puts "Profile.do_after_add"
+    # end
+    #
+    # def do_before_remove(child_node)
+    #   #puts "Profile.do_before_remove"
+    # end
+    #
+    # def do_after_remove(child_node)
+    #   #puts "Profile.do_after_remove"
+    # end
 end
