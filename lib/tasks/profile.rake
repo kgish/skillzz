@@ -51,14 +51,24 @@ namespace :profile do
       rank_total
     end
 
-    worker = flatten_user_profile('worker')
+    #worker = flatten_user_profile('worker')
     #puts "Worker: #{worker.inspect}"
 
-    customer = flatten_user_profile('customer')
+    customer_profile_flat = flatten_user_profile('customer')
     #puts "Customer:" #{customer.inspect}"
 
-    rank = rank_match_by_profile(customer, worker)
-    puts "Rank: #{rank}"
+    results = []
+    User.where(worker: true).each do |worker|
+      worker_profile_flat = flatten_user_profile(worker.username)
+      rank = rank_match_by_profile(customer_profile_flat, worker_profile_flat)
+      puts "Worker: #{worker.username} => #{rank}"
+      results.push({ id: worker.id, rank: rank})
+    end
+
+    puts "Results:"
+    (results.sort { |x,y| y[:rank] <=> x[:rank] }).each do |worker|
+      puts "  #{worker[:rank]}  #{User.find(worker[:id]).username}"
+    end
 
   end
 end
