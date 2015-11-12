@@ -1,12 +1,46 @@
-<div class="row" id="worker-profile-show">
-  <div class="col-md-9">
+<div id="search-results" class="row">
+  <div class="col-md-12">
     <header>
       <h1><%= image_tag "Leela.ico", size: "50x50" %> Customer Dashboard</h1>
     </header>
     <p class="lead">Here are the results of your search.</p>
 
-    <% @results.each do |result| %>
-    <p><%= result[:rank] %> - <%= result[:user].username %></p>
-    <% end %>
+    <div id="search-results" class="row">
+      <div class='col-md-12'>
+        <% if @results.count > 0 %>
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Fullname</th>
+                <th>Email</th>
+                <th>Matches</th>
+                <th></th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody class="hover-cursor">
+              <% @results.each do |result| %>
+                <tr>
+                  <td><%= result[:rank] %></td>
+                  <td><%= result[:user].fullname %></td>
+                  <td><%= result[:user].email %></td>
+                  <td>...</td>
+                  <td><%= link_to "Skills", worker_profile_path(result[:user]), class: "show" %></td>
+                  <!-- TODO -->
+                  <td><%= link_to "Profile", worker_profile_path(result[:user]), class: "show" %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% else %>
+          <p>Oops, no results (sorry).</p>
+        <% end %>
+      </div>
+    </div>
+
   </div>
 </div>
+
