@@ -190,8 +190,6 @@ def flatten_profile(profile)
 end
 ```
 
-[TODO] More about flattening goes here.
-
 
 ## Search
 
@@ -204,13 +202,10 @@ workers.each do |worker|
 end
 ```
 
-[TODO] Explain more details.
-
 
 ## Ranking
 
 The ranking algorith is simple and pretty straight forward. Basically, the two profiles are compared by taking the lengths of the intersecting arrays and weighting them according to how far down the tree (more specific) the match is.
-
 
 ```ruby
 def rank_match(customer, worker)
