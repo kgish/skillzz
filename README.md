@@ -142,7 +142,6 @@ class CreateProfiles < ActiveRecord::Migration
       t.integer :parent_id
       t.integer :lft
       t.integer :rgt
-      
       ...
 
     end
@@ -169,6 +168,27 @@ In order to make the search more efficient, the profile is `flattened` by serial
 The 'flattened_profile` attribute is built upon user creation and updated whenever the profile is changed, for example adding and or deleting elements (category, skill or tag).
 
 This flattened representation is an array of arrays containing every possible route through the tree, each array item identified using the (unique) model id for that level.
+
+```ruby
+def flatten_user_profile(profile)
+    graphs = []
+    graphs_1 = []
+    graphs_2 = []
+    graphs_3 = []
+    profile.children.each do |category|
+        graphs_1.push([category.this_id])
+        category.children.each do |skill|
+          graphs_2.push([category.this_id, skill.this_id])
+          skill.children.each do |tag|
+            graphs_3.push([category.this_id, skill.this_id, tag.this_id])
+          end
+        end
+      end
+      graphs.push(graphs_1)
+      graphs.push(graphs_2)
+      graphs.push(graphs_3)
+end
+```
 
 [TODO] More about flattening goes here.
 
