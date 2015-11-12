@@ -5,5 +5,8 @@
     </header>
     <p class="lead">Here are the results of your search.</p>
 
+    <% @results.each do |result| %>
+    <p><%= result[:rank] %> - <%= result[:user].username %></p>
+    <% end %>
   </div>
 </div>

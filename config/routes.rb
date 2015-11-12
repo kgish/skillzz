@@ -22,8 +22,7 @@ Rails.application.routes.draw do
   namespace :customer do
     root 'application#index'
     resources :search, only: [:show] do
-      resources :results, only: [:index] do
-      end
+      resources :result, only: [:show]
     end
   end
 
