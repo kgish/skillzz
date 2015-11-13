@@ -2,7 +2,7 @@
 
 # Default values
 debug = ENV.include?('debug') ? true : false
-users_max = 30
+users_max = 50
 tag_max = 12
 customers_every = 10
 
@@ -273,25 +273,59 @@ end
 puts "Tags: #{tags.count} => [#{tags.join(' ')}]"
 
 
-# --- DEFAULT USERS --- #
+# --- ADMIN --- #
 
 puts "User.delete_all => skipped!"
 #User.delete_all
+
+if User.find_by(username: 'admin')
+  puts "admin already exists => skip"
+else
+  puts "User.create!(admin)"
+  User.create!(
+    fullname: random_fullname,
+    username: "admin",
+    email: "admin@skillzz.com",
+    password: "password",
+    admin: true,
+    bio: "Manage all of the computer systems at the company as well as everything having to do with the network infrastructure. This includes monitoring, trouble-shooting and overall customer technical support. Can also take apart computers blind-folded and pull cables from one end of the building to the other.",
+    profile: nil
+  )
+end
+
+
+# --- SKILLS --- #
+
+puts "Skill.delete_all => skipped!"
+#Skill.delete_all
+
+category_max = Category.count
+category_cnt = 0
+admin = User.find_by!(username: 'admin')
+Category.all.each do |category|
+  category_item = category_list.select { |c| c[:name] == category.name }
+  skill_names = category_item.first[:skills]
+  skill_max = skill_names.count
+  cnt = 0
+  skill_names.each do |skill_name|
+    tag_names = tags.sample(1 + rand(5)).join(' ')
+    puts "#{category_cnt+1}/#{category_max} #{category.name} #{cnt+1}/#{skill_max} Skill.create(category=#{category.name},name=#{skill_name},tag_names='#{tag_names}')"
+    Skill.create(category: category, author: admin, name: skill_name, description: Faker::Hipster.sentence, tag_names: tag_names)
+    cnt = cnt + 1
+  end
+  category_cnt = category_cnt + 1
+end
+
+puts "Skills: #{Skill.count}"
+puts "Tags: #{Tag.count}"
+
+
+# --- DEFAULT USERS --- #
 
 puts "Profile.delete_all => skipped!"
 #Profile.delete_all
 
 [
-    {
-        fullname: random_fullname,
-        username: "admin",
-        email: "admin@skillzz.com",
-        password: "password",
-        admin: true,
-        bio: "Manage all of the computer systems at the company as well as everything having to do with the network infrastructure. This includes monitoring, trouble-shooting and overall customer technical support. Can also take apart computers blind-folded and pull cables from one end of the building to the other.",
-        profile: nil
-
-    },
     {
         fullname: random_fullname,
         username: "viewer",
@@ -334,33 +368,6 @@ puts "Profile.delete_all => skipped!"
     User.create!(user)
   end
 end
-
-
-
-# --- SKILLS --- #
-
-puts "Skill.delete_all => skipped!"
-#Skill.delete_all
-
-category_max = Category.count
-category_cnt = 0
-admin = User.find_by(username: 'admin')
-Category.all.each do |category|
-  category_item = category_list.select { |c| c[:name] == category.name }
-  skill_names = category_item.first[:skills]
-  skill_max = skill_names.count
-  cnt = 0
-  skill_names.each do |skill_name|
-    tag_names = tags.sample(1 + rand(5)).join(' ')
-    puts "#{category_cnt+1}/#{category_max} #{category.name} #{cnt+1}/#{skill_max} Skill.create(category=#{category.name},name=#{skill_name},tag_names='#{tag_names}')"
-    Skill.create(category: category, author: admin, name: skill_name, description: Faker::Hipster.sentence, tag_names: tag_names)
-    cnt = cnt + 1
-  end
-  category_cnt = category_cnt + 1
-end
-
-puts "Skills: #{Skill.count}"
-puts "Tags: #{Tag.count}"
 
 
 # --- RANDOM USERS (users_max) --- #
