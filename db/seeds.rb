@@ -1,7 +1,63 @@
-debug = ENV['debug']
+# --- OPTS --- #
+
+# Default values
+debug = ENV.include?('debug') ? true : false
 users_max = 30
 tag_max = 12
-customers_every = 7
+customers_every = 10
+
+# Validate users_max: must be a number and less than or equal to 1000
+if ENV.include?('users_max')
+  opt = ENV['users_max']
+  if /\A\d+\z/.match(opt)
+    users_max = opt.to_i
+    if users_max > 1000
+      puts "Invalid user_max = '#{opt}' (must be less than or equal to 1000)"
+      exit
+    end
+  else
+    puts "Invalid user_max = '#{opt}' (must be a number)"
+    exit
+  end
+end
+
+# Validate tag_max: must be a number and less than or equal to 50
+if ENV.include?('tag_max')
+  opt = ENV['tag_max']
+  if /\A\d+\z/.match(opt)
+    tag_max = opt.to_i
+    if tag_max > 50
+      puts "Invalid tag_max = '#{opt}' (must be less than or equal to 50)"
+      exit
+    end
+  else
+    puts "Invalid tag_max = '#{opt}' (must be a number)"
+    exit
+  end
+end
+
+# Validate customers_every: must be a number and less than user_max
+if ENV.include?('customers_every')
+  opt = ENV['customers_every']
+  if /\A\d+\z/.match(opt)
+    customers_every = opt.to_i
+    if customers_every > 50
+      puts "Invalid customers_every = '#{opt}' (must be less than users_max = #{users_max}"
+      exit
+    end
+  else
+    puts "Invalid customers_every = '#{opt}' (must be a number)"
+    exit
+  end
+end
+
+# Display all opts for good measure
+puts "debug = #{debug}"
+puts "users_max = #{users_max}"
+puts "tag_max = #{tag_max}"
+puts "customers_every = #{customers_every}"
+
+exit
 
 # --- RANDOM (UNIQUE) --- #
 
@@ -14,7 +70,7 @@ def random_bio
 end
 
 def random_unique_username
-  cnt = 5
+  cnt = 10
   found = false
   username = 'unknown'
   while cnt > 0 and not found
@@ -34,7 +90,7 @@ def random_unique_username
 end
 
 def random_unique_email
-  cnt = 5
+  cnt = 10
   found = false
   email = 'unknown@example.com'
   while cnt > 0 and not found
@@ -54,7 +110,7 @@ def random_unique_email
 end
 
 def random_unique_tag
-  cnt = 5
+  cnt = 10
   found = false
   name = 'unknown'
   while cnt > 0 and not found
@@ -77,7 +133,7 @@ def random_unique_tag
 end
 
 def random_unique_profile_id
-  cnt = 5
+  cnt = 10
   found = false
   id = -1
   while cnt > 0 and not found
@@ -193,8 +249,12 @@ category_list = [
 ]
 
 category_list.each do |category|
-  puts "Category.create!(#{category[:name]})"
-  Category.create!(name: category[:name], description: category[:description])
+  if Category.find_by(name: category[:name])
+    puts "category=#{category[:name]} already exists => skip"
+  else
+    Category.create!(name: category[:name], description: category[:description])
+    puts "Category.create!(#{category[:name]})"
+  end
 end
 
 puts "Categories: #{Category.count}"
@@ -211,76 +271,28 @@ tag_max.times do |n|
   tags << tag
 end
 
-puts "Tags=[#{tags.join(' ')}]"
+puts "Tags: #{tags.count} => [#{tags.join(' ')}]"
 
 
-# --- ADMIN USER --- #
+# --- DEFAULT USERS --- #
 
 puts "User.delete_all => skipped!"
 #User.delete_all
-
-# Need an admin
-puts "User.create!(admin)"
-admin = User.create!({
-  fullname: random_fullname,
-  username: "admin",
-  email: "admin@skillzz.com",
-  password: "password",
-  admin: true,
-  bio: "Manage all of the computer systems at the company as well as everything having to do with the network infrastructure. This includes monitoring, trouble-shooting and overall customer technical support. Can also take apart computers blind-folded and pull cables from one end of the building to the other.",
-  profile: nil
-})
-
-
-# --- SKILLS --- #
-
-puts "Skill.delete_all => skipped!"
-#Skill.delete_all
-
-category_max = Category.count
-category_cnt = 0
-Category.all.each do |category|
-  category_item = category_list.select { |c| c[:name] == category.name }
-  skill_names = category_item.first[:skills]
-  skill_max = skill_names.count
-  cnt = 0
-  skill_names.each do |skill_name|
-    tag_names = tags.sample(1 + rand(5)).join(' ')
-    puts "#{category_cnt+1}/#{category_max} #{category.name} #{cnt+1}/#{skill_max} Skill.create(category=#{category.name},name=#{skill_name},tag_names='#{tag_names}')"
-    Skill.create(category: category, author: admin, name: skill_name, description: Faker::Hipster.sentence, tag_names: tag_names)
-    cnt = cnt + 1
-  end
-  category_cnt = category_cnt + 1
-end
-
-puts "Skills: #{Skill.count}"
-puts "Tags: #{Tag.count}"
-
-
-# --- USERS --- #
-
-if debug
-  puts "---debug---"
-  root = random_profile('dummy')
-  root.descendants.each do |child|
-    case (child.name)
-      when "category"
-        puts "Category - '#{Category.find(child.this_id).name}'"
-      when "skill"
-        puts "  Skill - '#{Skill.find(child.this_id).name}'"
-      when "tag"
-        puts "    Tag - '#{Tag.find(child.this_id).name}'"
-      else
-        puts "Unknown name '#{child.name}'"
-    end
-  end
-  puts "---debug---"
-end
 
 puts "Profile.delete_all => skipped!"
 #Profile.delete_all
 
 [
+    {
+        fullname: random_fullname,
+        username: "admin",
+        email: "admin@skillzz.com",
+        password: "password",
+        admin: true,
+        bio: "Manage all of the computer systems at the company as well as everything having to do with the network infrastructure. This includes monitoring, trouble-shooting and overall customer technical support. Can also take apart computers blind-folded and pull cables from one end of the building to the other.",
+        profile: nil
+
+    },
     {
         fullname: random_fullname,
         username: "viewer",
@@ -316,9 +328,43 @@ puts "Profile.delete_all => skipped!"
         profile: random_profile('worker-demo')
     }
 ].each do |user|
-  puts "User.create!(username=#{user[:username]},fullname=#{user[:fullname]})"
-  User.create!(user)
+  if User.find_by(username: user[:username])
+    puts "username=#{user[:username]} already exists => skip"
+  else
+    puts "User.create!(username=#{user[:username]},fullname=#{user[:fullname]})"
+    User.create!(user)
+  end
 end
+
+
+
+# --- SKILLS --- #
+
+puts "Skill.delete_all => skipped!"
+#Skill.delete_all
+
+category_max = Category.count
+category_cnt = 0
+admin = User.find_by(username: 'admin')
+Category.all.each do |category|
+  category_item = category_list.select { |c| c[:name] == category.name }
+  skill_names = category_item.first[:skills]
+  skill_max = skill_names.count
+  cnt = 0
+  skill_names.each do |skill_name|
+    tag_names = tags.sample(1 + rand(5)).join(' ')
+    puts "#{category_cnt+1}/#{category_max} #{category.name} #{cnt+1}/#{skill_max} Skill.create(category=#{category.name},name=#{skill_name},tag_names='#{tag_names}')"
+    Skill.create(category: category, author: admin, name: skill_name, description: Faker::Hipster.sentence, tag_names: tag_names)
+    cnt = cnt + 1
+  end
+  category_cnt = category_cnt + 1
+end
+
+puts "Skills: #{Skill.count}"
+puts "Tags: #{Tag.count}"
+
+
+# --- RANDOM USERS (users_max) --- #
 
 users_max.times do |n|
   fullname = random_fullname
@@ -339,3 +385,24 @@ puts "Total users:     #{User.count}"
 puts "      admins:    #{User.where(admin: true).count}"
 puts "      customers  #{User.where(customer: true).count}"
 puts "      workers:   #{User.where(worker: true).count}"
+
+
+# --- DEBUG --- #
+
+if debug
+  puts "---debug---"
+  root = random_profile('dummy')
+  root.descendants.each do |child|
+    case (child.name)
+      when "category"
+        puts "Category - '#{Category.find(child.this_id).name}'"
+      when "skill"
+        puts "  Skill - '#{Skill.find(child.this_id).name}'"
+      when "tag"
+        puts "    Tag - '#{Tag.find(child.this_id).name}'"
+      else
+        puts "Unknown name '#{child.name}'"
+    end
+  end
+  puts "---debug---"
+end

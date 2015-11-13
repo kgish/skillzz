@@ -270,12 +270,26 @@ For production I use [PostgreSQL](http://www.postgresql.org/) since that is the 
 
 ## Seeding
 
-If after the installation, you decide that you want to pre-populate the database with a bunch of fresh random data, then you MUST remember to re-create the database from scratch like this:
+If after the installation, you decide that you want to pre-populate the database with a bunch of fresh random data, then this is possible by running the following command:
 
-    $ bundle exec rake db:migrate:reset
     $ bundle exec rake db:seed
 
-Otherwise if you do not do this, running just `rake db:seed`  will abort with errors about non-unique names when attempting to create records that already exist.
+Any users, categories or skills that already exist in the database will remain. The tags are completely regenerated during each run.
+
+You can also pass a number of options via the command line like this:
+
+    $ bundle exec db:seed opt=value
+    
+Where `opt` can be one of the following:
+
+* users_max=n (default 30)
+* customers_every=n (default 10)
+* tag_max=n (default 12)
+* debug=[true|false] (default false
+
+So for example, in order to generate in total 100 random users a user with role 'customer' every ten times and 20 tags:
+
+    $ bundle exec rake db:seed users_max=100 customers_every=20 tag_max=20
 
 
 ## Testing
