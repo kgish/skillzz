@@ -57,7 +57,6 @@ puts "users_max = #{users_max}"
 puts "tag_max = #{tag_max}"
 puts "customers_every = #{customers_every}"
 
-exit
 
 # --- RANDOM (UNIQUE) --- #
 
