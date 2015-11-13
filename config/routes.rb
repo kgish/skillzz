@@ -19,10 +19,12 @@ Rails.application.routes.draw do
     resources :profile, only: [:show, :edit, :update]
   end
 
-  namespace :customer do
-    root 'application#index'
-    resources :search, only: [:show] do
-      resources :result, only: [:show]
+  namespace :users do
+    resources :customer, only: [:show], to: 'customer#show' do
+      resources :search, only: [:show], to: 'customer#search' do
+        resources :results, only: [:index], to: 'customer#search_results'
+        resources :results, only: [:show], param: :worker_id, to: 'customer#search_result_show'
+      end
     end
   end
 
