@@ -285,7 +285,7 @@ Where `opt` can be one of the following:
 * users_max=n (default 30)
 * customers_every=n (default 10)
 * tag_max=n (default 12)
-* debug=[true|false] (default false
+* debug=[true|false] (default false)
 
 So for example, in order to generate in total 100 random users a user with role 'customer' every ten times and 20 tags:
 
