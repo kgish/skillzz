@@ -1,23 +1,18 @@
 class Customer::ResultController < ApplicationController
-  before_action :set_user_and_profile, only: [:show]
-
   # TODO: For the time-being checks disabled for authorized and policy.
   skip_after_action :verify_authorized, :verify_policy_scoped
 
   def show
+    @user = User.find(params[:search_id])
+    @profile = Profile.find(params[:id])
+    # TODO
+    # :id => profile_id (for multiple profiles -- later)
+    # TODO
+    # Authorize (current_user MUST equal user)
     @results = rankings
   end
 
   private
-
-    def set_user_and_profile
-      @user = User.find(params[:search_id])
-      @profile = Profile.find(params[:id])
-      # TODO
-      # :id => profile_id (for multiple profiles -- later)
-      # TODO
-      # Authorize (current_user MUST equal user)
-    end
 
     def rank_match_by_profile(customer, worker)
       customer_profile = JSON.parse(customer)
