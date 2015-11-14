@@ -66,7 +66,7 @@ within the project root directory just after you run the `bundle install` comman
 
 ## Authentication
 
-In order to be able to take advantages of the services provided by this website, a user first has to login using his email and password.
+In order to be able to take advantages of the services provided by this website, a user first has to login using either his username or email and password.
 
 The setup used is the one defined by the standard [Devise](https://github.com/plataformatec/devise) setup after running:
 
