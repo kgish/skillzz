@@ -6,7 +6,7 @@
   <div class="form-inputs">
     <!--TODO: user can use either username or email -->
     <!--<%#= f.input :username, required: true, autofocus: true %>-->
-    <%= f.input :email, required: false, autofocus: true %>
+    <%= f.input :login, label: 'Username or email', required: false, autofocus: true %>
     <%= f.input :password, required: false %>
     <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
   </div>
