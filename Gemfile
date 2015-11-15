@@ -3,22 +3,10 @@ source 'https://rubygems.org'
 ruby '2.2.2'
 
 gem 'rails', '4.2.3'
-
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
-gem 'jbuilder', '~> 2.0'
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 gem 'bootstrap-sass', '~> 3.3'
 gem 'font-awesome-rails', '~> 4.3'
 gem 'simple_form', '~> 3.1.0'
@@ -26,6 +14,7 @@ gem 'devise', '~> 3.4.1'
 gem 'pundit', '~> 0.3.0'
 gem 'awesome_nested_set'
 
+# Nice gems for pagination
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
 
@@ -36,8 +25,9 @@ gem 'searcher', github: 'radar/searcher'
 gem 'faker', github: 'stympy/faker'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+
+  # See https://github.com/rweng/pry-rails, use 'binding.pry'
+  gem 'pry-rails'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -46,7 +36,6 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails', '~> 3.2.1'
-
   gem 'mysql2', '~> 0.3.20'
 end
 
