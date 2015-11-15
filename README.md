@@ -305,9 +305,9 @@ or in order to run just a specific test, for example editing categories:
     $ bundle exec rspec spec/features/editing_categories_spec.rb
     
 
-## Heroku
+## Deployment
 
-A demo version of this application is available on Heroku:
+A demo version of this application can be found on Heroku:
 
 https://mysterious-cliffs-8546.herokuapp.com
     
@@ -323,13 +323,23 @@ end
 
 See [Deploying Rails Applications with the Puma Web Server](https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server).
 
-Finally, I went to the application root directory `/path/to/skillz` and did the following:
+In order to set up the deployment process, I went to the application root directory `/path/to/skillz` and did the following:
     
     $ heroku login
     $ heroku apps:create
     $ git push heroku master
     $ heroku run rake db:migrate
     $ heroku run rake db:seed
+    
+For each stable version which has been verified by `rspec` (all tests green), I run the following commands:
+    
+    $ (feature-branch) git add .
+    $ (feature-branch) git commit -m"Some informative message explaining things"
+    $ (feature-branch) git push
+    $ (feature-branch) git checkout master
+    $ (master) git merge feature-branch
+    $ (master) git push
+    $ (master) git push heroku master
 
 Voilà, it should be up and running now.
 
