@@ -333,6 +333,9 @@ In order to set up the deployment process, I went to the application root direct
     
 For each stable version which has been verified by `rspec` (all tests green), I run the following commands:
     
+    $ (feature-branch) bundle exec rspec
+    ...
+    92 examples, 0 failures
     $ (feature-branch) git add .
     $ (feature-branch) git commit -m"Some informative message explaining things"
     $ (feature-branch) git push
