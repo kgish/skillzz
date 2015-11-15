@@ -340,7 +340,11 @@ For each stable version which has been verified by `rspec` (all tests green), I 
     $ (feature-branch) git commit -m"Some informative message explaining things"
     $ (feature-branch) git push
     $ (feature-branch) git checkout master
+    $ (master) git pull
     $ (master) git merge feature-branch
+    $ (master) bundle exec rspec
+    ...
+    92 examples, 0 failures
     $ (master) git push
     $ (master) git push heroku master
 
