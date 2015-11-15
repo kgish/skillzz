@@ -22,5 +22,8 @@ module Skillzz
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Set the 'per_page' parameter globally for the 'will_paginate' gem
+    WillPaginate.per_page = 10
   end
 end

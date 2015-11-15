@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class Customer::ResultController < ApplicationController
   before_action :set_user_and_profile, only: [:show]
 
@@ -5,7 +7,7 @@ class Customer::ResultController < ApplicationController
   skip_after_action :verify_authorized, :verify_policy_scoped
 
   def show
-    @results = rankings
+    @results = rankings.paginate(:page => params[:page])
   end
 
   private

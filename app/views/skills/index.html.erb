@@ -1,10 +1,12 @@
 <header>
   <h1>Skills - <small>belong to one category and have many tags</small></h1>
-  <p class="lead">This is a list of all skills.</p>
+  <p class="lead">There are currently <%= @skills.count %> skills defined.</p>
   <ul class="actions">
     <li><%= link_to "New Skill", new_skill_path, class: "new" %></li>
   </ul>
 </header>
+
+<%= will_paginate @skills, renderer: BootstrapPagination::Rails %>
 
 <div id="skills">
   <% @skills.each do |skill| %>

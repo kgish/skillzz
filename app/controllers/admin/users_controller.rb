@@ -4,7 +4,7 @@ class Admin::UsersController < Admin::ApplicationController
 
   def index
     # List all users that are NOT archived.
-    @users = User.excluding_archived.order(:email)
+    @users = User.excluding_archived.order(:email).paginate(:page => params[:page])
   end
 
   def show

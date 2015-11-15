@@ -1,11 +1,13 @@
 <header>
   <h1>Users</h1>
-  <p class="lead">This is a list of all users.</p>
+  <p class="lead">There are currently <%= @users.count %> users.</p>
 
   <ul class="actions">
     <li><%= link_to "New User", new_admin_user_path, class: "new" %></li>
   </ul>
 </header>
+
+<%= will_paginate @users, renderer: BootstrapPagination::Rails %>
 
 <div id="users" class="row">
   <div class='col-md-12'>

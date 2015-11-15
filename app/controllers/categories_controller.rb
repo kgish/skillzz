@@ -2,7 +2,8 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update]
 
   def index
-    @categories = policy_scope(Category)
+    @categories = Category.all.paginate(:page => params[:page])
+    @categories = policy_scope(@categories)
   end
 
   def show

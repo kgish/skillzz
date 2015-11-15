@@ -1,7 +1,9 @@
 <header>
   <h1>Tags - <small>belong to one or more skills</small></h1>
-  <p class="lead">This is a list of all tags.</p>
+  <p class="lead">There are currently <%= @tags.count %> tags defined.</p>
 </header>
+
+<%= will_paginate @tags, renderer: BootstrapPagination::Rails %>
 
 <div id="tags" class="row">
   <div class='col-md-12'>

@@ -3,6 +3,6 @@ class SkillsAllController < ApplicationController
   skip_after_action :verify_authorized, :verify_policy_scoped
 
   def index
-    @skills = Skill.order(:name)
+    @skills = Skill.order(:name).paginate(:page => params[:page])
   end
 end

@@ -26,6 +26,9 @@ gem 'devise', '~> 3.4.1'
 gem 'pundit', '~> 0.3.0'
 gem 'awesome_nested_set'
 
+gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
+
 # Not for production, specific for book Rails 4 in Action
 gem 'searcher', github: 'radar/searcher'
 
