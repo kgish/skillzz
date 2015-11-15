@@ -352,7 +352,7 @@ Since I am a hard-core developer at heart, I tend to be a bit of a perfectionist
 
 Here is a list of todo items for a rainy day.
 
-* Allow users to login using either their username or email.
+* ~~Allow users to login using either their username or email.~~
 * Allow user to sign up via the registration form.
 * Allow users to include profile picture that can be uploaded.
 * Take into account the availability of workers when matching.
