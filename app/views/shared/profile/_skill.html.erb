@@ -3,12 +3,14 @@
   <td>
     <% if skill.children.count > 0 %>
       <% skill.children.each do |tag| %>
-      <%= render 'shared/profile/tag', tag: tag %>
-        <% end %>
+      <%= render 'shared/profile/tag', user: user, tag: tag %>
     <% end %>
-    <div class="tag">
-      <%= link_to "<span></span>".html_safe, class: "new", title: "new" %>
-      <%= link_to '+ new' %>
-    </div>
+    <% end %>
+    <% if user == current_user %>
+      <div class="tag">
+        <%= link_to "<span></span>".html_safe, class: "new", title: "new" %>
+        <%= link_to '+ new' %>
+      </div>
+    <% end %>
   </td>
 </tr>

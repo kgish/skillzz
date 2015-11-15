@@ -27,10 +27,27 @@
                   <td><%= result[:rank] %></td>
                   <td><%= result[:user].fullname %></td>
                   <td><%= result[:user].email %></td>
-                  <td><%= result[:categories].join(', ') %></td>
-                  <td><%= result[:skills].join(', ') %></td>
-                  <td><%= result[:tags].join(', ') %></td>
-                  <!-- TODO -->
+                  <td>
+                    <% result[:categories].each do |category| %>
+                      <div class="category">
+                        <%= category %>
+                      </div>
+                    <% end %>
+                  </td>
+                  <td>
+                    <% result[:skills].each do |skill| %>
+                      <div class="skill">
+                        <%= skill %>
+                      </div>
+                    <% end %>
+                  </td>
+                  <td>
+                    <% result[:tags].each do |tag| %>
+                      <div class="tag">
+                        <%= tag %>
+                      </div>
+                    <% end %>
+                  </td>
                   <td><%= link_to "Info", customer_search_result_info_path(@user, @profile, result[:user]), class: "show" %></td>
                 </tr>
               <% end %>
