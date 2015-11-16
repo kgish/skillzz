@@ -1,6 +1,8 @@
 <% Tag.find(tag.this_id).name.split(',').each do |name| %>
-    <div class="tag">
+  <div class="tag">
+    <% if user == current_user %>
       <%= link_to "<span></span>".html_safe, class: "remove", title: "remove" %>
-      <%= link_to name %>
-    </div>
+    <% end %>
+    <%= link_to name %>
+  </div>
 <% end %>

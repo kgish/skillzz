@@ -7,11 +7,11 @@
 
     <%= link_to "Search !!", customer_search_result_path(@user, @user.profile.id), class: "btn btn-primary" %>
 
-    <h2>Criteria</h2>
+    <h2>Matches</h2>
     <p>This is the profile which will be used when making matches and ranking the results.</p>
     <hr />
 
-    <%= render 'shared/profile/root', profile: @user.profile %>
+    <%= render 'shared/profile/root', user: @user %>
 
   </div>
 </div>

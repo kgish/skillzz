@@ -7,7 +7,7 @@
 
     <%= will_paginate @results, renderer: BootstrapPagination::Rails %>
 
-    <div id="search-results" class="row">
+    <div class="row">
       <div class='col-md-12'>
         <% if @results.count > 0 %>
           <div class="table-responsive">
@@ -29,11 +29,28 @@
                   <td><%= result[:rank] %></td>
                   <td><%= result[:user].fullname %></td>
                   <td><%= result[:user].email %></td>
-                  <td><%= result[:categories].join(', ') %></td>
-                  <td><%= result[:skills].join(', ') %></td>
-                  <td><%= result[:tags].join(', ') %></td>
-                  <!-- TODO -->
-                  <td><a href="#" class="show" onclick="alert('Sorry, not yet implemented. Please be patient.')">Info</a></td>
+                  <td>
+                    <% result[:categories].each do |category| %>
+                      <div class="category">
+                        <%= category %>
+                      </div>
+                    <% end %>
+                  </td>
+                  <td>
+                    <% result[:skills].each do |skill| %>
+                      <div class="skill">
+                        <%= skill %>
+                      </div>
+                    <% end %>
+                  </td>
+                  <td>
+                    <% result[:tags].each do |tag| %>
+                      <div class="tag">
+                        <%= tag %>
+                      </div>
+                    <% end %>
+                  </td>
+                  <td><%= link_to "Info", customer_search_result_info_path(@user, @profile, result[:user]), class: "show" %></td>
                 </tr>
               <% end %>
               </tbody>

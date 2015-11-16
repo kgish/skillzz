@@ -1,0 +1,16 @@
+<div class="row" id="worker-profile-show">
+  <div class="col-md-9">
+    <header>
+      <h1><%= @worker.fullname %></h1>
+    </header>
+    <p class="lead">Could this be the right person for the right job?</p>
+
+    <h2>Profile</h2>
+    <%= render 'shared/profile/user', user: @worker %>
+    <hr />
+
+    <h2>Skills</h2>
+    <%= render 'shared/profile/root', user: @worker %>
+
+  </div>
+</div>

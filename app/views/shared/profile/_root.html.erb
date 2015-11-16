@@ -1,17 +1,18 @@
+<% profile = user.profile %>
 <ul class="profile-list">
   <% if profile.children.count > 0 %>
     <li>
       <% profile.children.each do |category| %>
-        <%= render 'shared/profile/category', category: category %>
+        <%= render 'shared/profile/category', user: user, category: category %>
       <% end %>
     </li>
   <% end %>
-  <li>
-    <h2>
+  <% if @user == current_user %>
+    <li>
       <div class="category">
         <%= link_to "<span></span>".html_safe, class: "new", title: "new" %>
         <%= link_to '+ new' %>
       </div>
-    </h2>
-  </li>
+    </li>
+  <% end %>
 </ul>
