@@ -78,11 +78,13 @@ The setup used is the one defined by the standard [Devise](https://github.com/pl
 
 During the installation the user table is populated with a number of pre-defined users, namely the following:
 
-* admin@skillzz.com / password
-* worker@skillzz.com / password
-* customer@skillzz.com / password
-* viewer@skillzz.com / password
-* manager@skillzz.com / password
+* admin (admin@skillzz.com) / password
+* worker (worker@skillzz.com) / password
+* customer (customer@skillzz.com) / password
+* viewer (viewer@skillzz.com) / password
+* manager (manager@skillzz.com) / password
+
+You can login using either the user's email or username and the password is simply 'password'.
 
 In order to facilitate a more usable demo, the worker and customer are pre-seeded with `programming skills` along with a number of other randomly selected categories and skills.
 
