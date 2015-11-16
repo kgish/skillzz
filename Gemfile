@@ -25,7 +25,6 @@ gem 'searcher', github: 'radar/searcher'
 gem 'faker', github: 'stympy/faker'
 
 group :development, :test do
-
   # See https://github.com/rweng/pry-rails, use 'binding.pry'
   gem 'pry-rails'
 
