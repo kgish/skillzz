@@ -5,13 +5,13 @@ class Customer::ResultController < ApplicationController
   skip_after_action :verify_authorized, :verify_policy_scoped
 
   def show
-    @results = rankings.paginate(:page => params[:page])
     @user = User.find(params[:search_id])
     @profile = Profile.find(params[:id])
     # TODO
     # :id => profile_id (for multiple profiles -- later)
     # TODO
     # Authorize (current_user MUST equal user)
+    @results = rankings.paginate(:page => params[:page])
   end
 
   private
