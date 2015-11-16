@@ -12,6 +12,9 @@ gem 'font-awesome-rails', '~> 4.3'
 gem 'simple_form', '~> 3.1.0'
 gem 'devise', '~> 3.4.1'
 gem 'pundit', '~> 0.3.0'
+
+# Implementation of the nested set pattern for ActiveRecord models,
+# read more: https://github.com/collectiveidea/awesome_nested_set
 gem 'awesome_nested_set'
 
 # Nice gems for pagination
@@ -50,4 +53,3 @@ group :production do
   gem 'rails_12factor'
   gem 'puma'
 end
-
