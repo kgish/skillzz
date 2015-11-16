@@ -119,7 +119,7 @@ A user can update a skill if one of the following is true:
 
 ## Tags
 
-In order to be able to group similar skills together and improve overall searchability, a 'Tag' may be used. This is a single-word label attached to a given skill thus giving it extra granuality for searching.
+In order to be able to group similar skills together and improve overall searchability, a 'Tag' may be used. This is a single-word label attached to a given skill thus giving it extra granularity for searching.
 
 A given skill can have one or more tags, and unique tags can be shared across different skills.
 
@@ -130,7 +130,7 @@ As a workaround you can use dashes for multi-word labels, for example `continuou
 
 ## Profile
 
-Each user has a profile which is a heirarchical tree-structure with the root being the user who has one or more categories, each category having one or more skills, and each skill with one or more tags.
+Each user has a profile which is a hierarchical tree-structure with the root being the user who has one or more categories, each category having one or more skills, and each skill with one or more tags.
 
 ![](images/profile-tree.png?raw=true)
 
@@ -166,7 +166,7 @@ obj = Model.find(this_id)
 So for instance, if we have `name == 'category'` and `this_id = 234` we can grab that record like this:
 
 ```ruby
-categery = Category.find(this_id)
+category = Category.find(this_id)
 ```
 
 Sure, I realize that I could have used the `depth` attribute for the same thing where values of `1, 2 or 3` correspond to `category, skill or tag`, but `name` strings are easier for me to read than raw digits.
@@ -265,7 +265,7 @@ Here is a diagram which shows the high-level schema structure:
 
 I decided to use [MySQL](https://www.mysql.com/) for development and testing since the default [SQLite](https://www.sqlite.org/) that Rails uses is not robust enough for my large datasets. 
 
-By using the [Awesome Nested Set](https://github.com/collectiveidea/awesome_nested_set) gem for heirarchical model (Profile-Categories-Skills-Tags), and extra level of complexity is introduced.
+By using the [Awesome Nested Set](https://github.com/collectiveidea/awesome_nested_set) gem for hierarchical model (Profile-Categories-Skills-Tags), and extra level of complexity is introduced.
 
 For production I use [PostgreSQL](http://www.postgresql.org/) since that is the default for Heroku.
 
