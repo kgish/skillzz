@@ -11,33 +11,9 @@ A customer can select a number of pre-defined labels (tags) to narrow down the s
 
 A given query will (hopefully) generate a number of hits which are then ordered via a ranking scheme weighted according to criteria and preferences of the customer.
 
-The website was designed and built as part of a coding challenge given to me by [E-Accent](https://www.e-accent.com/) for the position of Remote Ruby on Rails Developer.
-
 Special thanks go to the authors of the book [Rails 4 in Action](https://www.manning.com/books/rails-4-in-action) which provided me with invaluable guidance and insights, a really fantastic book.
 
 Please note that I took the liberty of using some of their ideas and implementation details.
-
-
-## Coding Challenge
-
-This is the assignment which was given to me.
-
-> *Given a website which matches workers to customers.*
-> 
-> *A worker is a registered user, who possesses one or more skills like “cooking”, “house cleaning”, “fixing wireless 
-> networks”, and so on.*
-> 
-> *A customer, also a registered user, can search for workers by skill.*
-> 
-> *For example, if a customer needs a worker who can do both cooking and house-cleaning, she will go to the site, 
-> choose both these skills from a list, and get a list of workers from which to choose.*
-> 
-> *The site could have perhaps up to 1,000 workers, 10,000 customers and 100 skills.*
-> 
-> *The challenge: create a prototype of this website, with the main focus on the back end, especially the models and 
-> search functionality.*
-
-I was given plus minus two weeks to design, build, test and deploy it. Quite the challenge, indeed!
 
 
 ## Installation
