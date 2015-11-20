@@ -224,7 +224,7 @@ end
 
 ## Data Model
 
-The database tables, data types and relationships together define the different ways that the application interacts with the underlying data model in order to adhere to the user requirements (see code challenge).
+The database tables, data types and relationships together define the different ways that the application interacts with the underlying data model in order to adhere to the user requirements.
 
 On the highest level we have 'Categories' with a name (unique) and a description.
 
