@@ -1,4 +1,4 @@
-# SkillZZ-Seaarch
+# SkillZZ-Search
 
 This is an advanced website platform for matching highly skilled workers to customers who are searching for the best and most appropriate person for a given task at hand.
 
