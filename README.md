@@ -1,4 +1,4 @@
-# SkillZZ
+# SkillZZ-Seaarch
 
 This is an advanced website platform for matching highly skilled workers to customers who are searching for the best and most appropriate person for a given task at hand.
 
@@ -20,8 +20,8 @@ Please note that I took the liberty of using some of their ideas and implementat
 
 In order to install and start using this application, do the following:
 
-    $ git clone git@github.com:kgish/skillzz.git
-    $ cd skillzz
+    $ git clone git@github.com:kgish/skillzz-search.git
+    $ cd skillzz-search
     $ bundle install
     $ bundle exec rake db:migrate
     $ bundle exec rake db:seed
@@ -32,8 +32,8 @@ The application is now up-and-running and can be viewed by pointing your favorit
 If you are cloning this repository for development purposes, it is recommended that you also do the following from
 within the project root directory just after you run the `bundle install` command above:
 
-    $ rvm use ruby-2.2.2@skillzz --create
-    $ rvm --rvmrc ruby-2.2.2@skillzz
+    $ rvm use ruby-2.2.2@skillzz-search --create
+    $ rvm --rvmrc ruby-2.2.2@skillzz-search
     $ rvm rvmrc trust `pwd`
     $ rvm rvmrc warning ignore  `pwd`/.rvmrc
     $ gem install bundler
@@ -54,11 +54,11 @@ The setup used is the one defined by the standard [Devise](https://github.com/pl
 
 During the installation the user table is populated with a number of pre-defined users, namely the following:
 
-* admin (admin@skillzz.com) / password
-* worker (worker@skillzz.com) / password
-* customer (customer@skillzz.com) / password
-* viewer (viewer@skillzz.com) / password
-* manager (manager@skillzz.com) / password
+* admin (admin@skillzz-search.com) / password
+* worker (worker@skillzz-search.com) / password
+* customer (customer@skillzz-search.com) / password
+* viewer (viewer@skillzz-search.com) / password
+* manager (manager@skillzz-search.com) / password
 
 You can login using either the user's email or username and the password is simply 'password'.
 
@@ -301,7 +301,7 @@ end
 
 See [Deploying Rails Applications with the Puma Web Server](https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server).
 
-In order to set up the deployment process, I went to the application root directory `/path/to/skillz` and did the following:
+In order to set up the deployment process, I went to the application root directory `/path/to/skillz-search` and did the following:
     
     $ heroku login
     $ heroku apps:create

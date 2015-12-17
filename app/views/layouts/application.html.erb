@@ -5,7 +5,7 @@
       <% if content_for?(:title) %>
         <%= yield(:title) %>
       <% else %>
-        SkillZZ
+        SkillZZ-Search
       <% end %>
     </title>
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -19,7 +19,7 @@
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <%= link_to ("SkillZZ&ndash;" + fa_icon("wrench")).html_safe, root_path, class: "navbar-brand" %>
+          <%= link_to ("SkillZZ-Search " + fa_icon("wrench")).html_safe, root_path, class: "navbar-brand" %>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -72,7 +72,7 @@
   <div class="container">
     <div class='row'>
       <div class='col-md-4'>
-        <p>SkillZZ. All rights reserved. &copy;2015.</p>
+        <p>SkillZZ-Search. All rights reserved. &copy;2015.</p>
       </div>
       <div class='col-md-4'>
       </div>

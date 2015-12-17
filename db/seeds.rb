@@ -285,7 +285,7 @@ else
   User.create!(
     fullname: random_fullname,
     username: "admin",
-    email: "admin@skillzz.com",
+    email: "admin@skillzz-search.com",
     password: "password",
     admin: true,
     bio: "Manage all of the computer systems at the company as well as everything having to do with the network infrastructure. This includes monitoring, trouble-shooting and overall customer technical support. Can also take apart computers blind-folded and pull cables from one end of the building to the other.",
@@ -329,7 +329,7 @@ puts "Profile.delete_all => skipped!"
     {
         fullname: random_fullname,
         username: "viewer",
-        email: "viewer@skillzz.com",
+        email: "viewer@skillzz-search.com",
         password: "password",
         bio: random_bio,
         profile: nil
@@ -337,7 +337,7 @@ puts "Profile.delete_all => skipped!"
     {
         fullname: random_fullname,
         username: "manager",
-        email: "manager@skillzz.com",
+        email: "manager@skillzz-search.com",
         password: "password",
         bio: random_bio,
         profile: nil
@@ -345,7 +345,7 @@ puts "Profile.delete_all => skipped!"
     {
         fullname: random_fullname,
         username: "customer",
-        email: "customer@skillzz.com",
+        email: "customer@skillzz-search.com",
         password: "password",
         customer: true,
         bio: "As one of the most demanding customers on this planet, I expect nothing less than the very best possible service there is. I am starting to get impatient because I am in immediate need of a skilled professional. For one of my prestigious projects I need someone with the right knowledge and at least five years of experience in the role as a senior architect. The candidate must be an expert but not cost too much.",
@@ -354,7 +354,7 @@ puts "Profile.delete_all => skipped!"
     {
         fullname: random_fullname,
         username: "worker",
-        email: "worker@skillzz.com",
+        email: "worker@skillzz-search.com",
         password: "password",
         worker: true,
         bio: "With more than ten years experience as a software developer, I view myself as a hard working and determined expert in my field. Prefer the more complex and challenging projects working in a small team. Young at heart and eager to learn more, roll up my sleeves and get the job done. Skills include C/C++, Perl, Ruby, Ruby on Rails, Elixir, JavaScript, HTML5, CSS3, Bootstrap, Linux, Apache and MySQL.",

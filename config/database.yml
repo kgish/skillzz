@@ -25,11 +25,11 @@ default: &default
 
 development:
   <<: *default
-  database: skillz_development
+  database: skillzz_development
 
 test:
   <<: *default
-  database: skillz_test
+  database: skillzz_test
 
 production:
   adapter: postgresql
