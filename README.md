@@ -193,7 +193,7 @@ end
 
 ## Ranking
 
-The ranking algorith is simple and pretty straight forward. Basically, the two profiles are compared by taking the lengths of the intersecting arrays and weighting them according to how far down the tree (more specific) the match is.
+The ranking algorithm is simple and pretty straight forward. Basically, the two profiles are compared by taking the lengths of the intersecting arrays and weighting them according to how far down the tree (more specific) the match is.
 
 ```ruby
 def rank_match(customer, worker)
